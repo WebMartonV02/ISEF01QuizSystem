@@ -1,4 +1,5 @@
-﻿using ISEF01QuizSystem.Quiz;
+﻿using ISEF01QuizSystem.Questions;
+using ISEF01QuizSystem.Quiz;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -26,6 +27,7 @@ public class ISEF01QuizSystemDbContext :
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<QuizEntity> Quizes { get; set; }
+    public DbSet<QuestionEntity> Questions { get; set; }
 
     #region Entities from the modules
 
@@ -82,6 +84,17 @@ public class ISEF01QuizSystemDbContext :
             b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(QuizEntity), ISEF01QuizSystemConsts.DbSchema);
             b.Property(x => x.Title).IsRequired();
             b.Property(x => x.Description).IsRequired();
+
+            b.HasMany(x => x.Questions)
+                .WithOne(x => x.Quiz).HasForeignKey(x => x.QuizId);
+        });
+        
+        builder.Entity<QuestionEntity>(b =>
+        {
+            b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(QuestionEntity), ISEF01QuizSystemConsts.DbSchema);
+            b.Property(x => x.QuizId).IsRequired();
+            b.Property(x => x.Content).IsRequired();
+            b.Property(x => x.Order).IsRequired();
         });
 
         //builder.Entity<YourEntity>(b =>
