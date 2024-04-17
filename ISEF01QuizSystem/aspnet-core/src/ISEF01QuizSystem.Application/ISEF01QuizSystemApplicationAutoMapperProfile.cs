@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ISEF01QuizSystem.Questions;
 using ISEF01QuizSystem.Quiz;
 using ISEF01QuizSystem.Quizes;
 
@@ -19,5 +20,18 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
         CreateMap<QuizEntity, QuizResponseDto>()
             .ForMember(dst => dst.Titel, opt => opt.MapFrom(src => src.Title))
             .ForMember(dst => dst.Description, opt => opt.MapFrom(src => src.Description));
+    }
+
+    public void CreateQuestionMapping()
+    {
+        CreateMap<QuestionEntity, QuestionResponseDto>()
+            .ForMember(dst => dst.QuizId, opt => opt.MapFrom(src => src.QuizId))
+            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dst => dst.Order, opt => opt.MapFrom(src => src.Order));
+        
+        CreateMap<QuestionRequestDto, QuestionEntity>()
+            .ForMember(dst => dst.QuizId, opt => opt.MapFrom(src => src.QuizId))
+            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dst => dst.Order, opt => opt.MapFrom(src => src.Order));
     }
 }
