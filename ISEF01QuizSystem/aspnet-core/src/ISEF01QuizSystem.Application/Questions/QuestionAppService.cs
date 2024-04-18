@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ISEF01QuizSystem.Common;
 using Volo.Abp;
@@ -28,11 +29,16 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         return result;
     }
     
-    public async Task<List<QuestionResponseDto>> GetByQuizIdOrderedAsync(int quizId)
+    public async Task<List<QuestionResponseDto>> GetByQuizIdOrderedAsync(QuestionsForQuizRequestDto requestDto)
     {
-        var entitiesByQuizId = await _genericRepository.GetListByPredicateWithNestedElements(x => x.QuizId == quizId);
+        var queryable = (await _genericRepository.GetListByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId)).AsQueryable();
 
-        var result = ObjectMapper.Map<List<QuestionEntity>, List<QuestionResponseDto>>(entitiesByQuizId);
+        var defaultSorting = new SortingModel<QuestionEntity>(x => x.Order);
+        var result = await queryable.GetModifiedDataList<QuestionEntity, QuestionResponseDto>(
+            requestDto,
+            AsyncExecuter,
+            ObjectMapper,
+            defaultSorting);
         
         return result;
     }

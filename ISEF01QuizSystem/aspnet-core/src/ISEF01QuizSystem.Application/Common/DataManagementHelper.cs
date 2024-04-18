@@ -37,4 +37,28 @@ public static class DataManagementHelper
 
         return modifiedDataList;
     }
+    
+    public static async Task<List<TResultDto>> GetModifiedDataList<TEntity, TResultDto>(
+        this IQueryable<TEntity> queryableItems,
+        FilteredResultRequestDto request,
+        IAsyncQueryableExecuter asyncQueryableExecuter,
+        IObjectMapper objectMapper,
+        SortingModel<TEntity> defaultSorting = default)
+    {
+        PagedResultDto<TResultDto> modifiedDataList;
+
+        queryableItems = queryableItems.ApplySearchFilter(request.SearchPredicate);
+
+
+        queryableItems = queryableItems.ApplySorting(request.Sorting, defaultSorting);
+
+        queryableItems = queryableItems
+            .Skip(request.SkipCount)
+            .Take(request.MaxResultCount);
+
+        var queryResult = await asyncQueryableExecuter.ToListAsync(queryableItems);
+        var resultDto = objectMapper.Map<List<TEntity>, List<TResultDto>>(queryResult);
+
+        return resultDto;
+    }
 }
