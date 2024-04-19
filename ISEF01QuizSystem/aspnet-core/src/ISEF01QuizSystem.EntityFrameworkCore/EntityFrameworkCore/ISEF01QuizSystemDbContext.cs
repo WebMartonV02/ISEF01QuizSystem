@@ -1,4 +1,9 @@
-﻿using ISEF01QuizSystem.Questions;
+﻿using ISEF01QuizSystem.Answers;
+using ISEF01QuizSystem.Attempts;
+using ISEF01QuizSystem.Comments;
+using ISEF01QuizSystem.Courses;
+using ISEF01QuizSystem.Options;
+using ISEF01QuizSystem.Questions;
 using ISEF01QuizSystem.Quiz;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -28,6 +33,11 @@ public class ISEF01QuizSystemDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<QuizEntity> Quizes { get; set; }
     public DbSet<QuestionEntity> Questions { get; set; }
+    public DbSet<CourseEntity> Courses { get; set; }
+    public DbSet<AttemptEntity> Attempts { get; set; }
+    public DbSet<CommentEntity> Comments { get; set; }
+    public DbSet<AnswerEntity> Answers { get; set; }
+    public DbSet<OptionEntity> Options { get; set; }
 
     #region Entities from the modules
 
@@ -79,6 +89,16 @@ public class ISEF01QuizSystemDbContext :
 
         /* Configure your own tables/entities inside here */
 
+        builder.Entity<CourseEntity>(b =>
+        {
+            b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(CourseEntity), ISEF01QuizSystemConsts.DbSchema);
+            b.Property(x => x.Title).IsRequired();
+            b.Property(x => x.Description).IsRequired();
+            
+            b.HasMany(x => x.Quizes)
+                .WithOne(x => x.Course).HasForeignKey(x => x.CourseId);
+        });
+        
         builder.Entity<QuizEntity>(b =>
         {
             b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(QuizEntity), ISEF01QuizSystemConsts.DbSchema);
@@ -86,6 +106,9 @@ public class ISEF01QuizSystemDbContext :
             b.Property(x => x.Description).IsRequired();
 
             b.HasMany(x => x.Questions)
+                .WithOne(x => x.Quiz).HasForeignKey(x => x.QuizId);
+            
+            b.HasMany(x => x.Attempts)
                 .WithOne(x => x.Quiz).HasForeignKey(x => x.QuizId);
         });
         
@@ -95,13 +118,45 @@ public class ISEF01QuizSystemDbContext :
             b.Property(x => x.QuizId).IsRequired();
             b.Property(x => x.Content).IsRequired();
             b.Property(x => x.Order).IsRequired();
+            
+            b.HasMany(x => x.Comments)
+                .WithOne(x => x.Question).HasForeignKey(x => x.QuestionId);
+            
+            b.HasMany(x => x.Answers)
+                .WithOne(x => x.Question).HasForeignKey(x => x.QuestionId);
+            
+            b.HasMany(x => x.Options)
+                .WithOne(x => x.Question).HasForeignKey(x => x.QuestionId);
         });
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + "YourEntities", ISEF01QuizSystemConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        
+        builder.Entity<AttemptEntity>(b =>
+        {
+            b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(AttemptEntity), ISEF01QuizSystemConsts.DbSchema);
+            b.Property(x => x.QuizId).IsRequired();
+            b.Property(x => x.UserId).IsRequired();
+            b.Property(x => x.Score).IsRequired();
+        });
+        
+        builder.Entity<AnswerEntity>(b =>
+        {
+            b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(AnswerEntity), ISEF01QuizSystemConsts.DbSchema);
+            b.Property(x => x.QuestionId).IsRequired();
+            b.Property(x => x.UserId).IsRequired();
+        });
+        
+        builder.Entity<CommentEntity>(b =>
+        {
+            b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(CommentEntity), ISEF01QuizSystemConsts.DbSchema);
+            b.Property(x => x.QuestionId).IsRequired();
+            b.Property(x => x.Content).IsRequired();
+            b.Property(x => x.Order).IsRequired();
+        });
+        
+        builder.Entity<OptionEntity>(b =>
+        {
+            b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(OptionEntity), ISEF01QuizSystemConsts.DbSchema);
+            b.Property(x => x.QuestionId).IsRequired();
+            b.Property(x => x.Text).IsRequired();
+        });
     }
 }
