@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ISEF01QuizSystem.Common;
 using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
@@ -17,18 +18,16 @@ public class QuizAppService : ISEF01QuizSystemAppService
         _quizEntityRepository = quizEntityRepository;
     }
 
-    public async Task<PagedResultDto<QuizResponseDto>> GetListAsync(PagedAndSortedResultRequestDto requestDto)
+    public async Task<List<QuizResponseDto>> GetListAsync(FilteredResultRequestDto requestDto)
     {
-        var quizEntities = await _quizEntityRepository.GetListAsync();
+        var queryable = await _quizEntityRepository.GetQueryableAsync();
 
-        var mappedQuizEntites = ObjectMapper.Map<List<QuizEntity>, List<QuizResponseDto>>(quizEntities);
-
-        var quizesPaged = mappedQuizEntites
-            .Skip(requestDto.SkipCount)
-            .Take(requestDto.MaxResultCount)
-            .ToList();
-
-        var result = new PagedResultDto<QuizResponseDto>(quizesPaged.Count, quizesPaged);
+        var defaultSorting = new SortingModel<QuizEntity>(x => x.Title);
+        var result = await queryable.GetModifiedDataList<QuizEntity, QuizResponseDto>(
+            requestDto,
+            AsyncExecuter,
+            ObjectMapper,
+            defaultSorting);
         
         return result;
     }
