@@ -118,6 +118,9 @@ public class ISEF01QuizSystemDbContext :
             b.Property(x => x.QuizId).IsRequired();
             b.Property(x => x.Content).IsRequired();
             b.Property(x => x.Order).IsRequired();
+
+            b.HasOne<QuizEntity>(x => x.Quiz)
+                .WithMany(x => x.Questions).HasForeignKey(x => x.QuizId);
             
             b.HasMany(x => x.Comments)
                 .WithOne(x => x.Question).HasForeignKey(x => x.QuestionId);

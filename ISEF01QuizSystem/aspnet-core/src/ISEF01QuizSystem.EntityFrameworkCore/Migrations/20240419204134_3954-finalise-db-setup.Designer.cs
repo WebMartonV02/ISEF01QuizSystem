@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace ISEF01QuizSystem.Migrations
 {
     [DbContext(typeof(ISEF01QuizSystemDbContext))]
-    [Migration("20240419201605_3954_finalize_db_setup")]
-    partial class _3954_finalize_db_setup
+    [Migration("20240419204134_3954-finalise-db-setup")]
+    partial class _3954finalisedbsetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
