@@ -12,4 +12,5 @@ public class AttemptEntity : Entity<int>
     public int QuizId { get; set; }
     public QuizEntity Quiz { get; set; }
     public int Score { get; set; }
+    public int Count { get; set; }
 }
