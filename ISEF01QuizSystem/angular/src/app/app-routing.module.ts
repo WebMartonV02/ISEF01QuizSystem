@@ -30,6 +30,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./start/start.module').then(m => m.StartModule),
   },
+  {
+    path: 'kursauswahl',
+    loadChildren: () =>
+      import('./kursauswahl/kursauswahl.module').then(m => m.KursauswahlModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then(m => m. LoginModule),
+  },
 ];
 
 @NgModule({
