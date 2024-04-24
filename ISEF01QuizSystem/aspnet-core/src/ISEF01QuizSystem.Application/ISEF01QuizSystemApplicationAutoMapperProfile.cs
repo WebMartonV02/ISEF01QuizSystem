@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using ISEF01QuizSystem.Questions;
+using ISEF01QuizSystem.Quiz;
+using ISEF01QuizSystem.Quizes;
 
 namespace ISEF01QuizSystem;
 
@@ -9,5 +12,26 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
+        CreateQuizMapping();
+    }
+
+    public void CreateQuizMapping()
+    {
+        CreateMap<QuizEntity, QuizResponseDto>()
+            .ForMember(dst => dst.Titel, opt => opt.MapFrom(src => src.Title))
+            .ForMember(dst => dst.Description, opt => opt.MapFrom(src => src.Description));
+    }
+
+    public void CreateQuestionMapping()
+    {
+        CreateMap<QuestionEntity, QuestionResponseDto>()
+            .ForMember(dst => dst.QuizId, opt => opt.MapFrom(src => src.QuizId))
+            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dst => dst.Order, opt => opt.MapFrom(src => src.Order));
+        
+        CreateMap<QuestionRequestDto, QuestionEntity>()
+            .ForMember(dst => dst.QuizId, opt => opt.MapFrom(src => src.QuizId))
+            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dst => dst.Order, opt => opt.MapFrom(src => src.Order));
     }
 }
