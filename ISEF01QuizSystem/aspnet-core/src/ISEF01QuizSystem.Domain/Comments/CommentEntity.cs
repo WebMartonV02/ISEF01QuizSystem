@@ -11,4 +11,14 @@ public class CommentEntity : Entity<int>
     public int Order { get; set; }
     public int QuestionId { get; set; }
     public QuestionEntity Question { get; set; }
+
+    public void IncrementAndSetOrder(int order)
+    {
+        Order = ++order;
+    }
+
+    public void Update(string content)
+    {
+        Content = content;
+    }
 }
