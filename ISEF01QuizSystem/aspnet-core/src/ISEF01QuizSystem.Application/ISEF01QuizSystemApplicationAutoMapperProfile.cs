@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ISEF01QuizSystem.Comments;
 using ISEF01QuizSystem.Questions;
 using ISEF01QuizSystem.Quiz;
 using ISEF01QuizSystem.Quizes;
@@ -13,6 +14,8 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
         CreateQuizMapping();
+        CreateQuestionMapping();
+        CreateCommentMapping();
     }
 
     public void CreateQuizMapping()
@@ -33,5 +36,12 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
             .ForMember(dst => dst.QuizId, opt => opt.MapFrom(src => src.QuizId))
             .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
             .ForMember(dst => dst.Order, opt => opt.MapFrom(src => src.Order));
+    }
+    
+    public void CreateCommentMapping()
+    {
+        CreateMap<CommentEntity, CommentResultDto>()
+            .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dst => dst.Text, opt => opt.MapFrom(src => src.Content));
     }
 }
