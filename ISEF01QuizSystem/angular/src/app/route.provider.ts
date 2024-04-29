@@ -16,14 +16,14 @@ function configureRoutes(routesService: RoutesService) {
         layout: eLayoutType.application,
       },
       {
-        path: '/start',
+        path: '/courses',
         name: '::Start',
         iconClass: 'fas fa-home',
         order: 1,
         layout: eLayoutType.application,
       },
       {
-        path: '/kursauswahl',
+        path: '/quizes',
         name: '::kursauswahl',
         iconClass: 'fas fa-home',
         order: 1,

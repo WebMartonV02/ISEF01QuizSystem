@@ -28,12 +28,12 @@ const routes: Routes = [
   {
     path: 'start',
     loadChildren: () =>
-      import('./start/start.module').then(m => m.StartModule),
+      import('./courses/courses.module').then(m => m.CoursesModule),
   },
   {
-    path: 'kursauswahl',
+    path: 'quizes',
     loadChildren: () =>
-      import('./kursauswahl/kursauswahl.module').then(m => m.KursauswahlModule),
+      import('./quizes/quizes.module').then(m => m.QuizesModule),
   },
   {
     path: 'login',

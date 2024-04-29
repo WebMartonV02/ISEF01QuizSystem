@@ -2,20 +2,20 @@ import { CoreTestingModule } from "@abp/ng.core/testing";
 import { ThemeSharedTestingModule } from "@abp/ng.theme.shared/testing";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { NgxValidateCoreModule } from "@ngx-validate/core";
-import { StartComponent } from "./start.component";
+import { QuizesComponent } from "./quizes.component";
 import { OAuthService } from 'angular-oauth2-oidc';
 import { AuthService } from '@abp/ng.core';
 
 
 
-describe("StartComponent", () => {
-  let fixture: ComponentFixture<StartComponent>;
+describe("KursauswahlComponent", () => {
+  let fixture: ComponentFixture<QuizesComponent>;
   const mockOAuthService = jasmine.createSpyObj('OAuthService', ['hasValidAccessToken'])
   const mockAuthService = jasmine.createSpyObj('AuthService', ['navigateToLogin'])
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [StartComponent],
+        declarations: [QuizesComponent],
         imports: [
           CoreTestingModule.withConfig(),
           ThemeSharedTestingModule.withConfig(),
@@ -37,7 +37,7 @@ describe("StartComponent", () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StartComponent);
+    fixture = TestBed.createComponent(QuizesComponent);
     fixture.detectChanges();
   });
 
