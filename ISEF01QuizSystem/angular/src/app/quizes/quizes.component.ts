@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { QuizService } from '@proxy/quizes';
-import { CourseResponseDto } from '@proxy/courses';
-import { Subject, takeUntil } from 'rxjs';
+import { CourseResponseDto, CourseService } from '@proxy/courses';
+import { Subject, switchMap, takeUntil } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quizes',
@@ -15,11 +16,15 @@ export class QuizesComponent implements OnInit, OnDestroy
 
   private _componentDestroyed$: Subject<void> = new Subject();
 
-  constructor(private readonly _quizService: QuizService) {}
+  constructor(private readonly _quizService: QuizService,
+              private readonly _courseService: CourseService,
+              private readonly _activatedRoute: ActivatedRoute) {}
 
   public ngOnInit(): void
   {
-    this.LoadCourses(1); // read the course id form the DataProviderService
+    var parentalCourseId = this._activatedRoute.snapshot.paramMap.get('id');
+
+    this.LoadCourses(parseInt(parentalCourseId));
   }
 
   public ngOnDestroy(): void
@@ -30,11 +35,18 @@ export class QuizesComponent implements OnInit, OnDestroy
 
   public LoadCourses(courseId:  number) : void
   {
-    this._quizService.getByCourseIdOrdered(courseId)
-      .pipe(takeUntil(this._componentDestroyed$))
+    this._courseService.getById(courseId)
+      .pipe(
+        takeUntil(this._componentDestroyed$),
+        switchMap((data: CourseResponseDto) =>
+        {
+          this.parentEntity = data;
+
+          return this._quizService.getByCourseIdOrdered(courseId);
+        }))
       .subscribe((data: Array<CourseResponseDto>) =>
       {
         this.entities = data;
-      })
+      });
   }
 }

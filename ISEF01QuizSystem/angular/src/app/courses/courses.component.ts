@@ -39,10 +39,8 @@ export class CoursesComponent implements OnInit, OnDestroy
       })
   }
 
-  public RouteToQuiz(entity: CourseResponseDto) :  void
+  public RouteToQuiz(courseId: number) :  void
   {
-    // dataProviderService to pass the courseEntity or at least the
-
-    let _ = this._router.navigate(['/quizes']);
+    let _ = this._router.navigate(['/quizes', courseId]);
   }
 }
