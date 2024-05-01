@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { QuizService } from '@proxy/quizes';
 import { CourseResponseDto, CourseService } from '@proxy/courses';
-import { Subject, switchMap, takeUntil } from 'rxjs';
+import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,8 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class QuizesComponent implements OnInit, OnDestroy
 {
-  public parentEntity: CourseResponseDto;
-  public entities:  Array<CourseResponseDto>;
+  public parentEntity: CourseResponseDto = {} as CourseResponseDto;
+  public entities:  Array<CourseResponseDto> = new Array<CourseResponseDto>;
 
   private _componentDestroyed$: Subject<void> = new Subject();
 
@@ -23,6 +23,8 @@ export class QuizesComponent implements OnInit, OnDestroy
   public ngOnInit(): void
   {
     var parentalCourseId = this._activatedRoute.snapshot.paramMap.get('id');
+
+    console.log(parentalCourseId)
 
     this.LoadCourses(parseInt(parentalCourseId));
   }
@@ -47,6 +49,7 @@ export class QuizesComponent implements OnInit, OnDestroy
       .subscribe((data: Array<CourseResponseDto>) =>
       {
         this.entities = data;
+        console.log(this.entities)
       });
   }
 }

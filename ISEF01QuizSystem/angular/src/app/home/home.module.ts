@@ -3,10 +3,9 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import {MatBadgeModule} from '@angular/material/badge';
-import { CoursesComponent } from '../courses/courses.component';
 
 @NgModule({
-  declarations: [HomeComponent, CoursesComponent],
+  declarations: [HomeComponent],
   imports: [SharedModule, HomeRoutingModule, MatBadgeModule],
 })
 export class HomeModule {}
