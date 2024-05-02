@@ -1,0 +1,24 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<div class="container">
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>{{ parentEntity.title }}</h1>
+            <br>
+            <p> {{ parentEntity.description }} </p>
+            <h2>Jetzt Quiz wählen:</h2>
+        </div>
+    </div>
+
+          <!-- Quiz Buttons -->
+          <div class="row col-12" *ngFor="let entity of entities">
+            <div class="d-grid gap-2 mb-2">
+                <a href="#" class="btn btn-primary btn-block">{{ entity.titel }}</a>
+            </div>
+        </div>
+
+    </div>
+  </div>
