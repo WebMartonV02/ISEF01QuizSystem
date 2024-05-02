@@ -14,9 +14,12 @@ public class QuizAppService : ISEF01QuizSystemAppService
     private readonly IRepository<QuizEntity> _quizEntityRepository;
     private readonly IGenericRepository<QuizEntity> _genericRepository; 
 
-    public QuizAppService(IRepository<QuizEntity> quizEntityRepository)
+    public QuizAppService(
+        IRepository<QuizEntity> quizEntityRepository,
+        IGenericRepository<QuizEntity> genericRepository)
     {
         _quizEntityRepository = quizEntityRepository;
+        _genericRepository = genericRepository;
     }
 
     public async Task<List<QuizResponseDto>> GetListAsync(FilteredResultRequestDto requestDto)

@@ -17,6 +17,7 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
         CreateQuizMapping();
         CreateQuestionMapping();
         CreateCommentMapping();
+        CreateCourseMapping();
     }
 
     public void CreateQuizMapping()
@@ -24,6 +25,8 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
         CreateMap<QuizEntity, QuizResponseDto>()
             .ForMember(dst => dst.Titel, opt => opt.MapFrom(src => src.Title))
             .ForMember(dst => dst.Description, opt => opt.MapFrom(src => src.Description));
+
+        CreateMap<QuizEntity, QuizEntity>();
     }
 
     public void CreateQuestionMapping()
