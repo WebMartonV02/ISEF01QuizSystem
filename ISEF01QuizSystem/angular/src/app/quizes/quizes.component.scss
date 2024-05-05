@@ -43,18 +43,32 @@ a{
 
 /* START SEITE */
 
-.modul-kachel{
-    background-color:var(--akzentfarbe);
+.modul-kachel
+{
+    background-image: linear-gradient(to top right, rgb(30,66,95), rgb(117,168,240));
     width: 80%;
-    height: 150px;
+    height: 5rem;
     border-radius: 30px;
+    margin: auto;
 }
 
-.modul-kachel:hover{
-    background-color:var(--sekundaerfarbe);
+.modul-kachel a
+{
+  color:#ffffff;
+  font-size: 1.5rem;
 }
 
-.modul-kachel-text{
-    justify-content: center;
-    color: var(--white);
+.block--content
+{
+  display: flex;
+  justify-content: space-between;
+  min-height: 100%;
+  align-items: center;
+}
+
+mat-icon{
+  width: 30px;
+  height: 100%;
+  font-size: 2rem;
+  margin-right: 20px;
 }

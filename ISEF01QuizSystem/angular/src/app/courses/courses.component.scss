@@ -66,19 +66,21 @@ a{
 
 .input-icon {
   width: 30%;
-  margin-bottom: 10px;
+  text-align: center;
+  margin: auto;
 }
 
 .icon {
   padding: 10px;
   min-width: 40px;
+  margin: auto;
+  display: block;
 }
 
 .input-field {
   border-radius: 10px;
   border: 1px gray solid;
-  width: 100%;
   padding: 10px;
-  text-align: center;
-  margin-bottom: 3px;
+  width: 100%;
+  padding-left: 10%;
 }
