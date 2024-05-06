@@ -1,0 +1,46 @@
+name: quiz
+on: [push]
+jobs:
+  build-and-test-angular:
+    runs-on: 
+        self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+#      - name: Node JS Setup
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: '18'
+
+#      - name: Install Angular CLI-
+#        run: npm install -g @angular/cli
+    
+#      - name: Install dependencies
+#        run: npm install
+#        working-directory: ./ISEF01QuizSystem/angular
+    
+#      - name: Build and test Angular app
+#        run: npm run build --prod
+#        working-directory: ./ISEF01QuizSystem/angular
+
+
+#  build-and-test-dotnet:
+#          runs-on: self-hosted
+#      
+#          steps:
+#          - name: Checkout code
+#            uses: actions/checkout@v2
+#      
+#          - name: Setup .NET Core SDK
+#            uses: actions/setup-dotnet@v1
+#            with:
+#              dotnet-version: '8.0.202' # or any version needed
+#      
+#          - name: Restore NuGet packages
+#            run: dotnet restore
+#           working-directory: ./quiz/aspnet-core
+#     
+#          - name: Build and test ASP.NET Core app
+#            run: dotnet build --configuration Release
+#            working-directory: ./quiz/aspnet-core      
