@@ -1,6 +1,6 @@
 import { Environment } from '@abp/ng.core';
 
-const baseUrl = 'http://localhost:4200';
+const baseUrl = 'https://quizmunity.com';
 
 export const environment = {
   production: true,
@@ -10,16 +10,16 @@ export const environment = {
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44345/',
+    issuer: 'https://quizmunity.com/',
     redirectUri: baseUrl,
     clientId: 'ISEF01QuizSystem_App',
     responseType: 'code',
     scope: 'offline_access ISEF01QuizSystem',
-    requireHttps: true
+    requireHttps: false
   },
   apis: {
     default: {
-      url: 'https://localhost:44345',
+      url: 'https://quizmunity.com',
       rootNamespace: 'ISEF01QuizSystem',
     },
   },
