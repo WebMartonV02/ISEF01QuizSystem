@@ -3,6 +3,7 @@ on:
     push:
       branches:
         - 'pipeline-setup'
+        
 jobs:
   build-and-test-angular:
     runs-on: 
