@@ -4,7 +4,7 @@ on:
       branches:
         - 'pipeline-setup'
 
-        
+
 jobs:
   build-and-test-angular:
     runs-on: 
@@ -13,21 +13,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-#      - name: Node JS Setup
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: '18'
+      - name: Node JS Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-#      - name: Install Angular CLI-
-#        run: npm install -g @angular/cli
+      - name: Install Angular CLI-
+        run: npm install -g @angular/cli
     
-#      - name: Install dependencies
-#        run: npm install
-#        working-directory: ./ISEF01QuizSystem/angular
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./ISEF01QuizSystem/angular
     
-#      - name: Build and test Angular app
-#        run: npm run build --prod
-#        working-directory: ./ISEF01QuizSystem/angular
+      - name: Build and test Angular app
+        run: npm run build --prod
+        working-directory: ./ISEF01QuizSystem/angular
 
 
 #  build-and-test-dotnet:
