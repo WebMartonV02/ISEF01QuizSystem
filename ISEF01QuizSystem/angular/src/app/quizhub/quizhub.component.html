@@ -1,0 +1,93 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<div class="maincontainer">
+ 
+         
+                                    <div class="container-fluid"> 
+                                        <div class="white-container"> 
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <div class="welcome_quizmunity">
+                                                        <h1>Quizhub</h1>
+                                                        <p>QuizHub ist dein interaktiver Treffpunkt innerhalb der Quizmunity, wo Wissen  und Spaß aufeinandertreffen. Hier kannst du dich mit anderen  Quiz-Enthusiasten vernetzen, Diskussionen zu den neuesten Fragen führen und Einblicke in spannende Themenbereiche erhalten. 
+
+                                                            Der QuizHub, ein Ort zum Lernen, Teilen und  Herausfordern. Ob du Tipps für knifflige Fragen suchst, Feedback zu  deinen Quizerfahrungen teilen möchtest oder einfach nur neue Quizfreunde  kennenlernen willst, der QuizHub bietet dir die perfekte Plattform.</p>
+                                                    </div>
+                                                    <div class="search_quizmuniy">
+                                                        <h3>Nutze die Suchfunktion, um gezielt nach Quizzen zu suchen:</h3>
+                                                    </div>
+
+                                                    <!-- Suchfeld hinzufügen -->
+                                                    <div class="search-bar" style="position: relative; display: flex; align-items: center; width: 100%;">
+                                                        <span style="position: absolute; padding: 10px; pointer-events: none;">
+                                                            <i class="bi bi-search"></i>
+                                                        </span>
+                                                        <input type="text" id="quiz-search-input" style="padding-left: 35px;" placeholder="Quizname eingeben">
+                                                        <div id="autocomplete-results" style="position: absolute; top: 100%; left: 0; right: 0; background: white; box-shadow: 0px 4px 6px rgba(0,0,0,0.1); z-index: 1000;"></div>
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                    <div id="selected-quiz-name"></div>
+
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="container my-5">
+                                                <!-- Formular zum Hinzufügen neuer Fragen -->
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="new-question-title" placeholder="Stelle eine Frage oder füge hier einen Kommentar hinzu">
+                                                    <textarea id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
+                                                    <button class="btn btn-primary" onclick="addNewQuestion()">Veröffentlichen</button>
+                                                </div>
+
+                                                <div id="question-container">
+                                                    <!-- Hier werden die neuen Fragen eingefügt -->
+                                                
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+
+
+
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Funktion, um auf Klick-Event für jede Antwort zu reagieren
+    function answerClicked(event) {
+        // Füge die ausgewählte Klasse zum geklickten Element hinzu oder entferne sie, wenn sie bereits ausgewählt war
+        event.currentTarget.classList.toggle('answer-selected');
+    }
+
+    // Event-Listener für alle Antwort-Elemente
+    document.querySelectorAll('.answer').forEach(function(answer) {
+        answer.addEventListener('click', answerClicked);
+    });
+</script>
+
+
+
+<style scoped>
+  .col-lg-2.border-start:nth-of-type(6n + 1) {
+    border-left: 0 !important;
+  }
+
+  .col-lg-4.border-start:nth-of-type(3n + 1) {
+    border-left: 0 !important;
+  }
+
+  @media (max-width: 991px) {
+    .border-start {
+      border-left: 0 !important;
+    }
+  }
+</style>

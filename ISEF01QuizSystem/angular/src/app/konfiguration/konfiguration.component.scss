@@ -1,0 +1,384 @@
+
+    .flex-container {
+        width: inherit; 
+        display: flex;
+        height: auto; 
+        padding-top: 0; /* Anpassen, falls Header vorhanden */
+    }
+
+    .white-container {
+        margin: 5rem auto;
+        background-color: white;
+        padding: 0rem;
+        border-radius: 15px;
+        width: auto; /* Anpassen für kleinere Bildschirme */
+    }
+    
+    .Master-Logo {
+        width: 100%; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        padding: 1rem; 
+        position: relative; 
+    }
+
+    .Master-Logo::after {
+        content: ''; 
+        display: block; 
+        height: 2px; 
+        width: 100%; 
+        background-color: white; 
+        position: absolute; 
+        bottom: 0; 
+    }
+
+    /* Styles für größere Bildschirme */
+    @media (min-width: 992px) {
+        .menu-icon-sidebar {
+            display:none !important; 
+            justify-content: flex-start; /* Icon links ausrichten */
+            top: 0;
+            left: 0; /* Icon links positionieren */
+            z-index: 1050;
+        }
+
+        .white-container {
+            width: 1000px; /* Feste Breite für Desktop */
+            display: flex; /* Flex-Layout für Desktop */
+            padding: 0rem;
+        }
+        .sidebar {
+            background-color: #343a40;
+            padding: 1rem 0;
+            width: 250px;
+       
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+        .content {
+            flex-grow: 1;
+            background-color: white;
+            padding: 2rem;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .btn-close-custom {
+            display: none;
+        }
+
+    }
+
+
+    .sidebar {
+        background-color: #343a40;
+        padding: 1rem 0;
+        width: 250px;
+        flex-direction: column;
+    }
+
+    .content {
+        
+        background-color: white;
+        padding: 2rem;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        position: relative; /* Relative Position für das Menu-Icon */
+    }
+
+    .footer {
+        background-color: #333;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    /* Styles für mobile Ansicht */
+    @media (max-width: 768px) {
+        .white-container {
+            margin: 5rem auto;
+            background-color: white;
+            padding: 0rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: auto; /* Anpassen für kleinere Bildschirme */
+        }
+
+        .content {
+            
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .menu-icon-sidebar {
+            display: inline;
+            font-size: 2rem;
+            justify-content: flex-start; /* Icon links ausrichten */
+            top: 0;
+            left: 0; /* Icon links positionieren */
+            z-index: 1050;
+        }
+
+        .bi, .bi-list {
+            display: inline-block !important; 
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: -250px;
+            width: 250px;
+            background-color: #343a40;
+            overflow-y: auto;
+            transition: left 0.3s;
+            padding-top: 3.5rem; /* Platz für den Schließ-Button */
+            z-index: 1000;
+        }
+
+        .menu-opened .sidebar {
+            left: 0;
+        }
+
+        .btn-close-custom {
+            display: none; /* Versteckt in der Desktop-Ansicht, wird später überschrieben */
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.5rem 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        /* Anzeigen des Schließ-Buttons, wenn das Menü geöffnet ist */
+        .menu-opened .btn-close-custom {
+            display: block;
+        }
+
+        .form-group {
+            flex-direction: column; /* Setzt die Flex-Richtung auf vertikal */
+            align-items: flex-start; /* Ausrichtung am Anfang des Flex-Containers (links) */
+        }
+
+        .form-group .btn-Einstellungen {
+            width: 100%; /* Setzt die Breite des Buttons auf 100% */
+            margin-top: 1rem; /* Fügt einen oberen Abstand hinzu, damit es nicht direkt am Dropdown klebt */
+            margin-left: 0; /* Setzt den linken Abstand auf 0, da dies nicht mehr nebeneinander ist */
+        }
+
+        .form-control-dropdown {
+            margin-bottom: 0.5rem; /* Fügt Abstand zwischen Dropdown und Button hinzu */
+        }
+
+    }
+
+    @media (min-width: 768px) {
+        .menu-icon-sidebar {
+            display: none !important; /* Wichtig, um sicherzustellen, dass das Icon nicht angezeigt wird */
+        }
+
+        .btn-close-custom {
+            display: none;
+        }
+        .sidebar {
+            background-color: #343a40;
+            padding: 1rem 0;
+            width: 250px;
+            flex-direction: column;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+    }
+
+    /* Styles für Navigationselmente */ 
+
+    .nav-item {
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-link.active {
+        border-radius: 0.25rem;
+    }
+
+    .nav-link-sidebar {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: .5rem 1rem;
+        margin: .2rem 0;
+        border-radius: .25rem;
+        color: #adb5bd; /* Nicht-aktiver Link-Farbton */
+        transition: background-color .3s, color .3s;
+    }
+
+    .nav-link-sidebar:hover {
+        background-color: #495057; /* Hover-Hintergrundfarbe */
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-link-sidebar.active {
+        background-color: #F6F6F6; /* Aktive Link-Hintergrundfarbe */
+        color: black;
+        font-weight: bold;
+    }
+
+    .btn-activate-quiz {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: .5rem 1rem;
+        margin: .2rem 0;
+        border-radius: .25rem;
+        background-color: #BED263; /* Deaktivieren-Button-Hintergrund */
+        color: white;
+        transition: background-color .3s;
+    }
+
+    .btn-activate-quiz:hover {
+        background-color: #BED263; /* Hover-Hintergrundfarbe für Deaktivieren-Button */
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-deactivate-quiz {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: .5rem 1rem;
+        margin: .2rem 0;
+        border-radius: .25rem;
+        background-color: black; /* Deaktivieren-Button-Hintergrund */
+        color: white;
+        transition: background-color .3s;
+    }
+
+    .btn-deactivate-quiz:hover {
+        background-color: black; /* Hover-Hintergrundfarbe für Deaktivieren-Button */
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Sidebar-Trennlinie nach Logo */
+    .Master-Logo::after {
+        content: '';
+        display: block;
+        height: 1px;
+        background-color: #adb5bd; /* Farbe der Trennlinie */
+        opacity: 0.3; /* Transparenz der Trennlinie */
+        margin-top: .5rem;
+    }
+
+    /* Inhaltsbereich*/
+    .nav-link-sidebar i,
+    .btn-activate-quiz i {
+        margin-right: .5rem;
+    }
+    .Inhalt  {
+        
+        margin: 0rem;  /* Gibt dem Container Abstand von der oberen Kante */
+    }
+
+    .form-group {
+        margin: 2rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
+        display: flex; /* Flexbox-Container */
+    }
+    .form-group-textarea {
+        margin-bottom: 2rem; 
+        margin-left: 0rem;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: none; /* Remove all borders */
+        border-bottom: 1px solid #ced4da; /* Only a bottom border */
+        border-radius: 0; /* Remove border-radius */
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        flex-grow: 1; /* Lässt das Eingabefeld den verfügbaren Platz ausfüllen */
+        margin-right: 0.5rem; /* Abstand zwischen Eingabefeld und Button */
+        -webkit-appearance: none; /* Entfernt die Standard-Stilgebung von WebKit-Browsern */
+    }
+
+    .form-control-dropdown {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: none; /* Remove all borders */
+        border-bottom: 1px solid #ced4da; /* Only a bottom border */
+        border-radius: 0; /* Remove border-radius */
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        flex-grow: 1; /* Lässt das Eingabefeld den verfügbaren Platz ausfüllen */
+        margin-right: 0.5rem; /* Abstand zwischen Eingabefeld und Button */
+    }
+
+    .form-control-text {
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    select.form-control-dropdown {
+        padding-right: 2rem; /* Abstand auf der rechten Seite für das Symbol */
+    }
+
+    .form-control-dropdown:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        box-shadow: none; /* Remove focus glow */
+        border-color: #80bdff;
+    }
+
+    .form-label {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+    textarea.form-control-text {
+        height: auto; /* Höhe automatisch an den Inhalt anpassen */
+    }
+
+    .btn-Einstellungen {
+        font-weight: 400;
+        display: inline;
+        white-space: wrap; 
+        color: white; 
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: blue; 
+        width: 20rem; 
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+    }
