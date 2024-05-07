@@ -10,14 +10,14 @@ function configureRoutes(routesService: RoutesService) {
     routesService.add([
       
       {
-        path: '/start',
+        path: '/courses',
         name: '::Start',
         iconClass: 'fas fa-home',
         order: 1,
         layout: eLayoutType.application,
       },
       {
-        path: '/kursauswahl',
+        path: '/quizes',
         name: '::kursauswahl',
         iconClass: 'fas fa-home',
         order: 1,

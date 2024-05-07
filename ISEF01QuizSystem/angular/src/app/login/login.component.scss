@@ -1,5 +1,5 @@
 
-/* 
+/*
 --------------------
 STYLING LOGIN
 --------------------
@@ -32,7 +32,7 @@ html, body {
         }
         .left-panel,
         .right-panel {
-           
+
             padding: 3rem;
         }
         .left-panel {
@@ -43,7 +43,7 @@ html, body {
             flex-direction: column; /* Kinder Elemente vertikal stapeln */
             justify-content: center; /* Vertikale Zentrierung der Kinder */
         }
-      
+
         .form-group {
             margin-bottom: 1rem;
         }
@@ -60,7 +60,7 @@ html, body {
         }
 
         .logo{
-            max-width: 50%; 
+            max-width: 50%;
             height: auto;
             margin-bottom: 2rem;
         }
@@ -74,7 +74,7 @@ html, body {
         align-items: flex-start; /* Verhindern Sie, dass Inhalte am oberen Rand abgeschnitten werden */
         background-color: #249ABA;
     }
-    
+
     .registration-container {
         margin-top: 1rem; /* Fügen Sie etwas Abstand oben hinzu, falls nötig */
         margin-bottom: 1rem; /* Fügen Sie etwas Abstand unten hinzu, falls nötig */
@@ -82,17 +82,17 @@ html, body {
         margin-right: 0rem;
         margin: 0rem;
     }
-    
+
     html, body {
-        margin: 0; 
+        margin: 0;
         background-image: none;
         background-color: white;
     }
-    
+
     .logo{
-            max-width: 50%; 
+            max-width: 50%;
             height: auto;
             padding-bottom: 1.2rem;
-            margin: auto; 
+            margin: auto;
         }
 }

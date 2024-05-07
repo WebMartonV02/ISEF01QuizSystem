@@ -12,10 +12,14 @@ namespace ISEF01QuizSystem.Quizes;
 public class QuizAppService : ISEF01QuizSystemAppService
 {
     private readonly IRepository<QuizEntity> _quizEntityRepository;
-    
-    public QuizAppService(IRepository<QuizEntity> quizEntityRepository)
+    private readonly IGenericRepository<QuizEntity> _genericRepository; 
+
+    public QuizAppService(
+        IRepository<QuizEntity> quizEntityRepository,
+        IGenericRepository<QuizEntity> genericRepository)
     {
         _quizEntityRepository = quizEntityRepository;
+        _genericRepository = genericRepository;
     }
 
     public async Task<List<QuizResponseDto>> GetListAsync(FilteredResultRequestDto requestDto)
@@ -28,6 +32,17 @@ public class QuizAppService : ISEF01QuizSystemAppService
             AsyncExecuter,
             ObjectMapper,
             defaultSorting);
+        
+        return result;
+    }
+    
+    public async Task<List<QuizResponseDto>> GetByCourseIdOrderedAsync(int courseId)
+    {
+        var queryable = (await _genericRepository.GetListByPredicateWithNestedElements(x => x.CourseId == courseId)).AsQueryable();
+
+        var orderedEntitiesByTitle = queryable.OrderBy(x => x.Title).ToList();
+
+        var result = ObjectMapper.Map<List<QuizEntity>, List<QuizResponseDto>>(orderedEntitiesByTitle);
         
         return result;
     }
