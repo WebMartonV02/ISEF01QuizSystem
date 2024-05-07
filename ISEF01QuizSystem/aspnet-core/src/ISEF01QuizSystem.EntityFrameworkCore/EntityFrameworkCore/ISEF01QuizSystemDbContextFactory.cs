@@ -29,7 +29,8 @@ public class ISEF01QuizSystemDbContextFactory : IDesignTimeDbContextFactory<ISEF
     {
         var builder = new ConfigurationBuilder()
             .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../ISEF01QuizSystem.DbMigrator/"))
-            .AddJsonFile("appsettings.json", optional: false);
+            .AddJsonFile("appsettings.json", optional: false)
+            .AddEnvironmentVariables();
 
         return builder.Build();
     }
