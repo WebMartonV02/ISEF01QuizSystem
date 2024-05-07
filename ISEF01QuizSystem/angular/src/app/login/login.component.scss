@@ -1,60 +1,98 @@
 
-/* General */
+/* 
+--------------------
+STYLING LOGIN
+--------------------
+*/
 
-.container{
-    font-family: 'Montserrat';
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-image: linear-gradient(to right, #249ABA 50%, white 50%);
+}
+        .container {
+    width: 100%; /* Stellt sicher, dass der Container nicht breiter als der Bildschirm ist */
+    max-width: 1200px; /* Maximalbreite des Containers */
 }
 
-h1{
-    color: rgb(29, 29, 29);
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%; /* min-height statt height für eine flexible Höhe */
+    display: flex;
+    align-items: center; /* Vertikales Zentrieren */
+    justify-content: center; /* Horizontales Zentrieren */
 }
 
+        .registration-container {
+            max-width: 1000px;
+            background: white;
+            color: white;
+        }
+        .left-panel,
+        .right-panel {
+           
+            padding: 3rem;
+        }
+        .left-panel {
+            background-color: #249ABA;
+            color: white !important;
+            padding: 2rem;
+            display: flex; /* Flex Container */
+            flex-direction: column; /* Kinder Elemente vertikal stapeln */
+            justify-content: center; /* Vertikale Zentrierung der Kinder */
+        }
+      
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            width: 100%;
+            border-radius: 0.25rem;
+        }
+        .btn-text {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .btn-text:hover {
+            text-decoration: underline;
+        }
 
-h2{
-    color: rgb(29, 29, 29);
-}
+        .logo{
+            max-width: 50%; 
+            height: auto;
+            margin-bottom: 2rem;
+        }
 
+        .text-white{
+            color: white;
+        }
 
-h3{
-    color: rgb(29, 29, 29);
-}
-
-h4{
-    color: rgb(29, 29, 29);
-}
-
-p{
-    color: rgb(29, 29, 29);
-}
-
-a{
-    text-decoration: none;
-}
-
-/* Styles for the start component */
-
-.container {
-    --akzentfarbe: #206C9D;
-    --sekundaerfarbe: #34A7C5;
-    --white: #fff;
-  }
-  
-
-
-/* START SEITE */
-
-.modul-kachel{
-    background-color:var(--akzentfarbe);
-    width: 80%;
-    height: 150px;
-    border-radius: 30px;
-}
-
-.modul-kachel:hover{
-    background-color:var(--sekundaerfarbe);
-}
-
-.modul-kachel-text{
-    justify-content: center;
-    color: var(--white);
+@media (max-width: 768px) {
+    html, body {
+        align-items: flex-start; /* Verhindern Sie, dass Inhalte am oberen Rand abgeschnitten werden */
+        background-color: #249ABA;
+    }
+    
+    .registration-container {
+        margin-top: 1rem; /* Fügen Sie etwas Abstand oben hinzu, falls nötig */
+        margin-bottom: 1rem; /* Fügen Sie etwas Abstand unten hinzu, falls nötig */
+        margin-left: 0rem;
+        margin-right: 0rem;
+        margin: 0rem;
+    }
+    
+    html, body {
+        margin: 0; 
+        background-image: none;
+        background-color: white;
+    }
+    
+    .logo{
+            max-width: 50%; 
+            height: auto;
+            padding-bottom: 1.2rem;
+            margin: auto; 
+        }
 }

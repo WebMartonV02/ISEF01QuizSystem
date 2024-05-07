@@ -8,13 +8,7 @@ export const APP_ROUTE_PROVIDER = [
 function configureRoutes(routesService: RoutesService) {
   return () => {
     routesService.add([
-      {
-        path: '/',
-        name: '::Menu:Home',
-        iconClass: 'fas fa-home',
-        order: 1,
-        layout: eLayoutType.application,
-      },
+      
       {
         path: '/start',
         name: '::Start',
@@ -32,6 +26,34 @@ function configureRoutes(routesService: RoutesService) {
       {
         path: '/login',
         name: '::login',
+        iconClass: 'fas fa-home',
+        order: 1,
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/fragenseite',
+        name: '::fragenseite',
+        iconClass: 'fas fa-home',
+        order: 1,
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/konfiguration',
+        name: '::konfiguration',
+        iconClass: 'fas fa-home',
+        order: 1,
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/fragemanager',
+        name: '::fragemanager',
+        iconClass: 'fas fa-home',
+        order: 1,
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/fragenedit',
+        name: '::fragenedit',
         iconClass: 'fas fa-home',
         order: 1,
         layout: eLayoutType.application,

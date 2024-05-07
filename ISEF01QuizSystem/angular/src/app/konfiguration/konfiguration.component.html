@@ -1,0 +1,125 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<div class="maincontainer">
+
+         
+         
+              
+              <div class="flex-container">
+                <!-- Sidebar mit Schließ-Button -->
+                <div class="sidebar">
+                    <!-- Schließ-Button -->
+                    <button class="btn-close-custom" aria-label="Close" onclick="toggleSidebar()">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    <div class="Master-Logo">
+                        <!-- Logo -->
+                        <a class="navbar-brand text-center" href="#">
+                            <img src="/assets/images/QuizMaster_Logo.png" alt="Logo" width="120">
+                        </a>
+                    </div>
+                    <!-- Navigationselemente -->
+                    <ul class="nav nav-pills flex-column mb-auto w-100">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link-sidebar">
+                                <i class="bi bi-gear-fill"></i> Grundeinstellungen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link-sidebar active">
+                                <i class="bi bi-question-square-fill"></i> Fragen-Manager
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="btn-activate-quiz">
+                                <i class="bi bi-x-circle-fill"></i> Quiz deaktivieren
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Hauptinhalt -->
+                <div class="content">
+                    <!-- Hamburger-Icon für die mobile Ansicht -->
+                    <div>
+                        <div class="menu-icon-sidebar" onclick="toggleSidebar()">
+                            <i class="bi bi-chevron-double-right"></i>
+                        </div>
+                    </div>
+                    <!-- Hauptinhalt hier einfügen!!!! -->
+                    <div class="Inhalt">
+                        <div>
+                            <h2>Grundeinstellungen</h2>
+                            
+                            <form>
+                                <div class="form-group">
+                                    <label for="quizTitle" class="form-label"></label>
+                                    <input type="text" id="quizTitle" class="form-control" placeholder="Quiztitel">
+                                </div>
+                           
+                                <!-- Dropdown für Fachbereich/Kategorie -->
+                                <div class="form-group">
+                                    <select id="category" class="form-control-dropdown">
+                                        <option value="">Bitte Fachbereich wählen...</option>
+                                        <!-- Optionen -->
+                                    </select>
+                                    <button type="button" class="btn-Einstellungen">Kategorie hinzufügen</button>
+                                </div>
+                               
+                                <!-- Dropdown für Modul -->
+                                <div class="form-group">
+                                    <select id="module" class="form-control-dropdown">
+                                        <option value="">Bitte Modul wählen...</option>
+                                        <!-- Optionen -->
+                                    </select>
+                                    <button type="button" class="btn-Einstellungen ">Modul hinzufügen</button>
+                                </div>
+                           
+                                <div class="form-group-textarea">
+                                    <label for="description" class="form-label">Beschreibung (diese wird vor Beginn des Quizzes angezeigt)</label>
+                                    <textarea id="description" class="form-control-text" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Speichern</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Funktion, um auf Klick-Event für jede Antwort zu reagieren
+    function answerClicked(event) {
+        // Füge die ausgewählte Klasse zum geklickten Element hinzu oder entferne sie, wenn sie bereits ausgewählt war
+        event.currentTarget.classList.toggle('answer-selected');
+    }
+
+    // Event-Listener für alle Antwort-Elemente
+    document.querySelectorAll('.answer').forEach(function(answer) {
+        answer.addEventListener('click', answerClicked);
+    });
+</script>
+
+
+
+<style scoped>
+  .col-lg-2.border-start:nth-of-type(6n + 1) {
+    border-left: 0 !important;
+  }
+
+  .col-lg-4.border-start:nth-of-type(3n + 1) {
+    border-left: 0 !important;
+  }
+
+  @media (max-width: 991px) {
+    .border-start {
+      border-left: 0 !important;
+    }
+  }
+</style>
