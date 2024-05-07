@@ -1,0 +1,19 @@
+<form [formGroup]="form" class="filter-form">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fa fa-search filter-form__input-icon"></i>
+                    </span>
+                </div>
+                <input type="text" formControlName="searchPredicate" class="form-control" id="inlineFormInputGroup" placeholder="Type here to search...">
+                <div class="input-group-append">
+                    <span class="input-group-text" (click)="ClearSearchField()">
+                        <i class="fa-regular fa-circle-xmark filter-form__input-icon"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

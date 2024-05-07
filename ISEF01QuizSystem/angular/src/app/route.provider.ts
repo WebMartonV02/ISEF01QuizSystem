@@ -16,24 +16,17 @@ function configureRoutes(routesService: RoutesService) {
         layout: eLayoutType.application,
       },
       {
-        path: '/courses',
-        name: '::Start',
-        iconClass: 'fas fa-home',
-        order: 1,
-        layout: eLayoutType.application,
-      },
-      {
-        path: '/quizes',
-        name: '::kursauswahl',
-        iconClass: 'fas fa-home',
-        order: 1,
-        layout: eLayoutType.application,
-      },
-      {
         path: '/login',
-        name: '::login',
+        name: '::Login',
         iconClass: 'fas fa-home',
-        order: 1,
+        order: 4,
+        layout: eLayoutType.application,
+      },
+      {
+        path: '/scoreboard',
+        name: '::Rankliste',
+        iconClass: 'fas fa-home',
+        order: 5,
         layout: eLayoutType.application,
       },
     ]);
