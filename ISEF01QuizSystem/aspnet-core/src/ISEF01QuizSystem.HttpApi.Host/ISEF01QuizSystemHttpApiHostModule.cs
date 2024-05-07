@@ -72,6 +72,11 @@ public class ISEF01QuizSystemHttpApiHostModule : AbpModule
         ConfigureCors(context, configuration);
         ConfigureSwaggerServices(context, configuration);
 
+        Configure<Volo.Abp.AspNetCore.Mvc.AntiForgery.AbpAntiForgeryOptions>(options =>
+        {
+            options.AutoValidate = false;
+        });
+
         context.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     }
 
