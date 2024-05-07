@@ -56,6 +56,26 @@ const routes: Routes = [
     loadChildren: () =>
       import('./fragenedit/fragenedit.module').then(m => m. FrageneditModule),
   },
+  {
+    path: 'quizhub',
+    loadChildren: () =>
+      import('./quizhub/quizhub.module').then(m => m. QuizhubModule),
+  },
+  {
+    path: 'scoreboard',
+    loadChildren: () =>
+      import('./scoreboard/scoreboard.module').then(m => m. ScoreboardModule),
+  },
+  {
+    path: 'quizuebersicht',
+    loadChildren: () =>
+      import('./quizuebersicht/quizuebersicht.module').then(m => m. QuizuebersichtModule),
+  },
+  {
+    path: 'ergebnis',
+    loadChildren: () =>
+      import('./ergebnis/ergebnis.module').then(m => m. ErgebnisModule),
+  },
 ];
 
 @NgModule({
