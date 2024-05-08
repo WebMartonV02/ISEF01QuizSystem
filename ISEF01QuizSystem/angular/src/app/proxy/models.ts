@@ -1,3 +1,4 @@
+import type { FilteredResultRequestDto } from './common/models';
 
 export interface GlobalScoreboardResultDto {
   userName?: string;
@@ -7,4 +8,8 @@ export interface GlobalScoreboardResultDto {
 export interface PersonalScoreboardResultDto {
   quizName?: string;
   scorePoints: number;
+}
+
+export interface ScoreboardGlobalRequestDto extends FilteredResultRequestDto {
+  courseId: number;
 }

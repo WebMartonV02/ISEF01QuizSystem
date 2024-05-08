@@ -60,5 +60,7 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
             .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dst => dst.Title, opt => opt.MapFrom(src => src.Title))
             .ForMember(dst => dst.Description, opt => opt.MapFrom(src => src.Description));
+
+        CreateMap<CourseEntity, CourseEntity>();
     }
 }

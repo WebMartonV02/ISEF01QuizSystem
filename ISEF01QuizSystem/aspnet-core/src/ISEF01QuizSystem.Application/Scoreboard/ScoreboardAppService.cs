@@ -6,6 +6,7 @@ using ISEF01QuizSystem.Common;
 using ISEF01QuizSystem.Courses;
 using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Identity;
 using Volo.Abp.Users;
 
@@ -16,24 +17,30 @@ public class ScoreboardAppService : ISEF01QuizSystemAppService
     private readonly ICurrentUser _currentUser;
     private readonly IGenericRepository<CourseEntity> _courseGenericRepository;
     private readonly IQuizRepository _quizRepository;
+    private readonly ICourseRepository _courseRepository;
     private readonly IIdentityUserRepository _identityUserRepository;
+    private readonly IGenericRepository<QuizEntity> _genericQuizEntity;
     
     public ScoreboardAppService(
         ICurrentUser currentUser,
         IGenericRepository<CourseEntity> courseGenericRepository, 
         IQuizRepository quizRepository, 
-        IIdentityUserRepository identityUserRepository)
+        IIdentityUserRepository identityUserRepository, IGenericRepository<QuizEntity> genericQuizEntity, ICourseRepository courseRepository)
     {
         _currentUser = currentUser;
         _courseGenericRepository = courseGenericRepository;
         _quizRepository = quizRepository;
         _identityUserRepository = identityUserRepository;
+        _genericQuizEntity = genericQuizEntity;
+        _courseRepository = courseRepository;
     }
     
-    public async Task<List<GlobalScoreboardResultDto>> GetCalculatedGlobalScoreboardForQuiz(int courseId)
+    public async Task<PagedResultDto<GlobalScoreboardResultDto>> GetCalculatedGlobalScoreboardForQuiz(ScoreboardGlobalRequestDto requestDto)
     {
-        var courseWithNesteds = await _courseGenericRepository.GetByPredicateWithNestedElements(x => x.Id == courseId);
+        var courseWithNesteds = await _courseRepository.GetCourseWithIncludedQuizesAndAttempts(requestDto.CourseId);
 
+        // var asd = await _genericQuizEntity.GetByPredicateWithNestedElements(x => x.Id == 1);
+        
         var usersAndScores = new Dictionary<Guid, int>();
 
         foreach (var quiz in courseWithNesteds.Quizes)
@@ -49,7 +56,7 @@ public class ScoreboardAppService : ISEF01QuizSystemAppService
         }
 
         var allUserIds = usersAndScores.Keys.Distinct().ToList();
-        var result = new List<GlobalScoreboardResultDto>();
+        var builtResultModel = new List<GlobalScoreboardResultDto>();
         
         foreach (var userId in allUserIds)
         {
@@ -57,13 +64,28 @@ public class ScoreboardAppService : ISEF01QuizSystemAppService
 
             var userNameById = (await _identityUserRepository.GetAsync(userId)).UserName;
             
-            result.Add(new GlobalScoreboardResultDto()
+            builtResultModel.Add(new GlobalScoreboardResultDto()
             {
                 UserName = userNameById,
                 ScorePoint = scoresByUserId.Sum()
             });
         }
 
+        var builtQueryableResultModel = builtResultModel.AsQueryable();
+        builtQueryableResultModel = builtQueryableResultModel.ApplySearchFilter(requestDto.SearchPredicate);
+
+        var totalCount = builtQueryableResultModel.Count();
+        
+        builtQueryableResultModel = builtQueryableResultModel.ApplySorting(requestDto.Sorting, new SortingModel<GlobalScoreboardResultDto>(x => x.ScorePoint));
+
+        builtQueryableResultModel = builtQueryableResultModel
+            .Skip(requestDto.SkipCount)
+            .Take(requestDto.MaxResultCount);
+
+        var resultData = await AsyncExecuter.ToListAsync(builtQueryableResultModel);
+
+        var result = new PagedResultDto<GlobalScoreboardResultDto>(totalCount, resultData);
+        
         return result;
     }
 
