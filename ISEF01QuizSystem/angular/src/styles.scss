@@ -69,3 +69,80 @@ $ISEF01QuizSystem-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+/*
+-----------------------------
+Variables
+-----------------------------
+*/
+
+body{
+  --akzentfarbe: #206C9D;
+  --sekundaerfarbe: #34A7C5;
+  --white: #fff;
+}
+
+
+/*
+-----------------------------
+Layout
+-----------------------------
+*/  
+
+
+.lpx-content{
+  padding: 0% !important;
+}
+
+.lpx-topbar{
+  display: none !important;
+}
+
+.maincontainer{
+    background-image: url("/assets/images/Logo_Background.jpeg");
+    background-repeat: repeat;
+    min-height: 100vh;
+    padding: 10%;
+   
+}
+
+
+/*
+-----------------------------
+Typography
+-----------------------------
+*/
+
+
+.container{
+  font-family: 'Montserrat';
+}
+
+h1{
+  color: rgb(29, 29, 29);
+}
+
+
+h2{
+  color: rgb(29, 29, 29);
+}
+
+
+h3{
+  color: rgb(29, 29, 29);
+}
+
+h4{
+  color: rgb(29, 29, 29);
+}
+
+p{
+  color: rgb(29, 29, 29);
+}
+
+a{
+  text-decoration: none;
+}
+
