@@ -2,11 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-  },
+
   {
     path: 'account',
     loadChildren: () => import('@abp/ng.account').then(m => m.AccountModule.forLazy()),
@@ -26,6 +22,11 @@ const routes: Routes = [
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
   },
   {
+    path: 'courses',
+    loadChildren: () =>
+      import('./courses/courses.module').then(m => m.CoursesModule),
+  },
+  {
     path: 'quizes/:id',
     loadChildren: () =>
       import('./quizes/quizes.module').then(m => m.QuizesModule),
@@ -36,9 +37,44 @@ const routes: Routes = [
       import('./login/login.module').then(m => m. LoginModule),
   },
   {
+    path: 'fragenseite',
+    loadChildren: () =>
+      import('./fragenseite/fragenseite.module').then(m => m. FragenseiteModule),
+  },
+  {
+    path: 'konfiguration',
+    loadChildren: () =>
+      import('./konfiguration/konfiguration.module').then(m => m. KonfigurationModule),
+  },
+  {
+    path: 'fragemanager',
+    loadChildren: () =>
+      import('./fragemanager/fragemanager.module').then(m => m. FragemanagerModule),
+  },
+  {
+    path: 'fragenedit',
+    loadChildren: () =>
+      import('./fragenedit/fragenedit.module').then(m => m. FrageneditModule),
+  },
+  {
+    path: 'quizhub',
+    loadChildren: () =>
+      import('./quizhub/quizhub.module').then(m => m. QuizhubModule),
+  },
+  {
     path: 'scoreboard',
     loadChildren: () =>
       import('./scoreboard/scoreboard.module').then(m => m. ScoreboardModule),
+  },
+  {
+    path: 'quizuebersicht',
+    loadChildren: () =>
+      import('./quizuebersicht/quizuebersicht.module').then(m => m. QuizuebersichtModule),
+  },
+  {
+    path: 'ergebnis',
+    loadChildren: () =>
+      import('./ergebnis/ergebnis.module').then(m => m. ErgebnisModule),
   },
 ];
 

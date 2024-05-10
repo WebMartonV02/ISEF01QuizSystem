@@ -1,0 +1,56 @@
+
+.flex-container {
+    display: flex;
+    height: auto; 
+    padding-top: 0; /* Anpassen, falls Header vorhanden */
+}
+
+.white-container {
+    
+    background-color: white;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto; /* Anpassen für kleinere Bildschirme */
+}
+
+/* Styles für größere Bildschirme */
+@media (min-width: 992px) {
+    .white-container {
+        display: flex; /* Flex-Layout für Desktop */
+        flex-direction: column; /* Karten untereinander anordnen */
+        padding: 2rem;
+    }
+    h1, h2, p {
+        margin-bottom: 2rem; /* Abstand unten */
+        margin-left: 4rem; 
+        margin-right: 4rem; 
+    }
+}
+
+h1, h2, p {
+    margin-bottom: 2rem; /* Abstand unten */
+}
+
+.card{
+    border: rgb(136, 136, 136) solid 1px;
+    margin: 20px;
+}
+
+.card-text{
+    margin: 20px 0px!important;
+}
+
+.badge{
+    margin: 10px 0px !important;
+}
+
+.card-body{
+    padding: 0.5rem;
+}
+
+.card-body .btn{
+    padding: 0.2rem 1rem !important;
+    background-color: black !important;
+    border: black 1px solid;
+}

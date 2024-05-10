@@ -1,0 +1,64 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<div class="maincontainer">
+
+        <div class="container-fluid"> 
+          <div class="card"> 
+            <div class="card-body" >
+              <div class="quiz-container">
+                  <div class="progress-container">
+                      <div class="progress-bar"></div>
+                  </div>
+                  <div class="progress-text text-center">Frage 1 / 5</div>
+                  <h3 class="question text-center">Hier steht eine interessante Frage?</h3>
+                  <ul class="answers">
+                      <li class="answer">Unfortunately yes</li>
+                      <li class="answer">Not really, because your alone time</li>
+                      <li class="answer">No, you know how to balance things</li>
+                      <li class="answer selected">No, not at all <svg width="24" height="24" viewBox="0 0 24 24"></svg></li>
+                  </ul>
+                  <div class="button-container">
+                      <button class="btn btn-primary left-button">Letzte Frage</button>
+                      <button class="btn btn-primary right-button">Nächste Frage</button>
+                  </div>
+                  <div class="end-quiz-button-container">
+                      <button class="btn btn-primary end-quiz-button">Quiz beenden</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Funktion, um auf Klick-Event für jede Antwort zu reagieren
+    function answerClicked(event) {
+        // Füge die ausgewählte Klasse zum geklickten Element hinzu oder entferne sie, wenn sie bereits ausgewählt war
+        event.currentTarget.classList.toggle('answer-selected');
+    }
+
+    // Event-Listener für alle Antwort-Elemente
+    document.querySelectorAll('.answer').forEach(function(answer) {
+        answer.addEventListener('click', answerClicked);
+    });
+</script>
+
+
+
+<style scoped>
+  .col-lg-2.border-start:nth-of-type(6n + 1) {
+    border-left: 0 !important;
+  }
+
+  .col-lg-4.border-start:nth-of-type(3n + 1) {
+    border-left: 0 !important;
+  }
+
+  @media (max-width: 991px) {
+    .border-start {
+      border-left: 0 !important;
+    }
+  }
+</style>
