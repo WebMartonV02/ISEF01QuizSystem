@@ -15,8 +15,16 @@
 
           <!-- Quiz Buttons -->
           <div class="row col-12" *ngFor="let entity of entities">
-            <div class="d-grid gap-2 mb-2">
-                <a href="#" class="btn btn-primary btn-block">{{ entity.titel }}</a>
+            <div class="d-grid gap-2 mb-2 modul-kachel">
+                <a href="#" class="btn btn-block">
+                  <span class="block--content">
+                  {{ entity.titel }}
+                  <div class="block--content">
+                    <mat-icon aria-hidden="false" fontIcon="keyboard_double_arrow_right"></mat-icon>
+                    Zum Quiz
+                  </div>
+                  </span>
+                </a>
             </div>
         </div>
 

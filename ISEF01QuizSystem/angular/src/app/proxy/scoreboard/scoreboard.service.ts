@@ -1,6 +1,7 @@
 import { RestService, Rest } from '@abp/ng.core';
+import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { GlobalScoreboardResultDto, PersonalScoreboardResultDto } from '../models';
+import type { GlobalScoreboardResultDto, PersonalScoreboardResultDto, ScoreboardGlobalRequestDto } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +10,11 @@ export class ScoreboardService {
   apiName = 'Default';
   
 
-  getCalculatedGlobalScoreboardForQuizByCourseId = (courseId: number, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, GlobalScoreboardResultDto[]>({
+  getCalculatedGlobalScoreboardForQuizByRequestDto = (requestDto: ScoreboardGlobalRequestDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, PagedResultDto<GlobalScoreboardResultDto>>({
       method: 'GET',
-      url: `/api/app/scoreboard/calculated-global-scoreboard-for-quiz/${courseId}`,
+      url: '/api/app/scoreboard/calculated-global-scoreboard-for-quiz',
+      params: { courseId: requestDto.courseId, searchPredicate: requestDto.searchPredicate, sorting: requestDto.sorting, skipCount: requestDto.skipCount, maxResultCount: requestDto.maxResultCount },
     },
     { apiName: this.apiName,...config });
   

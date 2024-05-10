@@ -44,7 +44,8 @@ a{
 /* START SEITE */
 
 .modul-kachel{
-    background-color:var(--akzentfarbe);
+    background-image: linear-gradient(to top right, rgb(30,66,95), rgb(117,168,240));
+    /*background-color:var(--akzentfarbe);*/
     width: 80%;
     height: 150px;
     border-radius: 30px;
@@ -57,4 +58,29 @@ a{
 .modul-kachel-text{
     justify-content: center;
     color: var(--white);
+}
+
+.input-icon i {
+  position: absolute;
+}
+
+.input-icon {
+  width: 30%;
+  text-align: center;
+  margin: auto;
+}
+
+.icon {
+  padding: 10px;
+  min-width: 40px;
+  margin: auto;
+  display: block;
+}
+
+.input-field {
+  border-radius: 10px;
+  border: 1px gray solid;
+  padding: 10px;
+  width: 100%;
+  padding-left: 10%;
 }

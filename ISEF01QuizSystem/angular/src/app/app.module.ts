@@ -18,6 +18,7 @@ import { FeatureManagementModule } from '@abp/ng.feature-management';
 import { AbpOAuthModule } from '@abp/ng.oauth';
 import { AccountLayoutModule } from '@abp/ng.theme.lepton-x/account';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   imports: [
     BrowserModule,
@@ -37,6 +38,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ThemeLeptonXModule.forRoot(),
     SideMenuLayoutModule.forRoot(),
     FeatureManagementModule.forRoot(),
+    MatIconModule
   ],
   declarations: [AppComponent],
   providers: [APP_ROUTE_PROVIDER, provideAnimationsAsync()],
