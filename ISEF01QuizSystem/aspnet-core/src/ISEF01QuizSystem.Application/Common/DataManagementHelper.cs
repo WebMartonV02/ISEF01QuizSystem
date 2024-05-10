@@ -49,7 +49,6 @@ public static class DataManagementHelper
 
         queryableItems = queryableItems.ApplySearchFilter(request.SearchPredicate);
 
-
         queryableItems = queryableItems.ApplySorting(request.Sorting, defaultSorting);
 
         queryableItems = queryableItems

@@ -5,7 +5,7 @@ import { TablePaginationConstants } from '../shared/consts/table-pagination.cons
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { ScoreboardService } from '@proxy/scoreboard';
-import { Subject, takeUntil } from 'rxjs';
+import { of, Subject, switchMap, takeUntil } from 'rxjs';
 import { GlobalScoreboardResultDto, ScoreboardGlobalRequestDto } from '@proxy';
 
 type ResultDtoModel = GlobalScoreboardResultDto;
@@ -29,13 +29,32 @@ export class ScoreboardComponent implements OnInit
 
   private _componentDestroyed$: Subject<void> = new Subject;
   private globalRequestDto: ScoreboardGlobalRequestDto = { courseId: 1, searchPredicate: ''} as ScoreboardGlobalRequestDto;
+  private _globalScoreboardEventActivated: Subject<void> = new Subject();
+  private _individualScoreboardEventActivated: Subject<void> = new Subject();
 
   constructor(public readonly list: ListService<ResultDtoModel>,
   private readonly _scoreboardService: ScoreboardService) {}
 
   ngOnInit(): void
   {
-    this.HookScoreboardDataToList();
+    this._globalScoreboardEventActivated.pipe(
+      switchMap(() => {
+
+        return of(true);
+      })
+    )
+
+    this.HookGlobalScoreboardDataToList();
+  }
+
+  public ActivateIndividualDataLoad(): void
+  {
+    this._individualScoreboardEventActivated.next();
+  }
+
+  public ActivateGlobalDataLoad(): void
+  {
+    this._globalScoreboardEventActivated.next();
   }
 
   public OnPageChange(pageEvent: PageEvent): void
@@ -63,7 +82,7 @@ export class ScoreboardComponent implements OnInit
     this.paginator.firstPage();
   }
 
-  private HookScoreboardDataToList(): void
+  private HookGlobalScoreboardDataToList(): void
   {
     const streamCreator = (query) => this._scoreboardService.getCalculatedGlobalScoreboardForQuizByRequestDto({ ...query, ...this.globalRequestDto});
 
@@ -77,4 +96,20 @@ export class ScoreboardComponent implements OnInit
         console.log(this.entities)
       });
   }
+/*
+  private HookIndividualScoreboardDataToList(): void
+  {
+    const streamCreator = (query) => this._scoreboardService.getCalculatedPersonalScoreboardByUserId({ ...query, ...this.globalRequestDto});
+
+    console.log(streamCreator)
+
+    this.list.hookToQuery(streamCreator)
+      .pipe(takeUntil(this._componentDestroyed$))
+      .subscribe((response) =>
+      {
+        this.entities = response;
+        console.log(this.entities)
+      });
+  }
+ */
 }
