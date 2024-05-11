@@ -45,6 +45,12 @@ jobs:
           - name: Install ABP Libs
             run: abp install-libs
             working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+
+          - name: Update appsettings.json
+            env:
+              DB_CONNECTION: ${{ secrets.ConnectionStrings__Default }}
+            run: echo "`jq '.ConnectionStrings.Default="$DB_CONNECTION"' appsettings.json`" > appsettings.json
+            working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
       
 #          - name: Setup .NET Core SDK
 #            uses: actions/setup-dotnet@v1
