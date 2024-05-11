@@ -21,11 +21,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
   },
-  {
-    path: 'courses',
-    loadChildren: () =>
-      import('./courses/courses.module').then(m => m.CoursesModule),
-  },
+  //{
+  //  path: 'courses',
+  //  loadChildren: () =>
+  //    import('./courses/courses.module').then(m => m.CoursesModule),
+  //},
   {
     path: 'quizes/:id',
     loadChildren: () =>
