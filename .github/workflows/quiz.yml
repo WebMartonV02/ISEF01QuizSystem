@@ -35,7 +35,7 @@ jobs:
       
           steps:
           - name: Checkout code
-            uses: actions/checkout@v2
+            uses: actions/checkout@v4
 
           - name: Node JS Setup
             uses: actions/setup-node@v4
@@ -47,10 +47,11 @@ jobs:
             working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
 
           - name: Update appsettings.json
-            env:
-              DB_CONNECTION: ${{ secrets.ConnectionStrings__Default }}
-            run: echo "`jq '.ConnectionStrings.Default="$DB_CONNECTION"' appsettings.json`" > appsettings.json
-            working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+            uses: jossef/action-set-json-field@v2.1
+            with: 
+              file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host/appsettings.json
+              field: ConnectionStrings.Default
+              value: ${{ secrets.ConnectionStrings__Default }}
       
 #          - name: Setup .NET Core SDK
 #            uses: actions/setup-dotnet@v1
@@ -62,5 +63,5 @@ jobs:
 #            working-directory: ./quiz/aspnet-core
 #     
 #          - name: Build and test ASP.NET Core app
-#            run: dotnet build --configuration Release
+#            run: dotnet publish -o /home/ubuntu/app
 #            working-directory: ./quiz/aspnet-core      
