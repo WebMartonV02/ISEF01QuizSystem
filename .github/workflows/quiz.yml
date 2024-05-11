@@ -31,6 +31,13 @@ jobs:
       - name: Build and test Angular app
         run: npm run build --prod
         working-directory: ./ISEF01QuizSystem/angular
+      
+      - name: Build and test Angular app
+        run: |
+          sudo rm -r /var/www/html/angular/* \
+          cp -a /home/ubuntu/actions-runner/_work/ISEF01QuizSystem/ISEF01QuizSystem/ISEF01QuizSystem/angular/dist/ISEF01QuizSystem/. /var/www/html/angular/
+
+        working-directory: ./ISEF01QuizSystem/angular
 
 
 
@@ -38,6 +45,9 @@ jobs:
           runs-on: self-hosted
       
           steps:
+          - name: stop kestrel
+            run: sudo systemctl stop kestrel-helloapp.service
+
           - name: Checkout code
             uses: actions/checkout@v4
 
