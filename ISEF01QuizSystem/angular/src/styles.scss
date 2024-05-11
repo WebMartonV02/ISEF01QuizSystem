@@ -67,82 +67,131 @@ $ISEF01QuizSystem-theme: mat.define-light-theme((
 
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-
-/*
------------------------------
-Variables
------------------------------
-*/
-
-body{
-  --akzentfarbe: #206C9D;
-  --sekundaerfarbe: #34A7C5;
-  --white: #fff;
+html, body {
+  height: 100%;
 }
 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 
-/*
------------------------------
-Layout
------------------------------
-*/  
-
-
-.lpx-content{
-  padding: 0% !important;
+  background-blend-mode: overlay,overlay,overlay,normal;
 }
 
-.lpx-topbar{
-  display: none !important;
+.lpx-content {
+  background-image: url("/assets/images/logo/logo-background.jpeg") !important;
 }
 
-.maincontainer{
-    background-image: url("/assets/images/Logo_Background.jpeg");
-    background-repeat: repeat;
-    min-height: 100vh;
-    padding: 10%;
-   
+.lpx-topbar-container {
+  background: transparent;
 }
 
-
-/*
------------------------------
-Typography
------------------------------
-*/
-
-
-.container{
-  font-family: 'Montserrat';
+.card
+{
+  background-color: #ffffff; /*Obligatory fallback color, if the browser doesn't support rgba*/
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
 }
 
-h1{
-  color: rgb(29, 29, 29);
+.generic-table
+{
+  font-family: var(--bs-body-font-family) !important;
+  flex: 1;
+  width: 100%;
+  overflow: auto;
+  display: table;
+
+  &-container
+  {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 5px;
+    margin: 10px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px 0px #0000002b;
+  }
+
+  &-inner-container
+  {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+
+  & tr
+  {
+    cursor: pointer;
+
+    &.mat-mdc-header-row
+    {
+      height: auto;
+    }
+  }
+
+  & th
+  {
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 10px !important;
+  }
+
+  & td
+  {
+    letter-spacing: 1px;
+    font-weight: 100;
+    padding: 2px 10px !important;
+    white-space: nowrap;
+    max-width: 30vw;
+    overflow: hidden;
+    user-select: none;
+
+    &.mat-mdc-table-sticky
+    {
+      box-shadow: 5px 0px 10px -5px #0000000f, -5px 0px 10px -5px #0000000f;
+    }
+
+    .table-data-value
+    {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      & span
+      {
+        display: flex;
+        align-items: center;
+      }
+
+      &_copy-button
+      {
+        display: none;
+        position: absolute;
+        right: 0;
+        font-size: 2vmin;
+        backdrop-filter: blur(5px);
+        padding: 3px;
+        border-radius: 5px;
+        border: 1px dotted gray;
+
+        &:active
+        {
+          transform: scale(1.3);
+        }
+      }
+
+      &:hover
+      {
+        .table-data-value_copy-button
+        {
+          display: block;
+        }
+      }
+    }
+  }
 }
-
-
-h2{
-  color: rgb(29, 29, 29);
-}
-
-
-h3{
-  color: rgb(29, 29, 29);
-}
-
-h4{
-  color: rgb(29, 29, 29);
-}
-
-p{
-  color: rgb(29, 29, 29);
-}
-
-a{
-  text-decoration: none;
-}
-

@@ -1559,39 +1559,87 @@
           "type": "ISEF01QuizSystem.Scoreboard.ScoreboardAppService",
           "interfaces": [],
           "actions": {
-            "GetCalculatedGlobalScoreboardForQuizByCourseId": {
-              "uniqueName": "GetCalculatedGlobalScoreboardForQuizByCourseId",
+            "GetCalculatedGlobalScoreboardForQuizByRequestDto": {
+              "uniqueName": "GetCalculatedGlobalScoreboardForQuizByRequestDto",
               "name": "GetCalculatedGlobalScoreboardForQuiz",
               "httpMethod": "GET",
-              "url": "api/app/scoreboard/calculated-global-scoreboard-for-quiz/{courseId}",
+              "url": "api/app/scoreboard/calculated-global-scoreboard-for-quiz",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
-                  "name": "courseId",
-                  "typeAsString": "System.Int32, System.Private.CoreLib",
-                  "type": "System.Int32",
-                  "typeSimple": "number",
+                  "name": "requestDto",
+                  "typeAsString": "ISEF01QuizSystem.ScoreboardGlobalRequestDto, ISEF01QuizSystem.Application.Contracts",
+                  "type": "ISEF01QuizSystem.ScoreboardGlobalRequestDto",
+                  "typeSimple": "ISEF01QuizSystem.ScoreboardGlobalRequestDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
               ],
               "parameters": [
                 {
-                  "nameOnMethod": "courseId",
-                  "name": "courseId",
+                  "nameOnMethod": "requestDto",
+                  "name": "CourseId",
                   "jsonName": null,
                   "type": "System.Int32",
                   "typeSimple": "number",
                   "isOptional": false,
                   "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "SearchPredicate",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
                 }
               ],
               "returnValue": {
-                "type": "System.Collections.Generic.List<ISEF01QuizSystem.GlobalScoreboardResultDto>",
-                "typeSimple": "[ISEF01QuizSystem.GlobalScoreboardResultDto]"
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<ISEF01QuizSystem.GlobalScoreboardResultDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<ISEF01QuizSystem.GlobalScoreboardResultDto>"
               },
               "allowAnonymous": null,
               "implementFrom": "ISEF01QuizSystem.Scoreboard.ScoreboardAppService"
@@ -9643,6 +9691,48 @@
         }
       ]
     },
+    "ISEF01QuizSystem.ScoreboardGlobalRequestDto": {
+      "baseType": "ISEF01QuizSystem.Common.FilteredResultRequestDto",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "CourseId",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "ISEF01QuizSystem.Common.FilteredResultRequestDto": {
+      "baseType": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "SearchPredicate",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
     "ISEF01QuizSystem.GlobalScoreboardResultDto": {
       "baseType": null,
       "isEnum": false,
@@ -9700,27 +9790,6 @@
           "jsonName": null,
           "type": "System.Int32",
           "typeSimple": "number",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
-    "ISEF01QuizSystem.Common.FilteredResultRequestDto": {
-      "baseType": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "SearchPredicate",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

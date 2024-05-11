@@ -4,5 +4,5 @@ namespace ISEF01QuizSystem.Common;
 
 public class FilteredResultRequestDto : PagedAndSortedResultRequestDto
 {
-    public string SearchPredicate { get; set; }
+    public string? SearchPredicate { get; set; }
 }
