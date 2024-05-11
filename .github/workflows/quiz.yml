@@ -10,6 +10,9 @@ jobs:
     runs-on: 
         self-hosted
     steps:
+      - name: stop kestrel
+        run: sudo systemctl stop kestrel-helloapp.service
+      
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -28,6 +31,7 @@ jobs:
       - name: Build and test Angular app
         run: npm run build --prod
         working-directory: ./ISEF01QuizSystem/angular
+
 
 
   build-and-test-dotnet:
