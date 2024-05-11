@@ -52,6 +52,13 @@ jobs:
               file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host/appsettings.json
               field: ConnectionStrings.Default
               value: ${{ secrets.ConnectionStrings__Default }}
+
+          - name: Update appsettings.json
+            uses: jossef/action-set-json-field@v2.1
+            with: 
+              file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator/appsettings.json
+              field: ConnectionStrings.Default
+              value: ${{ secrets.ConnectionStrings__Default }}
       
           - name: Setup .NET Core SDK
             uses: actions/setup-dotnet@v1
