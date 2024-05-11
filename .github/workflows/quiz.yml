@@ -53,15 +53,15 @@ jobs:
               field: ConnectionStrings.Default
               value: ${{ secrets.ConnectionStrings__Default }}
       
-#          - name: Setup .NET Core SDK
-#            uses: actions/setup-dotnet@v1
-#            with:
-#              dotnet-version: '8.0.202' # or any version needed
-#      
-#          - name: Restore NuGet packages
-#            run: dotnet restore
-#            working-directory: ./quiz/aspnet-core
-#     
-#          - name: Build and test ASP.NET Core app
-#            run: dotnet publish -o /home/ubuntu/app
-#            working-directory: ./quiz/aspnet-core      
+          - name: Setup .NET Core SDK
+            uses: actions/setup-dotnet@v1
+            with:
+              dotnet-version: '8.0.202' # or any version needed
+      
+          - name: Restore NuGet packages
+            run: dotnet restore
+            working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+     
+          - name: Build and test ASP.NET Core app
+            run: dotnet publish -o /home/ubuntu/app
+            working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
