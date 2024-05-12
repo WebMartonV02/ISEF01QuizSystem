@@ -6,6 +6,7 @@ on:
     branches:
       - 'main'
       - 'develop'
+      - 'pipeline-setup'
       # feature branches
     tags:
         - v0.**
