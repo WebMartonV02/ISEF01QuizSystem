@@ -89,8 +89,8 @@ jobs:
         working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
   
   restart-kestrel:
-    - runs-on: self-hosted
-      needs: [build-and-test-angular, build-and-test-dotnet]
+    runs-on: self-hosted
+    needs: [build-and-test-angular, build-and-test-dotnet]
 
     steps:
       - name: stop kestrel
