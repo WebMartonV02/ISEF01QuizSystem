@@ -32,60 +32,66 @@ jobs:
         run: npm run build --prod
         working-directory: ./ISEF01QuizSystem/angular
 
-      - name: Remove File
+      - name: Remove old angular files
         uses: JesseTG/rm@v1.0.3
         with:
           path: /var/www/html/angular/*
       
-      - name: Build and test Angular app
+      - name: Copy angular files
         run: cp -a /home/ubuntu/actions-runner/_work/ISEF01QuizSystem/ISEF01QuizSystem/ISEF01QuizSystem/angular/dist/ISEF01QuizSystem/. /var/www/html/angular/
         working-directory: ./ISEF01QuizSystem/angular
 
 
-
-
   build-and-test-dotnet:
-          runs-on: self-hosted
+    runs-on: self-hosted
       
-          steps:
-          - name: stop kestrel
-            run: sudo systemctl stop kestrel-helloapp.service
+    steps:
+      - name: stop kestrel
+        run: sudo systemctl stop kestrel-helloapp.service
 
-          - name: Checkout code
-            uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-          - name: Node JS Setup
-            uses: actions/setup-node@v4
-            with:
-              node-version: '18'
+      - name: Node JS Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-          - name: Install ABP Libs
-            run: abp install-libs
-            working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+      - name: Install ABP Libs
+        run: abp install-libs
+        working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
 
-          - name: Update appsettings.json
-            uses: jossef/action-set-json-field@v2.1
-            with: 
-              file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host/appsettings.json
-              field: ConnectionStrings.Default
-              value: ${{ secrets.ConnectionStrings__Default }}
+      - name: Update appsettings.json
+        uses: jossef/action-set-json-field@v2.1
+        with: 
+          file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host/appsettings.json
+          field: ConnectionStrings.Default
+          value: ${{ secrets.ConnectionStrings__Default }}
 
-          - name: Update appsettings.json
-            uses: jossef/action-set-json-field@v2.1
-            with: 
-              file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator/appsettings.json
-              field: ConnectionStrings.Default
-              value: ${{ secrets.ConnectionStrings__Default }}
+      - name: Update appsettings.json
+        uses: jossef/action-set-json-field@v2.1
+        with: 
+          file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator/appsettings.json
+          field: ConnectionStrings.Default
+          value: ${{ secrets.ConnectionStrings__Default }}
       
-          - name: Setup .NET Core SDK
-            uses: actions/setup-dotnet@v1
-            with:
-              dotnet-version: '8.0.202' # or any version needed
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.202' # or any version needed
       
-          - name: Restore NuGet packages
-            run: dotnet restore
-            working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+      - name: Restore NuGet packages
+        run: dotnet restore
+        working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
      
-          - name: Build and test ASP.NET Core app
-            run: dotnet publish -o /home/ubuntu/app
-            working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+      - name: Build and test ASP.NET Core app
+        run: dotnet publish -o /home/ubuntu/app
+        working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+  
+  restart-kestrel:
+    - runs-on: self-hosted
+      needs: [build-and-test-angular, build-and-test-dotnet]
+
+    steps:
+      - name: stop kestrel
+        run: sudo systemctl restart kestrel-helloapp.service
