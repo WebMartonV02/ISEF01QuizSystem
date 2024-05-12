@@ -1,9 +1,5 @@
 name: quiz
-on:
-  label:
-    types:
-      - created
-
+on: workflow_dispatch
 
 jobs:
   stop-kestrel:
