@@ -1,8 +1,8 @@
 name: quiz
 on:
-    push:
-      branches:
-        - 'pipeline-setup'
+  label:
+    types:
+      - created
 
 
 jobs:
