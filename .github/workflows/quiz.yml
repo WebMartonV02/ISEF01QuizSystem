@@ -34,13 +34,12 @@ jobs:
       
       - name: Build and test Angular app
         run: |
-          sudo rm -r /var/www/html/angular/* \
           cp -a /home/ubuntu/actions-runner/_work/ISEF01QuizSystem/ISEF01QuizSystem/ISEF01QuizSystem/angular/dist/ISEF01QuizSystem/. /var/www/html/angular/
 
         working-directory: ./ISEF01QuizSystem/angular
 
 
-        
+
 
   build-and-test-dotnet:
           runs-on: self-hosted
