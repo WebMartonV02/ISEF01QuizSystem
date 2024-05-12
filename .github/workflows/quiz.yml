@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: stop kestrel
         run: sudo systemctl stop kestrel-helloapp.service
-        
+
   build-and-test-angular:
     runs-on: self-hosted
     needs: [stop-kestrel]
@@ -45,15 +45,11 @@ jobs:
         run: cp -a /home/ubuntu/actions-runner/_work/ISEF01QuizSystem/ISEF01QuizSystem/ISEF01QuizSystem/angular/dist/ISEF01QuizSystem/. /var/www/html/angular/
         working-directory: ./ISEF01QuizSystem/angular
 
-
   build-and-test-dotnet:
     runs-on: self-hosted
     needs: [stop-kestrel]
 
     steps:
-      - name: stop kestrel
-        run: sudo systemctl stop kestrel-helloapp.service
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -66,17 +62,12 @@ jobs:
         run: abp install-libs
         working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
 
-      - name: Update appsettings.json
-        uses: jossef/action-set-json-field@v2.1
-        with: 
-          file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host/appsettings.json
-          field: ConnectionStrings.Default
-          value: ${{ secrets.ConnectionStrings__Default }}
+      # Set Secrests for HttpApi.Host
 
       - name: Update appsettings.json
         uses: jossef/action-set-json-field@v2.1
         with: 
-          file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator/appsettings.json
+          file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host/appsettings.json
           field: ConnectionStrings.Default
           value: ${{ secrets.ConnectionStrings__Default }}
       
@@ -92,10 +83,42 @@ jobs:
       - name: Build and test ASP.NET Core app
         run: dotnet publish -o /home/ubuntu/app
         working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+
+  db-migration:
+    runs-on: self-hosted
+    needs: [build-and-test-dotnet]
+            
+    steps:
+         # Set DB-Migrator Values
+
+      - name: Update appsettings.json DB-Connection
+        uses: jossef/action-set-json-field@v2.1
+        with: 
+          file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator/appsettings.json
+          field: ConnectionStrings.Default
+          value: ${{ secrets.ConnectionStrings__Default }}
+
+      - name: Update appsettings.json OpenIdict
+        uses: jossef/action-set-json-field@v2.1
+        with: 
+          file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator/appsettings.json
+          field: OpenIddict.Applications.ISEF01QuizSystem_App.RootUrl
+          value: https://quizmunity.com
+
+      - name: Update appsettings.json Swagger
+        uses: jossef/action-set-json-field@v2.1
+        with: 
+          file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator/appsettings.json
+          field: OpenIddict.Applications.ISEF01QuizSystem_Swagger.RootUrl
+          value: https://quizmunity.com
+  
+      - name: run DB-Migration
+        run: dotnet run
+        working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator
   
   restart-kestrel:
     runs-on: self-hosted
-    needs: [build-and-test-angular, build-and-test-dotnet]
+    needs: [build-and-test-angular, build-and-test-dotnet, db-migration]
 
     steps:
       - name: stop kestrel
