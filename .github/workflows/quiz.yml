@@ -6,13 +6,17 @@ on:
 
 
 jobs:
-  build-and-test-angular:
-    runs-on: 
-        self-hosted
+  stop-kestrel:
+    runs-on: self-hosted
+
     steps:
       - name: stop kestrel
         run: sudo systemctl stop kestrel-helloapp.service
-      
+        
+  build-and-test-angular:
+    runs-on: self-hosted
+    needs: [stop-kestrel]
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -44,7 +48,8 @@ jobs:
 
   build-and-test-dotnet:
     runs-on: self-hosted
-      
+    needs: [stop-kestrel]
+
     steps:
       - name: stop kestrel
         run: sudo systemctl stop kestrel-helloapp.service
