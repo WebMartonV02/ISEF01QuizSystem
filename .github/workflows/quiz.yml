@@ -1,7 +1,15 @@
 name: quiz
 on:
-  label:
-    types: [created, deleted]
+  pull_request:
+    branches: [ "main", "develop" ]
+  push:
+    branches:
+      - 'main'
+      - 'develop'
+      # feature branches
+    tags:
+        - v0.**
+    
 
 jobs:
   stop-kestrel:
