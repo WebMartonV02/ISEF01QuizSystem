@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ISEF01QuizSystem.Comments;
 using ISEF01QuizSystem.Courses;
+using ISEF01QuizSystem.Options;
 using ISEF01QuizSystem.Questions;
 using ISEF01QuizSystem.Quiz;
 using ISEF01QuizSystem.Quizes;
@@ -18,6 +19,7 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
         CreateQuestionMapping();
         CreateCommentMapping();
         CreateCourseMapping();
+        CreateOptionsMapping();
     }
 
     public void CreateQuizMapping()
@@ -34,7 +36,8 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
         CreateMap<QuestionEntity, QuestionResponseDto>()
             .ForMember(dst => dst.QuizId, opt => opt.MapFrom(src => src.QuizId))
             .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
-            .ForMember(dst => dst.Order, opt => opt.MapFrom(src => src.Order));
+            .ForMember(dst => dst.Order, opt => opt.MapFrom(src => src.Order))
+            .ForMember(dst => dst.Options, opt => opt.MapFrom(src => src.Options));
         
         CreateMap<QuestionRequestDto, QuestionEntity>()
             .ForMember(dst => dst.QuizId, opt => opt.MapFrom(src => src.QuizId))
@@ -62,5 +65,10 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
             .ForMember(dst => dst.Description, opt => opt.MapFrom(src => src.Description));
 
         CreateMap<CourseEntity, CourseEntity>();
+    }
+
+    public void CreateOptionsMapping()
+    {
+        CreateMap<OptionEntity, OptionResponseDto>();
     }
 }

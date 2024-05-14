@@ -29,7 +29,7 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         return result;
     }
     
-    public async Task<List<QuestionResponseDto>> GetByQuizIdOrderedAsync(QuestionsForQuizRequestDto requestDto)
+    public async Task<List<QuestionResponseDto>> GetListByQuizIdOrderedAsync(QuestionsForQuizRequestDto requestDto)
     {
         var queryable = (await _genericRepository.GetListByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId)).AsQueryable();
 
@@ -39,6 +39,15 @@ public class QuestionAppService : ISEF01QuizSystemAppService
             AsyncExecuter,
             ObjectMapper,
             defaultSorting);
+        
+        return result;
+    }
+
+    public async Task<QuestionResponseDto> GetByQuizIdWithAnswersAsync(QuestionsForQuizRequestDto requestDto)
+    {
+        var entityByQuizId = await _genericRepository.GetByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId);
+
+        var result = ObjectMapper.Map<QuestionEntity, QuestionResponseDto>(entityByQuizId);
         
         return result;
     }

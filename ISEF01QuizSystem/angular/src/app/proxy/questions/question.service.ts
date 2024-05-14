@@ -34,11 +34,20 @@ export class QuestionService {
     { apiName: this.apiName,...config });
   
 
-  getByQuizIdOrdered = (requestDto: QuestionsForQuizRequestDto, config?: Partial<Rest.Config>) =>
+  getByQuizIdWithAnswers = (requestDto: QuestionsForQuizRequestDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, QuestionResponseDto>({
+      method: 'GET',
+      url: '/api/app/question/by-quiz-id-with-answers',
+      params: { quizId: requestDto.quizId, previousQuestionId: requestDto.previousQuestionId, searchPredicate: requestDto.searchPredicate, sorting: requestDto.sorting, skipCount: requestDto.skipCount, maxResultCount: requestDto.maxResultCount },
+    },
+    { apiName: this.apiName,...config });
+  
+
+  getListByQuizIdOrdered = (requestDto: QuestionsForQuizRequestDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, QuestionResponseDto[]>({
       method: 'GET',
       url: '/api/app/question/by-quiz-id-ordered',
-      params: { quizId: requestDto.quizId, searchPredicate: requestDto.searchPredicate, sorting: requestDto.sorting, skipCount: requestDto.skipCount, maxResultCount: requestDto.maxResultCount },
+      params: { quizId: requestDto.quizId, previousQuestionId: requestDto.previousQuestionId, searchPredicate: requestDto.searchPredicate, sorting: requestDto.sorting, skipCount: requestDto.skipCount, maxResultCount: requestDto.maxResultCount },
     },
     { apiName: this.apiName,...config });
   

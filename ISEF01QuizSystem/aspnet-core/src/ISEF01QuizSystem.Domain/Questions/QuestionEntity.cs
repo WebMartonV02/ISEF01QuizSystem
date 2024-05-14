@@ -13,6 +13,7 @@ public class QuestionEntity : Entity<int>
     public virtual QuizEntity Quiz { get; set; }
     public string Content { get; set; }
     public int Order { get; set; }
+    public bool IsRight { get; set; }
     
     public ICollection<CommentEntity> Comments { get; set; }
     public ICollection<AnswerEntity> Answers { get; set; }
