@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { delay, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { QuestionResponseDto, QuestionService, QuestionsForQuizRequestDto } from '@proxy/questions';
 import { OptionResponseDto } from '@proxy/options';
 
@@ -14,7 +14,9 @@ type ResultDtoModel = QuestionResponseDto;
 export class FragenseiteComponent implements OnInit, OnDestroy
 {
   public actualQuestion: ResultDtoModel = {} as ResultDtoModel;
-  public IsChoosenOptionTrue: boolean = undefined;
+  public choosenOption: OptionResponseDto;
+  public choosenOptiocLogicalValue: boolean;
+  public clickedOptionEvaluated$ = new Subject();
 
   private parentalQuizId: number;
   private _componentDestroyed$: Subject<void> = new Subject();
@@ -28,10 +30,11 @@ export class FragenseiteComponent implements OnInit, OnDestroy
   public ngOnInit(): void
   {
     this.parentalQuizId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
+    console.log(this.parentalQuizId)
 
     this.SubscribeToNextQuestionEvent();
 
-    this.InitializeAndLoadNextQuestion();
+    this.LoadNextQuestion();
   }
 
   public ngOnDestroy(): void
@@ -42,19 +45,28 @@ export class FragenseiteComponent implements OnInit, OnDestroy
     this._activateNextQuestionLoad.complete();
   }
 
-  public InitializeAndLoadNextQuestion(): void
+  public LoadNextQuestion(): void
   {
     this._activateNextQuestionLoad.next();
   }
 
   public EvaluateChoosenOption(option: OptionResponseDto): void
   {
-    if (option.isCorrect == true) this.IsChoosenOptionTrue = true;
+    this.choosenOptiocLogicalValue = false;
+    this.choosenOption = option;
 
-    this.IsChoosenOptionTrue = false;
+    if (option.isCorrect == true)
+    {
+      this.choosenOptiocLogicalValue = true;
+
+      this.clickedOptionEvaluated$.next(this.choosenOptiocLogicalValue);
+      console.log(option)
+    }
+
+    this.clickedOptionEvaluated$.next(this.choosenOptiocLogicalValue);
   }
 
-  public RouteToOverViewPage(): void
+  private RouteToOverViewPage(): void
   {
     let _ = this._router.navigate(['/fragenubersicht']);
   }
@@ -71,6 +83,11 @@ export class FragenseiteComponent implements OnInit, OnDestroy
       .subscribe((data: ResultDtoModel) =>
       {
         this.actualQuestion = data;
+
+        if (this.actualQuestion == null)
+        {
+          this.RouteToOverViewPage();
+        }
       });
   }
 

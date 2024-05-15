@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ISEF01QuizSystem.Common;
-using ISEF01QuizSystem.Questions;
+using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 
@@ -11,20 +11,20 @@ namespace ISEF01QuizSystem.Comments;
 public class CommentAppService : ISEF01QuizSystemAppService
 {
     private readonly IRepository<CommentEntity> _commentRepository;
-    private readonly IGenericRepository<QuestionEntity> _genericQuestionRepository;
+    private readonly IGenericRepository<QuizEntity> _genericQuizRepository;
 
     public CommentAppService(
         IRepository<CommentEntity> commentRepository, 
-        IGenericRepository<QuestionEntity> genericQuestionRepository)
+        IGenericRepository<QuizEntity> genericQuizRepository)
     {
         _commentRepository = commentRepository;
-        _genericQuestionRepository = genericQuestionRepository;
+        _genericQuizRepository = genericQuizRepository;
     }
 
-    public async Task<List<CommentResultDto>> GetCommentsOrderedForQuestion(int questionId)
+    public async Task<List<CommentResultDto>> GetCommentsOrderedForQuiz(int quizId)
     {
         var commentsByQuestion =
-            (await _genericQuestionRepository.GetByPredicateWithNestedElements(x => x.Id == questionId)).Comments;
+            (await _genericQuizRepository.GetByPredicateWithNestedElements(x => x.Id == quizId)).Comments;
 
         var orderedComments =commentsByQuestion.OrderBy(x => x.Order).ToList();
         var result = ObjectMapper.Map<List<CommentEntity>, List<CommentResultDto>>(orderedComments);
@@ -34,9 +34,9 @@ public class CommentAppService : ISEF01QuizSystemAppService
     
     public async Task CreateCommentForQuestion(CommentRequestDto requestDto)
     {
-        if (requestDto.QuestionId == null) throw new UserFriendlyException("Comment cannot be bound to Question!");
+        if (requestDto.QuizId == null) throw new UserFriendlyException("Comment cannot be bound to Question!");
 
-        var actualComments = await _commentRepository.GetListAsync(x => x.QuestionId == requestDto.QuestionId);
+        var actualComments = await _commentRepository.GetListAsync(x => x.QuizId == requestDto.QuizId);
 
         var searchLastCommentsOrder = actualComments.MaxBy(x => x.Order).Order;
 

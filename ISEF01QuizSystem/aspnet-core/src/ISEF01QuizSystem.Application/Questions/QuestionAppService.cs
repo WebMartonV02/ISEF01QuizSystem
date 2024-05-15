@@ -22,7 +22,7 @@ public class QuestionAppService : ISEF01QuizSystemAppService
 
     public async Task<QuestionResponseDto> GetByIdAsync(int id)
     {
-        var entity = await _questionEntityRepository.GetAsync(x => x.Id == id);
+        var entity = await _genericRepository.GetByPredicateWithNestedElements(x => x.Id == id);
 
         var result = ObjectMapper.Map<QuestionEntity, QuestionResponseDto>(entity);
         
@@ -45,7 +45,8 @@ public class QuestionAppService : ISEF01QuizSystemAppService
 
     public async Task<QuestionResponseDto> GetByQuizIdWithAnswersAsync(QuestionsForQuizRequestDto requestDto)
     {
-        var entityByQuizId = await _genericRepository.GetByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId);
+        var nextQuestionOrder = ++requestDto.PreviousQuestionId;
+        var entityByQuizId = await _genericRepository.GetByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId && x.Order == nextQuestionOrder);
 
         var result = ObjectMapper.Map<QuestionEntity, QuestionResponseDto>(entityByQuizId);
         
