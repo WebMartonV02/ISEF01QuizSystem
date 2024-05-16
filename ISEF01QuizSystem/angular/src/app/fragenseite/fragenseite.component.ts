@@ -70,7 +70,7 @@ export class FragenseiteComponent implements OnInit, OnDestroy
 
   private RouteToOverViewPage(): void
   {
-    let _ = this._router.navigate(['/fragenubersicht']);
+    let _ = this._router.navigate(['/fragenubersicht', this.parentalQuizId]);
   }
 
   private SubscribeToNextQuestionEvent(): void

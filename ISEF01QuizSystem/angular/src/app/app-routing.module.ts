@@ -67,7 +67,7 @@ const routes: Routes = [
       import('./scoreboard/scoreboard.module').then(m => m. ScoreboardModule),
   },
   {
-    path: 'quizuebersicht',
+    path: 'quizuebersicht/:id',
     loadChildren: () =>
       import('./quizuebersicht/quizuebersicht.module').then(m => m. QuizuebersichtModule),
   },

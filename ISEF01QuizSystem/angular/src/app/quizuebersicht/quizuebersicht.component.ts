@@ -1,19 +1,29 @@
-import { AuthService } from '@abp/ng.core';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, takeUntil } from 'rxjs';
+import { QuestionsForQuizRequestDto } from '@proxy/questions';
 
 @Component({
   selector: 'app-quizuebersicht',
   templateUrl: './quizuebersicht.component.html',
   styleUrls: ['./quizuebersicht.component.scss'],
 })
-export class QuizuebersichtComponent {
-  get hasLoggedIn(): boolean {
-    return this.authService.isAuthenticated;
+export class QuizuebersichtComponent implements OnInit
+{
+  private parentalQuizId: number;
+
+  constructor(private readonly _activatedRoute: ActivatedRoute) {}
+
+  public ngOnInit(): void
+  {
+    this.parentalQuizId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
   }
 
-  constructor(private authService: AuthService) {}
+  private LoadQuestionsandGivenAnswers(): void
+  {
+    //let requestDto = { quizId: this.parentalQuizId, previousQuestionOrderNumber: this.actualQuestion.order } as QuestionsForQuizRequestDto;
 
-  login() {
-    this.authService.navigateToLogin();
+    //return this._questionService.getByQuizIdWithAnswers(requestDto)
+      //.pipe(takeUntil(this._componentDestroyed$));
   }
 }
