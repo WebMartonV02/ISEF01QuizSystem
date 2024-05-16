@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
       - 'develop'
-      # feature branches
+      - '4003-quiz-comments'
     tags:
         - v0.**
     
@@ -80,7 +80,7 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '8.0.202' # or any version needed
+          dotnet-version: '8.0.5' # or any version needed
       
       - name: Restore NuGet packages
         run: dotnet restore
@@ -117,6 +117,11 @@ jobs:
           file: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.DbMigrator/appsettings.json
           field: OpenIddict.Applications.ISEF01QuizSystem_Swagger.RootUrl
           value: https://quizmunity.com
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.5' # or any version needed
   
       - name: run DB-Migration
         run: dotnet run
