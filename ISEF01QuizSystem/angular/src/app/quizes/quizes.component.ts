@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { QuizService } from '@proxy/quizes';
+import { QuizResponseDto, QuizService } from '@proxy/quizes';
 import { CourseResponseDto, CourseService } from '@proxy/courses';
 import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,19 +12,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class QuizesComponent implements OnInit, OnDestroy
 {
   public parentEntity: CourseResponseDto = {} as CourseResponseDto;
-  public entities:  Array<CourseResponseDto> = new Array<CourseResponseDto>;
+  public entities:  Array<QuizResponseDto> = new Array<QuizResponseDto>;
 
   private _componentDestroyed$: Subject<void> = new Subject();
 
   constructor(private readonly _quizService: QuizService,
-              private readonly _courseService: CourseService,
-              private readonly _activatedRoute: ActivatedRoute) {}
+    private readonly _courseService: CourseService,
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _router: Router) {}
 
   public ngOnInit(): void
   {
     var parentalCourseId = this._activatedRoute.snapshot.paramMap.get('id');
-
-    console.log(parentalCourseId)
 
     this.LoadCourses(parseInt(parentalCourseId));
   }
@@ -51,5 +50,11 @@ export class QuizesComponent implements OnInit, OnDestroy
         this.entities = data;
         console.log(this.entities)
       });
+  }
+
+  public RouteToFirstQuestion(quizId: number) :  void
+  {
+    console.log(quizId);
+    let _ = this._router.navigate(['/fragenseite', quizId]);
   }
 }

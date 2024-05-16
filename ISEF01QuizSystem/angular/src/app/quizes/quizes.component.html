@@ -16,7 +16,7 @@
           <!-- Quiz Buttons -->
           <div class="row col-12" *ngFor="let entity of entities">
             <div class="d-grid gap-2 mb-2 modul-kachel">
-                <a href="#" class="btn btn-block">
+                <a class="btn btn-block" (click)="RouteToFirstQuestion(entity.id)">
                   <span class="block--content">
                   {{ entity.titel }}
                   <div class="block--content">

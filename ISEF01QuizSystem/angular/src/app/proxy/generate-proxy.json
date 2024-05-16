@@ -1998,9 +1998,9 @@
               "allowAnonymous": null,
               "implementFrom": "ISEF01QuizSystem.Questions.QuestionAppService"
             },
-            "GetByQuizIdOrderedAsyncByRequestDto": {
-              "uniqueName": "GetByQuizIdOrderedAsyncByRequestDto",
-              "name": "GetByQuizIdOrderedAsync",
+            "GetListByQuizIdOrderedAsyncByRequestDto": {
+              "uniqueName": "GetListByQuizIdOrderedAsyncByRequestDto",
+              "name": "GetListByQuizIdOrderedAsync",
               "httpMethod": "GET",
               "url": "api/app/question/by-quiz-id-ordered",
               "supportedVersions": [],
@@ -2018,6 +2018,18 @@
                 {
                   "nameOnMethod": "requestDto",
                   "name": "QuizId",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "PreviousQuestionId",
                   "jsonName": null,
                   "type": "System.Int32",
                   "typeSimple": "number",
@@ -2079,6 +2091,103 @@
               "returnValue": {
                 "type": "System.Collections.Generic.List<ISEF01QuizSystem.Questions.QuestionResponseDto>",
                 "typeSimple": "[ISEF01QuizSystem.Questions.QuestionResponseDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "ISEF01QuizSystem.Questions.QuestionAppService"
+            },
+            "GetByQuizIdWithAnswersAsyncByRequestDto": {
+              "uniqueName": "GetByQuizIdWithAnswersAsyncByRequestDto",
+              "name": "GetByQuizIdWithAnswersAsync",
+              "httpMethod": "GET",
+              "url": "api/app/question/by-quiz-id-with-answers",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "requestDto",
+                  "typeAsString": "ISEF01QuizSystem.Questions.QuestionsForQuizRequestDto, ISEF01QuizSystem.Application.Contracts",
+                  "type": "ISEF01QuizSystem.Questions.QuestionsForQuizRequestDto",
+                  "typeSimple": "ISEF01QuizSystem.Questions.QuestionsForQuizRequestDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "QuizId",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "PreviousQuestionId",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "SearchPredicate",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                },
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "requestDto"
+                }
+              ],
+              "returnValue": {
+                "type": "ISEF01QuizSystem.Questions.QuestionResponseDto",
+                "typeSimple": "ISEF01QuizSystem.Questions.QuestionResponseDto"
               },
               "allowAnonymous": null,
               "implementFrom": "ISEF01QuizSystem.Questions.QuestionAppService"
@@ -9955,6 +10064,51 @@
           "minimum": null,
           "maximum": null,
           "regex": null
+        },
+        {
+          "name": "Options",
+          "jsonName": null,
+          "type": "[ISEF01QuizSystem.Options.OptionResponseDto]",
+          "typeSimple": "[ISEF01QuizSystem.Options.OptionResponseDto]",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "ISEF01QuizSystem.Options.OptionResponseDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Text",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "IsCorrect",
+          "jsonName": null,
+          "type": "System.Boolean",
+          "typeSimple": "boolean",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
         }
       ]
     },
@@ -9967,6 +10121,18 @@
       "properties": [
         {
           "name": "QuizId",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "PreviousQuestionId",
           "jsonName": null,
           "type": "System.Int32",
           "typeSimple": "number",
