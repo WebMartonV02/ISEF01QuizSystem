@@ -19,10 +19,10 @@
                   </ul>
                   <div class="button-container">
                       <button class="btn btn-primary left-button">Letzte Frage</button> <!-- Nicht sicher dass es zeitlich passt -->
-                      <button class="btn btn-primary right-button" (click)="LoadNextQuestion()">Nächste Frage</button>
+                      <button class="btn btn-primary right-button" *ngIf="!this.actualQuestion.isLastQuestion" (click)="LoadNextQuestion()">Nächste Frage</button>
                   </div>
                   <div class="end-quiz-button-container">
-                      <button class="btn btn-primary end-quiz-button">Quiz beenden</button>
+                      <button class="btn btn-primary end-quiz-button" *ngIf="this.actualQuestion.isLastQuestion">Quiz beenden</button>
                   </div>
               </div>
             </div>

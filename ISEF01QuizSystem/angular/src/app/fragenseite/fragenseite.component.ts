@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { delay, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { QuestionResponseDto, QuestionService, QuestionsForQuizRequestDto } from '@proxy/questions';
 import { OptionResponseDto } from '@proxy/options';
+import { AnswerRequestDto, AnswerService } from '@proxy/answers';
 
 type ResultDtoModel = QuestionResponseDto;
 
@@ -25,7 +26,8 @@ export class FragenseiteComponent implements OnInit, OnDestroy
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _questionService: QuestionService,
-    private readonly _router: Router) {}
+    private readonly _router: Router,
+    private readonly _answerService: AnswerService) {}
 
   public ngOnInit(): void
   {
@@ -78,6 +80,12 @@ export class FragenseiteComponent implements OnInit, OnDestroy
         takeUntil(this._componentDestroyed$),
         switchMap(() =>
         {
+          let requestDto = {questionId: this.actualQuestion.id, optionId: this.choosenOption.id} as AnswerRequestDto;
+
+          return this._answerService.createAnswer(requestDto);
+        }),
+        switchMap(() =>
+        {
           return this.ExecuteQuestionLoadWorkflow();
         }))
       .subscribe((data: ResultDtoModel) =>
@@ -93,7 +101,7 @@ export class FragenseiteComponent implements OnInit, OnDestroy
 
   private ExecuteQuestionLoadWorkflow(): Observable<ResultDtoModel>
   {
-    let requestDto = { quizId: this.parentalQuizId, previousQuestionId: this.actualQuestion.id } as QuestionsForQuizRequestDto;
+    let requestDto = { quizId: this.parentalQuizId, previousQuestionOrderNumber: this.actualQuestion.order } as QuestionsForQuizRequestDto;
 
     return this._questionService.getByQuizIdWithAnswers(requestDto)
       .pipe(takeUntil(this._componentDestroyed$));

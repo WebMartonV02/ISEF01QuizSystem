@@ -14,9 +14,10 @@ export interface QuestionResponseDto {
   content?: string;
   order: number;
   options: OptionResponseDto[];
+  isLastQuestion: boolean;
 }
 
 export interface QuestionsForQuizRequestDto extends FilteredResultRequestDto {
   quizId: number;
-  previousQuestionId: number;
+  previousQuestionOrderNumber: number;
 }

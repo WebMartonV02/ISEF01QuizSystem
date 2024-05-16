@@ -2029,7 +2029,7 @@
                 },
                 {
                   "nameOnMethod": "requestDto",
-                  "name": "PreviousQuestionId",
+                  "name": "PreviousQuestionOrderNumber",
                   "jsonName": null,
                   "type": "System.Int32",
                   "typeSimple": "number",
@@ -2126,7 +2126,7 @@
                 },
                 {
                   "nameOnMethod": "requestDto",
-                  "name": "PreviousQuestionId",
+                  "name": "PreviousQuestionOrderNumber",
                   "jsonName": null,
                   "type": "System.Int32",
                   "typeSimple": "number",
@@ -2451,15 +2451,15 @@
           "type": "ISEF01QuizSystem.Comments.CommentAppService",
           "interfaces": [],
           "actions": {
-            "GetCommentsOrderedForQuestionByQuestionId": {
-              "uniqueName": "GetCommentsOrderedForQuestionByQuestionId",
-              "name": "GetCommentsOrderedForQuestion",
+            "GetCommentsOrderedForQuizByQuizId": {
+              "uniqueName": "GetCommentsOrderedForQuizByQuizId",
+              "name": "GetCommentsOrderedForQuiz",
               "httpMethod": "GET",
-              "url": "api/app/comment/comments-ordered-for-question/{questionId}",
+              "url": "api/app/comment/comments-ordered-for-quiz/{quizId}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
-                  "name": "questionId",
+                  "name": "quizId",
                   "typeAsString": "System.Int32, System.Private.CoreLib",
                   "type": "System.Int32",
                   "typeSimple": "number",
@@ -2469,8 +2469,8 @@
               ],
               "parameters": [
                 {
-                  "nameOnMethod": "questionId",
-                  "name": "questionId",
+                  "nameOnMethod": "quizId",
+                  "name": "quizId",
                   "jsonName": null,
                   "type": "System.Int32",
                   "typeSimple": "number",
@@ -2598,6 +2598,54 @@
               },
               "allowAnonymous": null,
               "implementFrom": "ISEF01QuizSystem.Comments.CommentAppService"
+            }
+          }
+        },
+        "ISEF01QuizSystem.Answers.AnswerAppService": {
+          "controllerName": "Answer",
+          "controllerGroupName": "Answer",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "ISEF01QuizSystem.Answers.AnswerAppService",
+          "interfaces": [],
+          "actions": {
+            "CreateAnswerAsyncByRequestDto": {
+              "uniqueName": "CreateAnswerAsyncByRequestDto",
+              "name": "CreateAnswerAsync",
+              "httpMethod": "POST",
+              "url": "api/app/answer/answer",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "requestDto",
+                  "typeAsString": "ISEF01QuizSystem.Answers.AnswerRequestDto, ISEF01QuizSystem.Application.Contracts",
+                  "type": "ISEF01QuizSystem.Answers.AnswerRequestDto",
+                  "typeSimple": "ISEF01QuizSystem.Answers.AnswerRequestDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "requestDto",
+                  "jsonName": null,
+                  "type": "ISEF01QuizSystem.Answers.AnswerRequestDto",
+                  "typeSimple": "ISEF01QuizSystem.Answers.AnswerRequestDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "ISEF01QuizSystem.Answers.AnswerAppService"
             }
           }
         }
@@ -10076,6 +10124,18 @@
           "minimum": null,
           "maximum": null,
           "regex": null
+        },
+        {
+          "name": "IsLastQuestion",
+          "jsonName": null,
+          "type": "System.Boolean",
+          "typeSimple": "boolean",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
         }
       ]
     },
@@ -10086,6 +10146,18 @@
       "enumValues": null,
       "genericArguments": null,
       "properties": [
+        {
+          "name": "Id",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
         {
           "name": "Text",
           "jsonName": null,
@@ -10132,7 +10204,7 @@
           "regex": null
         },
         {
-          "name": "PreviousQuestionId",
+          "name": "PreviousQuestionOrderNumber",
           "jsonName": null,
           "type": "System.Int32",
           "typeSimple": "number",
@@ -10357,10 +10429,43 @@
           "regex": null
         },
         {
-          "name": "QuestionId",
+          "name": "QuizId",
           "jsonName": null,
           "type": "System.Int32?",
           "typeSimple": "number?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "ISEF01QuizSystem.Answers.AnswerRequestDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "OptionId",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "QuestionId",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

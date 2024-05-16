@@ -38,7 +38,7 @@ export class QuestionService {
     this.restService.request<any, QuestionResponseDto>({
       method: 'GET',
       url: '/api/app/question/by-quiz-id-with-answers',
-      params: { quizId: requestDto.quizId, previousQuestionId: requestDto.previousQuestionId, searchPredicate: requestDto.searchPredicate, sorting: requestDto.sorting, skipCount: requestDto.skipCount, maxResultCount: requestDto.maxResultCount },
+      params: { quizId: requestDto.quizId, previousQuestionOrderNumber: requestDto.previousQuestionOrderNumber, searchPredicate: requestDto.searchPredicate, sorting: requestDto.sorting, skipCount: requestDto.skipCount, maxResultCount: requestDto.maxResultCount },
     },
     { apiName: this.apiName,...config });
   
@@ -47,7 +47,7 @@ export class QuestionService {
     this.restService.request<any, QuestionResponseDto[]>({
       method: 'GET',
       url: '/api/app/question/by-quiz-id-ordered',
-      params: { quizId: requestDto.quizId, previousQuestionId: requestDto.previousQuestionId, searchPredicate: requestDto.searchPredicate, sorting: requestDto.sorting, skipCount: requestDto.skipCount, maxResultCount: requestDto.maxResultCount },
+      params: { quizId: requestDto.quizId, previousQuestionOrderNumber: requestDto.previousQuestionOrderNumber, searchPredicate: requestDto.searchPredicate, sorting: requestDto.sorting, skipCount: requestDto.skipCount, maxResultCount: requestDto.maxResultCount },
     },
     { apiName: this.apiName,...config });
   
