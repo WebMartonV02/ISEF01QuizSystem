@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="p-5 text-center" *ngIf="!hasLoggedIn">
+    <h1>{{ '::Welcome' | abpLocalization }}</h1>
+
+    <p class="lead px-lg-5 mx-lg-5">{{ '::LongWelcomeMessage' | abpLocalization }}</p>
+
+    <a *ngIf="!hasLoggedIn" (click)="login()" class="px-4 btn btn-primary ms-1" role="button">
+      <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'AbpAccount::Login' | abpLocalization }}
+    </a>
+  </div>
+  <app-student-courses *ngIf="!hasLoggedIn"></app-student-courses>
+</div>

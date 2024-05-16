@@ -14,7 +14,6 @@ public class QuestionEntity : Entity<int>
     public string Content { get; set; }
     public int Order { get; set; }
     
-    public ICollection<CommentEntity> Comments { get; set; }
     public ICollection<AnswerEntity> Answers { get; set; }
     public ICollection<OptionEntity> Options { get; set; }
 

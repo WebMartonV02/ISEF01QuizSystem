@@ -1,4 +1,4 @@
-/* 
+/*
 --------------------
 STYLING FRAGEN SEITE
 --------------------
@@ -116,4 +116,16 @@ button:hover {
     .answer {
         flex-basis: 100%;
     }
+}
+
+.element--true
+{
+  background-color: green;
+  color: white;
+}
+
+.element--false
+{
+  background-color: red;
+  color: white;
 }

@@ -3,6 +3,7 @@ using System;
 using ISEF01QuizSystem.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace ISEF01QuizSystem.Migrations
 {
     [DbContext(typeof(ISEF01QuizSystemDbContext))]
-    partial class ISEF01QuizSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240515213215_4001-changed-question-to-quiz-by-comment")]
+    partial class _4001changedquestiontoquizbycomment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

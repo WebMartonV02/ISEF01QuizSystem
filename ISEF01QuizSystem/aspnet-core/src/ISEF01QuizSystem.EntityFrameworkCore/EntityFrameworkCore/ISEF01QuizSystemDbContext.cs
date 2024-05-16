@@ -110,6 +110,9 @@ public class ISEF01QuizSystemDbContext :
             
             b.HasMany(x => x.Attempts)
                 .WithOne(x => x.Quiz).HasForeignKey(x => x.QuizId);
+            
+            b.HasMany(x => x.Comments)
+                .WithOne(x => x.Quiz).HasForeignKey(x => x.QuizId);
         });
         
         builder.Entity<QuestionEntity>(b =>
@@ -121,9 +124,6 @@ public class ISEF01QuizSystemDbContext :
 
             b.HasOne<QuizEntity>(x => x.Quiz)
                 .WithMany(x => x.Questions).HasForeignKey(x => x.QuizId);
-            
-            b.HasMany(x => x.Comments)
-                .WithOne(x => x.Question).HasForeignKey(x => x.QuestionId);
             
             b.HasMany(x => x.Answers)
                 .WithOne(x => x.Question).HasForeignKey(x => x.QuestionId);
@@ -150,7 +150,7 @@ public class ISEF01QuizSystemDbContext :
         builder.Entity<CommentEntity>(b =>
         {
             b.ToTable(ISEF01QuizSystemConsts.DbTablePrefix + nameof(CommentEntity), ISEF01QuizSystemConsts.DbSchema);
-            b.Property(x => x.QuestionId).IsRequired();
+            b.Property(x => x.QuizId).IsRequired();
             b.Property(x => x.Content).IsRequired();
             b.Property(x => x.Order).IsRequired();
         });

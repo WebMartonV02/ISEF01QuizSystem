@@ -3,6 +3,7 @@ using System;
 using ISEF01QuizSystem.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace ISEF01QuizSystem.Migrations
 {
     [DbContext(typeof(ISEF01QuizSystemDbContext))]
-    partial class ISEF01QuizSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240514193558_4001-quiz-functionality-changes")]
+    partial class _4001quizfunctionalitychanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,7 +99,7 @@ namespace ISEF01QuizSystem.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("integer");
 
-                    b.Property<int>("QuizId")
+                    b.Property<int>("QuestionId")
                         .HasColumnType("integer");
 
                     b.Property<Guid>("UserId")
@@ -104,7 +107,7 @@ namespace ISEF01QuizSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuizId");
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("AppCommentEntity", (string)null);
                 });
@@ -166,6 +169,9 @@ namespace ISEF01QuizSystem.Migrations
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsRight")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("Order")
                         .HasColumnType("integer");
@@ -1988,13 +1994,13 @@ namespace ISEF01QuizSystem.Migrations
 
             modelBuilder.Entity("ISEF01QuizSystem.Comments.CommentEntity", b =>
                 {
-                    b.HasOne("ISEF01QuizSystem.Quiz.QuizEntity", "Quiz")
+                    b.HasOne("ISEF01QuizSystem.Questions.QuestionEntity", "Question")
                         .WithMany("Comments")
-                        .HasForeignKey("QuizId")
+                        .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Quiz");
+                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("ISEF01QuizSystem.Options.OptionEntity", b =>
@@ -2181,14 +2187,14 @@ namespace ISEF01QuizSystem.Migrations
                 {
                     b.Navigation("Answers");
 
+                    b.Navigation("Comments");
+
                     b.Navigation("Options");
                 });
 
             modelBuilder.Entity("ISEF01QuizSystem.Quiz.QuizEntity", b =>
                 {
                     b.Navigation("Attempts");
-
-                    b.Navigation("Comments");
 
                     b.Navigation("Questions");
                 });
