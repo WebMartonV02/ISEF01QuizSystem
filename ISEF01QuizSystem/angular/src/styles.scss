@@ -48,7 +48,103 @@ $ISEF01QuizSystem-theme: mat.define-light-theme((
 :root  {
   --lpx-logo: url('/assets/images/logo/logo-light.png');
   --lpx-logo-icon: url('/assets/images/logo/logo-light-thumbnail.png');
+  --quizmunity-darkgrey: #383838;
+  --quizmunity-lightgreay: #dee2e6;
+  --quizmunity-blue1: #249ABA;
+  --quizmunity-blue2: #206C9D;
+  --quizmunity-red: #e62549;
+  --quizmunity-green: #bed263;
+  --quizmunity-sidebar: #5F5F5F;
+  --quizmunity-white: #fff;
 }
+
+
+/* Typography */
+
+h1 {
+font-size: 35px !important;
+color:  var(--quizmunity-darkgrey)!important;
+}
+
+h2{
+font-size: 25px !important;
+color:  var(--quizmunity-darkgrey)!important;
+}
+
+h3{
+font-size: 18px !important;
+color:  var(--quizmunity-darkgrey)!important;
+}
+
+p{
+font-size: 14px !important;
+color:  var(--quizmunity-darkgrey)!important;
+}
+
+
+
+
+/* Buttons */
+
+
+.quizmunity-button{
+border-radius: 10px !important;
+padding: 10px 15px !important;
+border: solid 3px var(--quizmunity-blue2) !important;
+background-color: var(--quizmunity-blue2) !important;
+color:var(--quizmunity-white) !important;
+font-weight: 400 !important;
+font-size: 14px !important;
+}
+
+.quizmunity-button:hover{
+  border-radius: 10px !important;
+  padding: 10px 15px !important;
+  border: solid 3px var(--quizmunity-blue2) !important;
+  background-color: var(--quizmunity-white) !important;
+  color:var(--quizmunity-blue2) !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  }
+
+.quizmunity-button-inverted{
+  border-radius: 10px !important;
+  padding: 10px 15px !important;
+  border: solid 3px var(--quizmunity-blue2) !important;
+  background-color: var(--quizmunity-white) !important;
+  color:var(--quizmunity-blue2) !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.quizmunity-button-inverted:hover{
+  border-radius: 10px !important;
+  padding: 10px 15px !important;
+  border: solid 3px var(--quizmunity-blue2) !important;
+  background-color: var(--quizmunity-blue2) !important;
+  color:var(--quizmunity-white) !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+
+
+/* Layout */
+
+.card {
+  background-color: var(--quizmunity-white) !important;
+}
+
+
+
+
+
+
+
+/* Further Stylings */
+
+
+
 .donut {
   display: inline-block;
   border: 4px solid rgba(0, 0, 0, 0.1);
@@ -79,9 +175,7 @@ body {
 }
 
 .lpx-content {
-  background-image: url("/assets/images/logo/logo-background.jpeg") !important;
-  background-size: cover;
-  height: 100vh;
+  background-color: var(--quizmunity-blue1);
 }
 
 .lpx-topbar-container {

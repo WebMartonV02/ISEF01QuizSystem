@@ -1,32 +1,4 @@
 
-/* General */
-
-.container{
-    font-family: 'Montserrat';
-}
-
-h1{
-    color: rgb(29, 29, 29);
-}
-
-
-h2{
-    color: rgb(29, 29, 29);
-}
-
-
-h3{
-    color: rgb(29, 29, 29);
-}
-
-h4{
-    color: rgb(29, 29, 29);
-}
-
-p{
-    color: rgb(29, 29, 29);
-}
-
 a{
     text-decoration: none;
 }
@@ -34,9 +6,15 @@ a{
 /* Styles for the courses component */
 
 .container {
-    --akzentfarbe: #206C9D;
-    --sekundaerfarbe: #34A7C5;
-    --white: #fff;
+   
+    --quizmunity-darkgrey: #383838;
+  --quizmunity-lightgreay: #dee2e6;
+  --quizmunity-blue1: #249ABA;
+  --quizmunity-blue2: #206C9D;
+  --quizmunity-red: #e62549;
+  --quizmunity-green: #bed263;
+  --quizmunity-sidebar: #5F5F5F;
+  --quizmunity-white: #fff;
   }
 
 
@@ -45,7 +23,7 @@ a{
 
 .modul-kachel
 {
-    background-image: linear-gradient(to top right, rgb(30,66,95), rgb(117,168,240));
+    background-color: var(--quizmunity-blue2);
     width: 80%;
     height: 5rem;
     border-radius: 30px;
@@ -71,4 +49,8 @@ mat-icon{
   height: 100%;
   font-size: 2rem;
   margin-right: 20px;
+}
+
+.card, .card-body{
+    background-color: var( --quizmunity-white) !important;
 }
