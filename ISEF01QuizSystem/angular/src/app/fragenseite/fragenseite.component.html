@@ -1,32 +1,30 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
 <div class="maincontainer">
-
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-body" >
-              <div class="quiz-container">
-                  <div class="progress-container">
-                      <div class="progress-bar"></div>
-                  </div>
-                  <div class="progress-text text-center">Frage 1 / 5</div>
-                  <h3 class="question text-center">{{ actualQuestion.content }}?</h3>
-                  <ul *ngFor="let option of actualQuestion.options" class="answers">
-                      <button mat-button class="answer" [disabled]="choosenOption != null"
-                          (click)="EvaluateChoosenOption(option)"
-                          [ngClass]="{'element--true': (clickedOptionEvaluated$ | async) == true && option.text == choosenOption.text,
-                            'element--false': (clickedOptionEvaluated$ | async) == false && option.text == choosenOption.text}">{{ option.text }}</button>
-                  </ul>
-                  <div class="button-container">
-                      <button class="btn btn-primary left-button">Letzte Frage</button> <!-- Nicht sicher dass es zeitlich passt -->
-                      <button class="btn btn-primary right-button" *ngIf="!this.actualQuestion.isLastQuestion" (click)="LoadNextQuestion()">Nächste Frage</button>
-                  </div>
-                  <div class="end-quiz-button-container">
-                      <button class="btn btn-primary end-quiz-button" *ngIf="this.actualQuestion.isLastQuestion">Quiz beenden</button>
-                  </div>
-              </div>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body" >
+        <div class="quiz-container">
+            <div class="progress-container">
+                <div class="progress-bar"></div>
             </div>
-          </div>
+            <div class="progress-text text-center">Frage 1 / 5</div>
+            <h3 class="question text-center">{{ actualQuestion.content }}?</h3>
+            <ul *ngFor="let option of actualQuestion.options" class="answers">
+                <button mat-button class="answer" [disabled]="choosenOption !== null"
+                    (click)="EvaluateChoosenOption(option)"
+                    [ngClass]="{'element--true': (clickedOptionEvaluated$ | async) == true && option.text === choosenOption.text,
+                      'element--false': (clickedOptionEvaluated$ | async) == false && option.text === choosenOption.text}">{{ option.text }}</button>
+            </ul>
+            <div class="button-container">
+                <button class="btn btn-primary left-button">Letzte Frage</button> <!-- Nicht sicher dass es zeitlich passt -->
+                <button class="btn btn-primary right-button" *ngIf="!this.actualQuestion.isLastQuestion" (click)="LoadNextQuestion()">Nächste Frage</button>
+            </div>
+            <div class="end-quiz-button-container">
+                <button class="btn btn-primary end-quiz-button" *ngIf="this.actualQuestion.isLastQuestion" (click)="RouteToOverViewPage()">Quiz beenden</button>
+            </div>
         </div>
-
+      </div>
+    </div>
+  </div>
 </div>

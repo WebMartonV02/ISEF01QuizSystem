@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { delay, Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { delay, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { QuestionResponseDto, QuestionService, QuestionsForQuizRequestDto } from '@proxy/questions';
 import { OptionResponseDto } from '@proxy/options';
 import { AnswerRequestDto, AnswerService } from '@proxy/answers';
@@ -14,8 +14,8 @@ type ResultDtoModel = QuestionResponseDto;
 })
 export class FragenseiteComponent implements OnInit, OnDestroy
 {
-  public actualQuestion: ResultDtoModel = {} as ResultDtoModel;
-  public choosenOption: OptionResponseDto;
+  public actualQuestion: ResultDtoModel = {order: 0} as ResultDtoModel;
+  public choosenOption: OptionResponseDto = null;
   public choosenOptiocLogicalValue: boolean;
   public clickedOptionEvaluated$ = new Subject();
 
@@ -35,6 +35,9 @@ export class FragenseiteComponent implements OnInit, OnDestroy
     console.log(this.parentalQuizId)
 
     this.SubscribeToNextQuestionEvent();
+
+    console.log("this.choosenOption")
+    console.log(this.choosenOption)
 
     this.LoadNextQuestion();
   }
@@ -70,7 +73,7 @@ export class FragenseiteComponent implements OnInit, OnDestroy
 
   private RouteToOverViewPage(): void
   {
-    let _ = this._router.navigate(['/fragenubersicht', this.parentalQuizId]);
+    let _ = this._router.navigate(['/ergebnis', this.parentalQuizId]);
   }
 
   private SubscribeToNextQuestionEvent(): void
@@ -80,17 +83,25 @@ export class FragenseiteComponent implements OnInit, OnDestroy
         takeUntil(this._componentDestroyed$),
         switchMap(() =>
         {
-          let requestDto = {questionId: this.actualQuestion.id, optionId: this.choosenOption.id} as AnswerRequestDto;
+          if (this.actualQuestion.id !== undefined)
+          {
+            let requestDto = {questionId: this.actualQuestion.id, optionId: this.choosenOption.id} as AnswerRequestDto;
 
-          return this._answerService.createAnswer(requestDto);
+            return  this._answerService.createAnswer(requestDto);
+          }
+
+          return of(null);
         }),
         switchMap(() =>
         {
+          this.choosenOption = null;
+
           return this.ExecuteQuestionLoadWorkflow();
         }))
       .subscribe((data: ResultDtoModel) =>
       {
         this.actualQuestion = data;
+        console.log(this.actualQuestion)
 
         if (this.actualQuestion == null)
         {

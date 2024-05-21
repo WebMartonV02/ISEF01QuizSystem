@@ -42,6 +42,15 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         
         return result;
     }
+    
+    public async Task<List<QuestionResponseDto>> GetListByQuizIdAsync(int quizId)
+    {
+        var entityInDb = (await _genericRepository.GetListByPredicateWithNestedElements(x => x.QuizId == quizId)).ToList();
+
+        var result = ObjectMapper.Map<List<QuestionEntity>, List<QuestionResponseDto>>(entityInDb);
+        
+        return result;
+    }
 
     public async Task<QuestionResponseDto> GetByQuizIdWithAnswersAsync(QuestionsForQuizRequestDto requestDto)
     {
@@ -50,7 +59,7 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         
         var result = ObjectMapper.Map<QuestionEntity, QuestionResponseDto>(entityByQuizId);
 
-        result.IsLastQuestion = await CheckIfNextQuestionExistsByOrder(actualSearchedQuestionOrder, requestDto.QuizId);
+        result.IsLastQuestion = await CheckIfNextQuestionExistsByOrder((int)actualSearchedQuestionOrder, requestDto.QuizId);
         
         return result;
     }
@@ -86,6 +95,6 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         var nextQuestionOrder = ++actualOrderNumber;
         var entityByQuizId = await _questionEntityRepository.FirstOrDefaultAsync(x => x.QuizId == quizId && x.Order == nextQuestionOrder);
 
-        return entityByQuizId != default ? true : false;
+        return entityByQuizId == default ? true : false;
     }
 }

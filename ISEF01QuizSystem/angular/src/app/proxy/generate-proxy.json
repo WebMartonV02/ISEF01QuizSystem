@@ -2031,8 +2031,8 @@
                   "nameOnMethod": "requestDto",
                   "name": "PreviousQuestionOrderNumber",
                   "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
+                  "type": "System.Int32?",
+                  "typeSimple": "number?",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -2095,6 +2095,43 @@
               "allowAnonymous": null,
               "implementFrom": "ISEF01QuizSystem.Questions.QuestionAppService"
             },
+            "GetListByQuizIdAsyncByQuizId": {
+              "uniqueName": "GetListByQuizIdAsyncByQuizId",
+              "name": "GetListByQuizIdAsync",
+              "httpMethod": "GET",
+              "url": "api/app/question/by-quiz-id/{quizId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "quizId",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "quizId",
+                  "name": "quizId",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<ISEF01QuizSystem.Questions.QuestionResponseDto>",
+                "typeSimple": "[ISEF01QuizSystem.Questions.QuestionResponseDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "ISEF01QuizSystem.Questions.QuestionAppService"
+            },
             "GetByQuizIdWithAnswersAsyncByRequestDto": {
               "uniqueName": "GetByQuizIdWithAnswersAsyncByRequestDto",
               "name": "GetByQuizIdWithAnswersAsync",
@@ -2128,8 +2165,8 @@
                   "nameOnMethod": "requestDto",
                   "name": "PreviousQuestionOrderNumber",
                   "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
+                  "type": "System.Int32?",
+                  "typeSimple": "number?",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -2610,6 +2647,43 @@
           "type": "ISEF01QuizSystem.Answers.AnswerAppService",
           "interfaces": [],
           "actions": {
+            "GetAnswersForQuizByUserIdByQuestionIds": {
+              "uniqueName": "GetAnswersForQuizByUserIdByQuestionIds",
+              "name": "GetAnswersForQuizByUserId",
+              "httpMethod": "GET",
+              "url": "api/app/answer/answers-for-quiz-by-user-id",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "questionIds",
+                  "typeAsString": "System.Collections.Generic.List`1[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib",
+                  "type": "System.Collections.Generic.List<System.Int32>",
+                  "typeSimple": "[number]",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "questionIds",
+                  "name": "questionIds",
+                  "jsonName": null,
+                  "type": "System.Collections.Generic.List<System.Int32>",
+                  "typeSimple": "[number]",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<ISEF01QuizSystem.Answers.AnswerResponseDto>",
+                "typeSimple": "[ISEF01QuizSystem.Answers.AnswerResponseDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "ISEF01QuizSystem.Answers.AnswerAppService"
+            },
             "CreateAnswerAsyncByRequestDto": {
               "uniqueName": "CreateAnswerAsyncByRequestDto",
               "name": "CreateAnswerAsync",
@@ -10206,8 +10280,8 @@
         {
           "name": "PreviousQuestionOrderNumber",
           "jsonName": null,
-          "type": "System.Int32",
-          "typeSimple": "number",
+          "type": "System.Int32?",
+          "typeSimple": "number?",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -10433,6 +10507,39 @@
           "jsonName": null,
           "type": "System.Int32?",
           "typeSimple": "number?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "ISEF01QuizSystem.Answers.AnswerResponseDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "OptionId",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "QuestionId",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

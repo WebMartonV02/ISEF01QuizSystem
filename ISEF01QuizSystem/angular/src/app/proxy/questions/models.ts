@@ -19,5 +19,5 @@ export interface QuestionResponseDto {
 
 export interface QuestionsForQuizRequestDto extends FilteredResultRequestDto {
   quizId: number;
-  previousQuestionOrderNumber: number;
+  previousQuestionOrderNumber?: number;
 }

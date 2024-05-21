@@ -67,12 +67,12 @@ const routes: Routes = [
       import('./scoreboard/scoreboard.module').then(m => m. ScoreboardModule),
   },
   {
-    path: 'quizuebersicht/:id',
+    path: 'quizuebersicht',
     loadChildren: () =>
       import('./quizuebersicht/quizuebersicht.module').then(m => m. QuizuebersichtModule),
   },
   {
-    path: 'ergebnis',
+    path: 'ergebnis/:id',
     loadChildren: () =>
       import('./ergebnis/ergebnis.module').then(m => m. ErgebnisModule),
   },

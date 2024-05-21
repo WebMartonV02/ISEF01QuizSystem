@@ -43,6 +43,14 @@ export class QuestionService {
     { apiName: this.apiName,...config });
   
 
+  getListByQuizId = (quizId: number, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, QuestionResponseDto[]>({
+      method: 'GET',
+      url: `/api/app/question/by-quiz-id/${quizId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   getListByQuizIdOrdered = (requestDto: QuestionsForQuizRequestDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, QuestionResponseDto[]>({
       method: 'GET',
