@@ -1,0 +1,56 @@
+
+a{
+    text-decoration: none;
+}
+
+/* Styles for the courses component */
+
+.container {
+   
+    --quizmunity-darkgrey: #383838;
+  --quizmunity-lightgreay: #dee2e6;
+  --quizmunity-blue1: #249ABA;
+  --quizmunity-blue2: #206C9D;
+  --quizmunity-red: #e62549;
+  --quizmunity-green: #bed263;
+  --quizmunity-sidebar: #5F5F5F;
+  --quizmunity-white: #fff;
+  }
+
+
+
+/* START SEITE */
+
+.modul-kachel
+{
+    background-color: var(--quizmunity-blue2);
+    width: 80%;
+    height: 5rem;
+    border-radius: 30px;
+    margin: auto;
+}
+
+.modul-kachel a
+{
+  color:#ffffff;
+  font-size: 1.5rem;
+}
+
+.block--content
+{
+  display: flex;
+  justify-content: space-between;
+  min-height: 100%;
+  align-items: center;
+}
+
+mat-icon{
+  width: 30px;
+  height: 100%;
+  font-size: 2rem;
+  margin-right: 20px;
+}
+
+.card, .card-body{
+    background-color: var( --quizmunity-white) !important;
+}

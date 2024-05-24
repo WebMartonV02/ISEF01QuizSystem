@@ -1,0 +1,32 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<div class="container">
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>{{ parentEntity.title }}</h1>
+            <br>
+            <p> {{ parentEntity.description }} </p>
+            <h2>Jetzt Quiz wählen:</h2>
+        </div>
+    </div>
+
+          <!-- Quiz Buttons -->
+          <div class="row col-12" *ngFor="let entity of entities">
+            <div class="d-grid gap-2 mb-2 modul-kachel">
+                <a class="btn btn-block" (click)="RouteToFirstQuestion(entity.id)">
+                  <span class="block--content">
+                  {{ entity.titel }}
+                  <div class="block--content">
+                    <mat-icon aria-hidden="false" fontIcon="keyboard_double_arrow_right"></mat-icon>
+                    Zum Quiz
+                  </div>
+                  </span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+  </div>

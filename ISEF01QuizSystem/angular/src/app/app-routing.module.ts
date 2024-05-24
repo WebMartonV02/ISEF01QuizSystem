@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+
   {
     path: '',
     pathMatch: 'full',
@@ -26,19 +27,54 @@ const routes: Routes = [
       import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
   },
   {
-    path: 'start',
+    path: 'quizes/:id',
     loadChildren: () =>
-      import('./start/start.module').then(m => m.StartModule),
-  },
-  {
-    path: 'kursauswahl',
-    loadChildren: () =>
-      import('./kursauswahl/kursauswahl.module').then(m => m.KursauswahlModule),
+      import('./quizes/quizes.module').then(m => m.QuizesModule),
   },
   {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then(m => m. LoginModule),
+  },
+  {
+    path: 'fragenseite/:id',
+    loadChildren: () =>
+      import('./fragenseite/fragenseite.module').then(m => m. FragenseiteModule),
+  },
+  {
+    path: 'konfiguration',
+    loadChildren: () =>
+      import('./konfiguration/konfiguration.module').then(m => m. KonfigurationModule),
+  },
+  {
+    path: 'fragemanager',
+    loadChildren: () =>
+      import('./fragemanager/fragemanager.module').then(m => m. FragemanagerModule),
+  },
+  {
+    path: 'fragenedit',
+    loadChildren: () =>
+      import('./fragenedit/fragenedit.module').then(m => m. FrageneditModule),
+  },
+  {
+    path: 'quizhub',
+    loadChildren: () =>
+      import('./quizhub/quizhub.module').then(m => m. QuizhubModule),
+  },
+  {
+    path: 'scoreboard',
+    loadChildren: () =>
+      import('./scoreboard/scoreboard.module').then(m => m. ScoreboardModule),
+  },
+  {
+    path: 'quizuebersicht',
+    loadChildren: () =>
+      import('./quizuebersicht/quizuebersicht.module').then(m => m. QuizuebersichtModule),
+  },
+  {
+    path: 'ergebnis',
+    loadChildren: () =>
+      import('./ergebnis/ergebnis.module').then(m => m. ErgebnisModule),
   },
 ];
 

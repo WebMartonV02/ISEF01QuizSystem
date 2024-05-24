@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ISEF01QuizSystem.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
@@ -70,6 +71,13 @@ public class ISEF01QuizSystemHttpApiHostModule : AbpModule
         ConfigureVirtualFileSystem(context);
         ConfigureCors(context, configuration);
         ConfigureSwaggerServices(context, configuration);
+
+        Configure<Volo.Abp.AspNetCore.Mvc.AntiForgery.AbpAntiForgeryOptions>(options =>
+        {
+            options.AutoValidate = false;
+        });
+
+        context.Services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     }
 
     private void ConfigureAuthentication(ServiceConfigurationContext context)

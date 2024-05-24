@@ -1,0 +1,181 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<div class="maincontainer">
+ 
+         
+                                    <div class="container-fluid"> 
+                                        <div class="white-container"> 
+
+
+
+
+
+
+                                             <!-- Hauptinhalt -->
+        <div class="content">
+           
+            
+            
+                <div class="Inhalt">
+                    <!-- Hauptinhalt hier einfügen!!!! -->
+                                <!-- Form Heading -->
+                                <div>
+    <h2>Dein Ergebnis</h2>
+
+  
+
+    <table class="table table-sm  ergebnistabelle">
+        
+        <tbody>
+          <tr>
+            <th scope="row table-dark" >Begonnen</th>
+            <td >05.05.24</td>
+           
+          </tr>
+
+          <tr>
+            <th scope="row table-dark" >Beendet</th>
+            <td >05.05.24</td>
+           
+          </tr>
+
+          <tr>
+            <th scope="row table-dark" >Punkte</th>
+            <td >4/4</td>
+           
+          </tr>
+
+          <tr>
+            <th scope="row table-dark" >Bewertung</th>
+            <td >100%</td>
+           
+          </tr>
+
+          
+        </tbody>
+      </table>
+
+
+
+
+
+
+
+
+    <!-- Question card 1 -->
+    <div class="question-card">
+        <h3 class="question-header">Frage 1 </h3>
+            <div class="dropdown">
+                <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Editieren</a></li>
+                    <li><a class="dropdown-item" href="#">Löschen</a></li>
+                </ul>
+            </div>
+       
+        <p>Welche der folgenden Optionen beschreibt den Zweck des Garbage Collectors in Java?</p>
+    
+
+        <ul class="options-list">
+            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector verbessert die Netzwerkperformance.</li>
+            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector befreit Speicherplatz, indem er Objekte entfernt, die nicht mehr verwendet werden.</li>
+            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector kompiliert Java-Programme in Bytecode.</li>
+        </ul>
+      
+        <div class="alert alert-success" role="alert">
+            Die Antwort ist richtig!
+          </div>
+
+    </div>
+
+    <!-- Question card 2 -->
+    <div class="question-card">
+        <h3 class="question-header">Frage 2 </h3>
+            <div class="dropdown">
+                <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Editieren</a></li>
+                    <li><a class="dropdown-item" href="#">Löschen</a></li>
+                </ul>
+            </div>
+       
+        <p>Welche der folgenden Optionen beschreibt den Zweck des Garbage Collectors in Java?</p>
+    
+
+        <ul class="options-list">
+            <li ><input type="radio" class="form-check-input" name="question1">Der Garbage Collector reserviert Speicherplatz für neue Objekte.</li>
+            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector verbessert die Netzwerkperformance.</li>
+            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector kompiliert Java-Programme in Bytecode.</li>
+        </ul>
+      
+        <div class="alert alert-danger" role="alert">
+            Die Antwort ist falsch!
+          </div>
+
+    </div>
+
+   
+    <button type="button" class="ergebnis-button quizmunity-button">Zurück zur Übersicht</button>
+    <button type="button" class="ergebnis-button quizmunity-button-inverted">Quiz Wiederholen</button>
+
+
+                </div>
+              
+            </div>
+        </div>
+                                          
+                                            
+
+
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    
+
+
+
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Funktion, um auf Klick-Event für jede Antwort zu reagieren
+    function answerClicked(event) {
+        // Füge die ausgewählte Klasse zum geklickten Element hinzu oder entferne sie, wenn sie bereits ausgewählt war
+        event.currentTarget.classList.toggle('answer-selected');
+    }
+
+    // Event-Listener für alle Antwort-Elemente
+    document.querySelectorAll('.answer').forEach(function(answer) {
+        answer.addEventListener('click', answerClicked);
+    });
+</script>
+
+
+
+<style scoped>
+  .col-lg-2.border-start:nth-of-type(6n + 1) {
+    border-left: 0 !important;
+  }
+
+  .col-lg-4.border-start:nth-of-type(3n + 1) {
+    border-left: 0 !important;
+  }
+
+  @media (max-width: 991px) {
+    .border-start {
+      border-left: 0 !important;
+    }
+  }
+</style>

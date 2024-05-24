@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ISEF01QuizSystem.Common;
 using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
@@ -11,24 +12,37 @@ namespace ISEF01QuizSystem.Quizes;
 public class QuizAppService : ISEF01QuizSystemAppService
 {
     private readonly IRepository<QuizEntity> _quizEntityRepository;
-    
-    public QuizAppService(IRepository<QuizEntity> quizEntityRepository)
+    private readonly IGenericRepository<QuizEntity> _genericRepository; 
+
+    public QuizAppService(
+        IRepository<QuizEntity> quizEntityRepository,
+        IGenericRepository<QuizEntity> genericRepository)
     {
         _quizEntityRepository = quizEntityRepository;
+        _genericRepository = genericRepository;
     }
 
-    public async Task<PagedResultDto<QuizResponseDto>> GetListAsync(PagedAndSortedResultRequestDto requestDto)
+    public async Task<List<QuizResponseDto>> GetListAsync(FilteredResultRequestDto requestDto)
     {
-        var quizEntities = await _quizEntityRepository.GetListAsync();
+        var queryable = await _quizEntityRepository.GetQueryableAsync();
 
-        var mappedQuizEntites = ObjectMapper.Map<List<QuizEntity>, List<QuizResponseDto>>(quizEntities);
+        var defaultSorting = new SortingModel<QuizEntity>(x => x.Title);
+        var result = await queryable.GetModifiedDataList<QuizEntity, QuizResponseDto>(
+            requestDto,
+            AsyncExecuter,
+            ObjectMapper,
+            defaultSorting);
+        
+        return result;
+    }
+    
+    public async Task<List<QuizResponseDto>> GetByCourseIdOrderedAsync(int courseId)
+    {
+        var queryable = (await _genericRepository.GetListByPredicateWithNestedElements(x => x.CourseId == courseId)).AsQueryable();
 
-        var quizesPaged = mappedQuizEntites
-            .Skip(requestDto.SkipCount)
-            .Take(requestDto.MaxResultCount)
-            .ToList();
+        var orderedEntitiesByTitle = queryable.OrderBy(x => x.Title).ToList();
 
-        var result = new PagedResultDto<QuizResponseDto>(quizesPaged.Count, quizesPaged);
+        var result = ObjectMapper.Map<List<QuizEntity>, List<QuizResponseDto>>(orderedEntitiesByTitle);
         
         return result;
     }

@@ -1,0 +1,131 @@
+/*
+--------------------
+STYLING FRAGEN SEITE
+--------------------
+*/
+
+
+.btn-primary {
+    background-color: #0044CC; /* Farbe der Schaltflächen anpassen */
+}
+
+.progress-container {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 3px;
+    margin: 20px 0;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #007bff;
+    border-radius: 15px;
+    width: 20%;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+    transition: width 0.4s ease;
+}
+
+.question {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.answers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.answer {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 5px;
+    flex-basis: calc(50% - 10px);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.answer:hover {
+    background-color: #e0e0e0;
+}
+
+.answer-selected {
+    background-color: #BED263 !important; /* Bootstrap Grünton */
+    color: white;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button-container button {
+    flex-basis: auto; /* Änderung von einer prozentualen Basis auf automatische Größe */
+    max-width: 200px; /* Maximale Breite der Buttons */
+    margin-bottom: 10px; /* Abstand zum unteren Button */
+}
+
+.left-button, .right-button {
+    width: 100%;
+    display: flex;
+}
+
+.left-button {
+    justify-content: center; /* Links ausrichten */
+}
+
+.right-button {
+    justify-content: center; /* Rechts ausrichten */
+}
+
+.end-quiz-button-container {
+    display: flex;
+    justify-content: center; /* Zentriert den Button horizontal */
+    margin-top: 20px; /* Optionaler Abstand nach oben */
+}
+
+.end-quiz-button {
+    max-width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .answer {
+        flex-basis: 100%;
+    }
+}
+
+.element--true
+{
+  background-color: green;
+  color: white;
+}
+
+.element--false
+{
+  background-color: red;
+  color: white;
+}

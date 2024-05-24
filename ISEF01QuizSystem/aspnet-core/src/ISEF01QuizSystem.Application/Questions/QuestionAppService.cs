@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ISEF01QuizSystem.Common;
 using Volo.Abp;
@@ -21,18 +22,33 @@ public class QuestionAppService : ISEF01QuizSystemAppService
 
     public async Task<QuestionResponseDto> GetByIdAsync(int id)
     {
-        var entity = await _questionEntityRepository.GetAsync(x => x.Id == id);
+        var entity = await _genericRepository.GetByPredicateWithNestedElements(x => x.Id == id);
 
         var result = ObjectMapper.Map<QuestionEntity, QuestionResponseDto>(entity);
         
         return result;
     }
     
-    public async Task<List<QuestionResponseDto>> GetByQuizIdOrderedAsync(int quizId)
+    public async Task<List<QuestionResponseDto>> GetListByQuizIdOrderedAsync(QuestionsForQuizRequestDto requestDto)
     {
-        var entitiesByQuizId = await _genericRepository.GetListByPredicateWithNestedElements(x => x.QuizId == quizId);
+        var queryable = (await _genericRepository.GetListByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId)).AsQueryable();
 
-        var result = ObjectMapper.Map<List<QuestionEntity>, List<QuestionResponseDto>>(entitiesByQuizId);
+        var defaultSorting = new SortingModel<QuestionEntity>(x => x.Order);
+        var result = await queryable.GetModifiedDataList<QuestionEntity, QuestionResponseDto>(
+            requestDto,
+            AsyncExecuter,
+            ObjectMapper,
+            defaultSorting);
+        
+        return result;
+    }
+
+    public async Task<QuestionResponseDto> GetByQuizIdWithAnswersAsync(QuestionsForQuizRequestDto requestDto)
+    {
+        var nextQuestionOrder = ++requestDto.PreviousQuestionId;
+        var entityByQuizId = await _genericRepository.GetByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId && x.Order == nextQuestionOrder);
+
+        var result = ObjectMapper.Map<QuestionEntity, QuestionResponseDto>(entityByQuizId);
         
         return result;
     }
