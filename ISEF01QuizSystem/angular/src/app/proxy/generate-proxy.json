@@ -2638,6 +2638,54 @@
             }
           }
         },
+        "ISEF01QuizSystem.Attempts.AttemptAppService": {
+          "controllerName": "Attempt",
+          "controllerGroupName": "Attempt",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "ISEF01QuizSystem.Attempts.AttemptAppService",
+          "interfaces": [],
+          "actions": {
+            "CreateAttemptByRequestDto": {
+              "uniqueName": "CreateAttemptByRequestDto",
+              "name": "CreateAttempt",
+              "httpMethod": "POST",
+              "url": "api/app/attempt/attempt",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "requestDto",
+                  "typeAsString": "ISEF01QuizSystem.Attempts.AttemptRequestDto, ISEF01QuizSystem.Application.Contracts",
+                  "type": "ISEF01QuizSystem.Attempts.AttemptRequestDto",
+                  "typeSimple": "ISEF01QuizSystem.Attempts.AttemptRequestDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "requestDto",
+                  "name": "requestDto",
+                  "jsonName": null,
+                  "type": "ISEF01QuizSystem.Attempts.AttemptRequestDto",
+                  "typeSimple": "ISEF01QuizSystem.Attempts.AttemptRequestDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "ISEF01QuizSystem.Attempts.AttemptAppService"
+            }
+          }
+        },
         "ISEF01QuizSystem.Answers.AnswerAppService": {
           "controllerName": "Answer",
           "controllerGroupName": "Answer",
@@ -10507,6 +10555,39 @@
           "jsonName": null,
           "type": "System.Int32?",
           "typeSimple": "number?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "ISEF01QuizSystem.Attempts.AttemptRequestDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "QuizId",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Score",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

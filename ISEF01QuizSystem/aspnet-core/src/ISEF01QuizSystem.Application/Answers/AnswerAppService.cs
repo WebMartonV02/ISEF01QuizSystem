@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Users;
 
@@ -26,7 +27,9 @@ public class AnswerAppService : ISEF01QuizSystemAppService
             .Where(x => x.UserId == currentLoggedInUserId
                         && questionIds.Contains(x.QuestionId)).ToList();
 
-        var result = ObjectMapper.Map<List<AnswerEntity>, List<AnswerResponseDto>>(queriedDataInDb);
+        var selectedLatestAnswers = SelectTheLatestAnswersBelongingToAQuestionByUser(questionIds, queriedDataInDb);
+
+        var result = ObjectMapper.Map<List<AnswerEntity>, List<AnswerResponseDto>>(selectedLatestAnswers);
         
         return result;
     }
@@ -38,5 +41,28 @@ public class AnswerAppService : ISEF01QuizSystemAppService
         var entityToBeCreated = new AnswerEntity(requestDto.OptionId, requestDto.QuestionId, currentLoggedInUserId);
 
         await _answerEntityRepository.InsertAsync(entityToBeCreated);
+    }
+
+    private static List<AnswerEntity> SelectTheLatestAnswersBelongingToAQuestionByUser(
+        List<int> questionIds,
+        List<AnswerEntity> answersByQuestionIdAndUser)
+    {
+        var result = new List<AnswerEntity>();
+
+        // Parallel.ForEach(questionIds, questionId =>
+        // {
+        //     
+        // });
+        
+        foreach (var questionId in questionIds)
+        {
+            var answersByQuestion = answersByQuestionIdAndUser.Where(x => x.QuestionId == questionId).ToList();
+
+            var orderedAnswers = answersByQuestion.OrderByDescending(x => x.CreatedDateTime);
+            
+            result.Add(orderedAnswers.First() ?? throw new UserFriendlyException("$No Answer was given to the Question: {questionId}"));
+        }
+
+        return result;
     }
 }

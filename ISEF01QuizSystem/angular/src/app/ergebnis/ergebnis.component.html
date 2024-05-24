@@ -16,27 +16,19 @@
   <table class="table table-sm  ergebnistabelle">
     <tbody>
       <tr>
-        <th scope="row table-dark" >Begonnen</th>
-        <td >05.05.24</td>
-      </tr>
-      <tr>
-        <th scope="row table-dark" >Beendet</th>
-        <td >05.05.24</td>
-      </tr>
-      <tr>
         <th scope="row table-dark" >Punkte</th>
-        <td >4/4</td>
+        <td >{{scoreViewModel.NumberOfCorrectAnswers}}/{{scoreViewModel.NumberOfQuestions}}</td>
       </tr>
       <tr>
         <th scope="row table-dark" >Bewertung</th>
-        <td >100%</td>
+        <td >{{ReturnProcentualResult()}}</td>
       </tr>
     </tbody>
   </table>
 
   <!-- Question card 1 -->
-  <div class="question-card" *ngFor="let question of questionEntities">
-      <div class="question-header">Frage 1 </div>
+  <div class="question-card" *ngFor="let question of questionEntities; let i = index">
+      <div class="question-header">Frage {{i+1}} </div>
           <div class="dropdown">
               <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="bi bi-three-dots"></i>
@@ -51,27 +43,32 @@
 
 
       <ul class="options-list" *ngFor="let option of question.options">
-          <li><input type="radio" class="form-check-input" name="question1">{{option.text}}</li>
+          <li>
+            <!--<mat-icon *ngIf="IsGivenAnswerCorrect(question)" fontIcon="check"></mat-icon>
+            <mat-icon *ngIf="!IsGivenAnswerCorrect(question)" fontIcon="close"></mat-icon> -->
+            <input type="radio" class="form-check-input" [checked]="GivenAnswerContainsOption(option.id)">{{option.text}}</li>
       </ul>
 
-      <div *ngIf="IsGivenAnswerCorrect(question); else incorrectDiv" class="alert alert-success" role="alert">
-          Die Antwort ist richtig!
-      </div>
-      <ng-template #incorrectDiv>
-        <div class="alert alert-danger" role="alert">
-          Die Antwort ist falsch!
-        </div>
-      </ng-template>
-
-
+    <div *ngIf="IsGivenAnswerCorrect(question); else incorrectDiv" class="alert alert-success" role="alert">
+      <mat-icon fontIcon="check"></mat-icon>
+      Die Antwort ist richtig!
     </div>
+    <ng-template #incorrectDiv>
+      <div class="alert alert-danger" role="alert">
+        <mat-icon *ngIf="!IsGivenAnswerCorrect(question)" fontIcon="close"></mat-icon>
+        Die Antwort ist falsch!
+      </div>
+    </ng-template>
 
-    <button (click)="QuitReview()" type="button" class="ergebnis-button">Zurück zur Übersicht</button>
+
+  </div>
+
+  <button (click)="QuitReview()" type="button" class="ergebnis-button">Zurück zur Übersicht</button>
 
 
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

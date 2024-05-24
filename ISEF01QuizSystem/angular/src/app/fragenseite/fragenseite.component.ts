@@ -36,9 +36,6 @@ export class FragenseiteComponent implements OnInit, OnDestroy
 
     this.SubscribeToNextQuestionEvent();
 
-    console.log("this.choosenOption")
-    console.log(this.choosenOption)
-
     this.LoadNextQuestion();
   }
 
@@ -65,8 +62,16 @@ export class FragenseiteComponent implements OnInit, OnDestroy
       this.choosenOptiocLogicalValue = true;
 
       this.clickedOptionEvaluated$.next(this.choosenOptiocLogicalValue);
-      console.log(option)
     }
+
+    let requestDto = {questionId: this.actualQuestion.id, optionId: this.choosenOption.id} as AnswerRequestDto;
+
+    this._answerService.createAnswer(requestDto)
+      .pipe(takeUntil(this._componentDestroyed$))
+      .subscribe(() =>
+      {
+        this.ClearBelongingsToPreviousQuestion();
+      });
 
     this.clickedOptionEvaluated$.next(this.choosenOptiocLogicalValue);
   }
@@ -83,25 +88,11 @@ export class FragenseiteComponent implements OnInit, OnDestroy
         takeUntil(this._componentDestroyed$),
         switchMap(() =>
         {
-          if (this.actualQuestion.id !== undefined)
-          {
-            let requestDto = {questionId: this.actualQuestion.id, optionId: this.choosenOption.id} as AnswerRequestDto;
-
-            return  this._answerService.createAnswer(requestDto);
-          }
-
-          return of(null);
-        }),
-        switchMap(() =>
-        {
-          this.choosenOption = null;
-
           return this.ExecuteQuestionLoadWorkflow();
         }))
       .subscribe((data: ResultDtoModel) =>
       {
         this.actualQuestion = data;
-        console.log(this.actualQuestion)
 
         if (this.actualQuestion == null)
         {
@@ -116,5 +107,10 @@ export class FragenseiteComponent implements OnInit, OnDestroy
 
     return this._questionService.getByQuizIdWithAnswers(requestDto)
       .pipe(takeUntil(this._componentDestroyed$));
+  }
+
+  private ClearBelongingsToPreviousQuestion(): void
+  {
+    this.choosenOption = null;
   }
 }
