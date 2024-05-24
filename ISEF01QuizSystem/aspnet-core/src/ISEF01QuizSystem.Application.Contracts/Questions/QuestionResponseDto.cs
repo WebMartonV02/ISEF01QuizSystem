@@ -10,4 +10,5 @@ public class QuestionResponseDto
     public string Content { get; set; }
     public int Order { get; set; }
     public List<OptionResponseDto> Options { get; set; }
+    public bool IsLastQuestion { get; set; } = false;
 }

@@ -1,12 +1,12 @@
 
 .flex-container {
     display: flex;
-    height: auto; 
+    height: auto;
     padding-top: 0; /* Anpassen, falls Header vorhanden */
 }
 
 .white-container {
-    
+
     background-color: white;
     padding: 1rem;
     border-radius: 15px;
@@ -23,8 +23,8 @@
     }
     h1, h2, p {
         margin-bottom: 2rem; /* Abstand unten */
-        margin-left: 4rem; 
-        margin-right: 4rem; 
+        margin-left: 4rem;
+        margin-right: 4rem;
     }
 }
 
@@ -53,4 +53,20 @@ h1, h2, p {
     padding: 0.2rem 1rem !important;
     background-color: black !important;
     border: black 1px solid;
+}
+
+
+/*from html*/
+.col-lg-2.border-start:nth-of-type(6n + 1) {
+  border-left: 0 !important;
+}
+
+.col-lg-4.border-start:nth-of-type(3n + 1) {
+  border-left: 0 !important;
+}
+
+@media (max-width: 991px) {
+  .border-start {
+    border-left: 0 !important;
+  }
 }

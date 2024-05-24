@@ -6,5 +6,5 @@ public class QuestionsForQuizRequestDto : FilteredResultRequestDto
 {
     public int QuizId { get; set; }
     
-    public int PreviousQuestionId { get; set; }
+    public int? PreviousQuestionOrderNumber { get; set; }
 }
