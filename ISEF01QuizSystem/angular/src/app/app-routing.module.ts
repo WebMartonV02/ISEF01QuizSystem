@@ -72,7 +72,7 @@ const routes: Routes = [
       import('./quizuebersicht/quizuebersicht.module').then(m => m. QuizuebersichtModule),
   },
   {
-    path: 'ergebnis',
+    path: 'ergebnis/:id',
     loadChildren: () =>
       import('./ergebnis/ergebnis.module').then(m => m. ErgebnisModule),
   },

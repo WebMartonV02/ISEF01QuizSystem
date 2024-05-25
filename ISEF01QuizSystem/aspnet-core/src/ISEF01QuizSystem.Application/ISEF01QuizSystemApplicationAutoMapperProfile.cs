@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ISEF01QuizSystem.Answers;
 using ISEF01QuizSystem.Comments;
 using ISEF01QuizSystem.Courses;
 using ISEF01QuizSystem.Options;
@@ -20,6 +21,7 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
         CreateCommentMapping();
         CreateCourseMapping();
         CreateOptionsMapping();
+        CreateAnswersMapping();
     }
 
     public void CreateQuizMapping()
@@ -72,5 +74,10 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
     public void CreateOptionsMapping()
     {
         CreateMap<OptionEntity, OptionResponseDto>();
+    }
+    
+    public void CreateAnswersMapping()
+    {
+        CreateMap<AnswerEntity, AnswerResponseDto>();
     }
 }

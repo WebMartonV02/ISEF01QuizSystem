@@ -322,7 +322,7 @@ display: none; /* Versteckt den Standard-Pfeil von Bootstrap Dropdown */
 
 /* Style for each option item */
 .options-list li {
-    padding: 8px 0;
+    padding: 8px 8px;
     border-top: 1px solid #dee2e6;
 }
 
@@ -353,6 +353,4 @@ display: none; /* Versteckt den Standard-Pfeil von Bootstrap Dropdown */
 pointer-events: none; /* Verhindert Klickaktionen */
 background-color: #e8f5e9; /* Leicht grüner Hintergrund */
 padding: 10px; /* Etwas Abstand für die Optik */
-border-radius: 5px; /* Leicht abgerundete Ecken */
-margin-bottom: 10px; /* Abstand zwischen den Optionen */
 }

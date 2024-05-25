@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { delay, Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { delay, Observable, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { QuestionResponseDto, QuestionService, QuestionsForQuizRequestDto } from '@proxy/questions';
 import { OptionResponseDto } from '@proxy/options';
+import { AnswerRequestDto, AnswerService } from '@proxy/answers';
 
 type ResultDtoModel = QuestionResponseDto;
 
@@ -13,8 +14,8 @@ type ResultDtoModel = QuestionResponseDto;
 })
 export class FragenseiteComponent implements OnInit, OnDestroy
 {
-  public actualQuestion: ResultDtoModel = {} as ResultDtoModel;
-  public choosenOption: OptionResponseDto;
+  public actualQuestion: ResultDtoModel = {order: 0} as ResultDtoModel;
+  public choosenOption: OptionResponseDto = null;
   public choosenOptiocLogicalValue: boolean;
   public clickedOptionEvaluated$ = new Subject();
 
@@ -25,7 +26,8 @@ export class FragenseiteComponent implements OnInit, OnDestroy
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _questionService: QuestionService,
-    private readonly _router: Router) {}
+    private readonly _router: Router,
+    private readonly _answerService: AnswerService) {}
 
   public ngOnInit(): void
   {
@@ -60,15 +62,23 @@ export class FragenseiteComponent implements OnInit, OnDestroy
       this.choosenOptiocLogicalValue = true;
 
       this.clickedOptionEvaluated$.next(this.choosenOptiocLogicalValue);
-      console.log(option)
     }
+
+    let requestDto = {questionId: this.actualQuestion.id, optionId: this.choosenOption.id} as AnswerRequestDto;
+
+    this._answerService.createAnswer(requestDto)
+      .pipe(takeUntil(this._componentDestroyed$))
+      .subscribe(() =>
+      {
+        this.ClearBelongingsToPreviousQuestion();
+      });
 
     this.clickedOptionEvaluated$.next(this.choosenOptiocLogicalValue);
   }
 
   private RouteToOverViewPage(): void
   {
-    let _ = this._router.navigate(['/fragenubersicht']);
+    let _ = this._router.navigate(['/ergebnis', this.parentalQuizId]);
   }
 
   private SubscribeToNextQuestionEvent(): void
@@ -93,9 +103,14 @@ export class FragenseiteComponent implements OnInit, OnDestroy
 
   private ExecuteQuestionLoadWorkflow(): Observable<ResultDtoModel>
   {
-    let requestDto = { quizId: this.parentalQuizId, previousQuestionId: this.actualQuestion.id } as QuestionsForQuizRequestDto;
+    let requestDto = { quizId: this.parentalQuizId, previousQuestionOrderNumber: this.actualQuestion.order } as QuestionsForQuizRequestDto;
 
     return this._questionService.getByQuizIdWithAnswers(requestDto)
       .pipe(takeUntil(this._componentDestroyed$));
+  }
+
+  private ClearBelongingsToPreviousQuestion(): void
+  {
+    this.choosenOption = null;
   }
 }

@@ -42,13 +42,24 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         
         return result;
     }
+    
+    public async Task<List<QuestionResponseDto>> GetListByQuizIdAsync(int quizId)
+    {
+        var entityInDb = (await _genericRepository.GetListByPredicateWithNestedElements(x => x.QuizId == quizId)).ToList();
+
+        var result = ObjectMapper.Map<List<QuestionEntity>, List<QuestionResponseDto>>(entityInDb);
+        
+        return result;
+    }
 
     public async Task<QuestionResponseDto> GetByQuizIdWithAnswersAsync(QuestionsForQuizRequestDto requestDto)
     {
-        var nextQuestionOrder = ++requestDto.PreviousQuestionId;
-        var entityByQuizId = await _genericRepository.GetByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId && x.Order == nextQuestionOrder);
-
+        var actualSearchedQuestionOrder = ++requestDto.PreviousQuestionOrderNumber;
+        var entityByQuizId = await _genericRepository.GetByPredicateWithNestedElements(x => x.QuizId == requestDto.QuizId && x.Order == actualSearchedQuestionOrder);
+        
         var result = ObjectMapper.Map<QuestionEntity, QuestionResponseDto>(entityByQuizId);
+
+        result.IsLastQuestion = await CheckIfNextQuestionExistsByOrder((int)actualSearchedQuestionOrder, requestDto.QuizId);
         
         return result;
     }
@@ -77,5 +88,13 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         }
 
         throw new UserFriendlyException($"Quiz cannot be deleted, because it doesn't exist!");
+    }
+
+    private async Task<bool> CheckIfNextQuestionExistsByOrder(int actualOrderNumber, int quizId)
+    {
+        var nextQuestionOrder = ++actualOrderNumber;
+        var entityByQuizId = await _questionEntityRepository.FirstOrDefaultAsync(x => x.QuizId == quizId && x.Order == nextQuestionOrder);
+
+        return entityByQuizId == default ? true : false;
     }
 }

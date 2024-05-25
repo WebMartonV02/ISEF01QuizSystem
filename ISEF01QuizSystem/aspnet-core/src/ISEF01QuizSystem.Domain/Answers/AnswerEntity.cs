@@ -14,4 +14,12 @@ public class AnswerEntity : Entity<int>
     public QuestionEntity Question { get; set; }
     public Guid UserId { get; set; }
     public IdentityUser User { get; set; }
+    public DateTime CreatedDateTime { get; set; } = DateTime.Now;
+    
+    public AnswerEntity(int optionId, int questionId, Guid userId)
+    {
+        OptionId = optionId;
+        QuestionId = questionId;
+        UserId = userId;
+    }
 }

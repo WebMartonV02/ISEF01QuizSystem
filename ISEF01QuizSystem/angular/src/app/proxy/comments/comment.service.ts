@@ -35,10 +35,10 @@ export class CommentService {
     { apiName: this.apiName,...config });
   
 
-  getCommentsOrderedForQuestionByQuestionId = (questionId: number, config?: Partial<Rest.Config>) =>
+  getCommentsOrderedForQuizByQuizId = (quizId: number, config?: Partial<Rest.Config>) =>
     this.restService.request<any, CommentResultDto[]>({
       method: 'GET',
-      url: `/api/app/comment/comments-ordered-for-question/${questionId}`,
+      url: `/api/app/comment/comments-ordered-for-quiz/${quizId}`,
     },
     { apiName: this.apiName,...config });
 

@@ -13,4 +13,15 @@ public class AttemptEntity : Entity<int>
     public QuizEntity Quiz { get; set; }
     public int Score { get; set; }
     public int Count { get; set; }
+
+    public AttemptEntity(Guid userId,
+        int quizId,
+        int score,
+        int count)
+    {
+        UserId = userId;
+        QuizId = quizId;
+        Score = score;
+        Count = count;
+    }
 }
