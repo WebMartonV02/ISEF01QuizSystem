@@ -1,19 +1,52 @@
-import { AuthService } from '@abp/ng.core';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CreateUpdateQuestionProviderService } from '../fragemanager/services/create-update-question-provider.service';
+import { QuestionRequestDto, QuestionResponseDto, QuestionService } from '@proxy/questions';
 
 @Component({
   selector: 'app-fragenedit',
   templateUrl: './fragenedit.component.html',
   styleUrls: ['./fragenedit.component.scss'],
 })
-export class FrageneditComponent {
-  get hasLoggedIn(): boolean {
-    return this.authService.isAuthenticated;
+export class FrageneditComponent implements OnInit
+{
+  public editableQuestionEntity: QuestionResponseDto = { } as QuestionResponseDto;
+  public createOrUpdateRequestDto: QuestionRequestDto = {} as QuestionRequestDto;
+
+  private _parentalQuizId: number;
+
+  constructor(private _activatedRoute: ActivatedRoute,
+              private readonly _createUpdateQuestionProviderService: CreateUpdateQuestionProviderService,
+              private readonly _questionService: QuestionService) {}
+
+  public ngOnInit(): void
+  {
+    this._parentalQuizId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
+
+    let editableQuestionId = this._createUpdateQuestionProviderService.Data.QuestionId;
+
+    if (editableQuestionId != null || editableQuestionId != undefined)
+    {
+      this.LoadDataForVisualization(editableQuestionId);
+    }
+  }
+  public TrackByIndex(index: number, obj: any): any
+  {
+    return index;
   }
 
-  constructor(private authService: AuthService) {}
+  private LoadDataForVisualization(questionId: number): void
+  {
+    this._questionService.getById(questionId)
+      .subscribe((data) =>
+      {
+        this.editableQuestionEntity = data;
 
-  login() {
-    this.authService.navigateToLogin();
+        this.createOrUpdateRequestDto = {
+          id: data.id,
+          content: data.content,
+          answers: data.options
+        }
+      });
   }
 }

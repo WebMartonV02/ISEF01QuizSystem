@@ -5,6 +5,7 @@ import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { SearchFilterComponent } from './filtering/search-filter.component';
 import { MatButtonModule } from '@angular/material/button';
+import { CdkContextMenuTrigger, CdkMenu, CdkMenuItem } from '@angular/cdk/menu';
 
 @NgModule({
   declarations: [SearchFilterComponent],
@@ -12,7 +13,10 @@ import { MatButtonModule } from '@angular/material/button';
     CoreModule,
     ThemeSharedModule,
     NgbDropdownModule,
-    NgxValidateCoreModule
+    NgxValidateCoreModule,
+    CdkContextMenuTrigger,
+    CdkMenu,
+    CdkMenuItem,
   ],
   exports: [
     CoreModule,
@@ -20,7 +24,10 @@ import { MatButtonModule } from '@angular/material/button';
     NgbDropdownModule,
     NgxValidateCoreModule,
     SearchFilterComponent,
-    MatButtonModule
+    MatButtonModule,
+    CdkContextMenuTrigger,
+    CdkMenu,
+    CdkMenuItem,
   ],
   providers: []
 })

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ISEF01QuizSystem.Common;
 using Volo.Abp;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
 
 namespace ISEF01QuizSystem.Questions;
@@ -18,6 +19,25 @@ public class QuestionAppService : ISEF01QuizSystemAppService
     {
         _questionEntityRepository = questionEntityRepository;
         _genericRepository = genericRepository;
+    }
+    
+    public async Task<PagedResultDto<QuestionResponseDto>> GetListByQuizAsync(QuestionCatalogRequestDto requestDto)
+    {
+        var queryable = await _questionEntityRepository.GetQueryableAsync();
+
+        if (requestDto.QuizId != null)
+        {
+            var filterByQuizId = queryable.Where(x => x.QuizId == requestDto.QuizId);
+        }
+
+        var defaultSorting = new SortingModel<QuestionEntity>(x => x.Order);
+        var result = await queryable.GetModifiedDataListWithResultCount<QuestionEntity, QuestionResponseDto>(
+            requestDto,
+            AsyncExecuter,
+            ObjectMapper,
+            defaultSorting);
+
+        return result;
     }
 
     public async Task<QuestionResponseDto> GetByIdAsync(int id)
@@ -64,17 +84,10 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         return result;
     }
     
-    public void CreateAsync(QuestionRequestDto requestDto)
+    public void CreateOrUpdateAsync(QuestionRequestDto requestDto)
     {
         var entity = ObjectMapper.Map<QuestionRequestDto, QuestionEntity>(requestDto);
         
-        _questionEntityRepository.CreateOrLoadEntity(ref entity);
-    }
-    
-    public void UpdateAsync(QuestionRequestDto requestDto)
-    {
-        var entity = ObjectMapper.Map<QuestionRequestDto, QuestionEntity>(requestDto);
-
         _questionEntityRepository.CreateOrUpdateEntity(ref entity);
     }
     
