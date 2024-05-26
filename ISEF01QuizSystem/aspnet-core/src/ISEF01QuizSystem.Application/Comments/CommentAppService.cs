@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ISEF01QuizSystem.Common;
+using ISEF01QuizSystem.Courses;
 using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
@@ -11,32 +12,32 @@ namespace ISEF01QuizSystem.Comments;
 public class CommentAppService : ISEF01QuizSystemAppService
 {
     private readonly IRepository<CommentEntity> _commentRepository;
-    private readonly IGenericRepository<QuizEntity> _genericQuizRepository;
+    private readonly IGenericRepository<CourseEntity> _genericCourseRepository;
 
     public CommentAppService(
         IRepository<CommentEntity> commentRepository, 
-        IGenericRepository<QuizEntity> genericQuizRepository)
+        IGenericRepository<CourseEntity> genericCourseRepository)
     {
         _commentRepository = commentRepository;
-        _genericQuizRepository = genericQuizRepository;
+        _genericCourseRepository = genericCourseRepository;
     }
 
-    public async Task<List<CommentResultDto>> GetCommentsOrderedForQuiz(int quizId)
+    public async Task<List<CommentResultDto>> GetCommentsOrderedForQuiz(int courseId)
     {
-        var commentsByQuestion =
-            (await _genericQuizRepository.GetByPredicateWithNestedElements(x => x.Id == quizId)).Comments;
+        var commentsByCourse =
+            (await _genericCourseRepository.GetByPredicateWithNestedElements(x => x.Id == courseId)).Comments;
 
-        var orderedComments =commentsByQuestion.OrderBy(x => x.Order).ToList();
+        var orderedComments =commentsByCourse.OrderBy(x => x.Order).ToList();
         var result = ObjectMapper.Map<List<CommentEntity>, List<CommentResultDto>>(orderedComments);
 
         return result;
     }
     
-    public async Task CreateCommentForQuestion(CommentRequestDto requestDto)
+    public async Task CreateCommentForCourse(CommentRequestDto requestDto)
     {
-        if (requestDto.QuizId == null) throw new UserFriendlyException("Comment cannot be bound to Question!");
+        if (requestDto.CourseId == null) throw new UserFriendlyException("Comment cannot be bound to Question!");
 
-        var actualComments = await _commentRepository.GetListAsync(x => x.QuizId == requestDto.QuizId);
+        var actualComments = await _commentRepository.GetListAsync(x => x.CourseId == requestDto.CourseId);
 
         var searchLastCommentsOrder = actualComments.MaxBy(x => x.Order).Order;
 

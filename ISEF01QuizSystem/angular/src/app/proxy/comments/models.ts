@@ -2,7 +2,7 @@
 export interface CommentRequestDto {
   id: number;
   text?: string;
-  quizId?: number;
+  courseId?: number;
 }
 
 export interface CommentResultDto {
