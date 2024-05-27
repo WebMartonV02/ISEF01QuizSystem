@@ -18,6 +18,7 @@ type ResultDtoModel = QuestionResponseDto;
   selector: 'app-fragemanager',
   templateUrl: './fragemanager.component.html',
   styleUrls: ['./fragemanager.component.scss'],
+  providers: [ListService]
 })
 export class FragemanagerComponent implements OnInit
 {

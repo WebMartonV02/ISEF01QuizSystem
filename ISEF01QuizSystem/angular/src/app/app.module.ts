@@ -19,6 +19,8 @@ import { AbpOAuthModule } from '@abp/ng.oauth';
 import { AccountLayoutModule } from '@abp/ng.theme.lepton-x/account';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateUpdateQuestionProviderService } from './fragemanager/services/create-update-question-provider.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -41,7 +43,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
   declarations: [AppComponent],
-  providers: [APP_ROUTE_PROVIDER, provideAnimationsAsync()],
+  providers: [APP_ROUTE_PROVIDER, provideAnimationsAsync(), CreateUpdateQuestionProviderService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
