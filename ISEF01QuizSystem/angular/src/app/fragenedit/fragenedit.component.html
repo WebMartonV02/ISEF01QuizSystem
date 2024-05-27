@@ -12,14 +12,14 @@
       <h3>Antworten</h3>
       <p>Nachdem du mögliche Antworten angegeben hast, wähle die richtige aus.</p>
 
-      <div id="answer-container-area" *ngFor="let option of createOrUpdateRequestDto.answers; let index = i; trackBy:TrackByIndex;">
+      <div id="answer-container-area" *ngFor="let option of createOrUpdateRequestDto.answers; let index = i;">
 
       <!-- Antwort Container -->
         <div class="antwort-container">
-            <input type="checkbox" class="checkbox-button" [(ngModel)]="createOrUpdateRequestDto.answers[index].isCorrect" name="correct-answer">
+            <input type="checkbox" class="checkbox-button" [(ngModel)]="option.isCorrect" name="correct-answer">
             <div class="answer-text richtext-editor">
                 <!-- Hier könnte Ihr Rich-Text-Editor eingebunden werden -->
-                <textarea class="form-control antwort-eingabe" [(ngModel)]="createOrUpdateRequestDto.answers[index].text" placeholder="Hier eine Antwortmöglichkeit eingeben"></textarea>
+                <textarea class="form-control antwort-eingabe" [(ngModel)]="option.text" placeholder="Hier eine Antwortmöglichkeit eingeben"></textarea>
             </div>
             <i class="bi bi-trash"></i>
         </div>
@@ -41,3 +41,19 @@
 
   </div>
 </div>
+
+<style scoped>
+  .col-lg-2.border-start:nth-of-type(6n + 1) {
+    border-left: 0 !important;
+  }
+
+  .col-lg-4.border-start:nth-of-type(3n + 1) {
+    border-left: 0 !important;
+  }
+
+  @media (max-width: 991px) {
+    .border-start {
+      border-left: 0 !important;
+    }
+  }
+</style>

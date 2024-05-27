@@ -15,16 +15,13 @@ export class FrageneditComponent implements OnInit
 
   private _parentalQuizId: number;
 
-  constructor(private _activatedRoute: ActivatedRoute,
-              private readonly _createUpdateQuestionProviderService: CreateUpdateQuestionProviderService,
+  constructor(private readonly _createUpdateQuestionProviderService: CreateUpdateQuestionProviderService,
               private readonly _questionService: QuestionService,
               private readonly _router: Router) {}
 
   public ngOnInit(): void
   {
-    this._parentalQuizId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
-
-    let editableQuestionId = this._createUpdateQuestionProviderService.Data.QuestionId;
+    let editableQuestionId = this._createUpdateQuestionProviderService.Data?.QuestionId;
 
     if (editableQuestionId != null || editableQuestionId != undefined)
     {
@@ -33,6 +30,9 @@ export class FrageneditComponent implements OnInit
   }
   public TrackByIndex(index: number, obj: any): any
   {
+    console.log(index)
+    console.log(this.createOrUpdateRequestDto)
+
     return index;
   }
 
@@ -62,6 +62,9 @@ export class FrageneditComponent implements OnInit
           content: data.content,
           answers: data.options
         }
+
+        console.log('jaj')
+        console.log(this.createOrUpdateRequestDto.answers[0])
       });
   }
 }

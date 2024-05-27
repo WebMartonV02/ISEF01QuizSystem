@@ -72,6 +72,7 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
     public void CreateOptionsMapping()
     {
         CreateMap<OptionEntity, OptionResponseDto>();
+        CreateMap<OptionRequestDto, OptionEntity>();
     }
     
     public void CreateAnswersMapping()

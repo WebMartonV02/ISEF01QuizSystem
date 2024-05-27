@@ -5,7 +5,8 @@ namespace ISEF01QuizSystem.Questions;
 
 public class QuestionRequestDto
 {
-    public int Id { get; set; }
+    public int QuestionId { get; set; }
+    public int QuizId { get; set; }
     public string Content { get; set; }
-    public List<OptionRequestDto> Answers { get; set; }
+    public List<OptionRequestDto> Options { get; set; }
 }

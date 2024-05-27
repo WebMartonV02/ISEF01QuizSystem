@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ISEF01QuizSystem.Common;
+using ISEF01QuizSystem.Options;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
@@ -12,13 +13,16 @@ public class QuestionAppService : ISEF01QuizSystemAppService
 {
     private readonly IRepository<QuestionEntity> _questionEntityRepository;
     private readonly IGenericRepository<QuestionEntity> _genericRepository; 
+    private readonly IRepository<OptionEntity> _optionRepository; 
     
     public QuestionAppService(
         IRepository<QuestionEntity> questionEntityRepository, 
-        IGenericRepository<QuestionEntity> genericRepository)
+        IGenericRepository<QuestionEntity> genericRepository, 
+        IRepository<OptionEntity> optionRepository)
     {
         _questionEntityRepository = questionEntityRepository;
         _genericRepository = genericRepository;
+        _optionRepository = optionRepository;
     }
     
     public async Task<PagedResultDto<QuestionResponseDto>> GetListByQuizAsync(QuestionCatalogRequestDto requestDto)
@@ -84,11 +88,37 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         return result;
     }
     
-    public void CreateOrUpdateAsync(QuestionRequestDto requestDto)
+    public async Task CreateOrUpdateAsync(QuestionRequestDto requestDto)
     {
-        var entity = ObjectMapper.Map<QuestionRequestDto, QuestionEntity>(requestDto);
-        
-        _questionEntityRepository.CreateOrUpdateEntity(ref entity);
+        var questionEntityInDb = await _questionEntityRepository.FirstOrDefaultAsync(x => x.Id == requestDto.QuestionId);
+
+        if (questionEntityInDb != default)
+        {
+            questionEntityInDb.Update(requestDto.Content);
+
+            await _questionEntityRepository.UpdateAsync(questionEntityInDb);
+
+            var mappedOptions = ObjectMapper.Map<List<OptionRequestDto>, List<OptionEntity>>(requestDto.Options);
+
+            await _optionRepository.UpdateManyAsync(mappedOptions); // update the existing
+        }
+        else
+        {
+            var lastQuestionOrder = (await _questionEntityRepository.GetListAsync(x => x.QuizId == requestDto.QuizId)).OrderByDescending(x=> x.Order).First().Order;
+
+            var entity = new QuestionEntity(requestDto.QuizId, requestDto.Content, ++lastQuestionOrder);
+            
+            var insertedQuestion = await _questionEntityRepository.InsertAsync(entity, autoSave: true);
+            
+            var mappedOptions = ObjectMapper.Map<List<OptionRequestDto>, List<OptionEntity>>(requestDto.Options);
+
+            foreach (var option in mappedOptions)
+            {
+                option.QuestionId = insertedQuestion.Id;
+            }
+            
+            await _optionRepository.InsertManyAsync(mappedOptions);
+        }
     }
     
     public async Task DeleteAsync(int id)
