@@ -53,7 +53,7 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
     {
         CreateMap<CommentEntity, CommentResultDto>()
             .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dst => dst.Text, opt => opt.MapFrom(src => src.Content));
+            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content));
     }
     
     public void CreateCourseMapping()

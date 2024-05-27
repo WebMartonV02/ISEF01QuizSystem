@@ -16,13 +16,10 @@
                                                     <div class="search_quizmuniy">
                                                         <h3>Nutze die Suchfunktion, um gezielt nach Quizzen zu suchen:</h3>
                                                     </div>
-
-                                                   
-
                                                     
                                                     <mat-form-field style="width: 80%;">
                                                         <mat-label>Kursname</mat-label>
-                                                        <mat-select [(ngModel)]="selectedValue" name="food">
+                                                        <mat-select [(ngModel)]="selectedValue" name="food" (selectionChange)="courseChanged($event.value)">
                                                           @for (entity of entities; track entity) {
                                                             <mat-option [value]="entity.title">{{entity.title}}</mat-option>
                                                           }
@@ -48,7 +45,10 @@
 
                                                     <div id="question-container">
                                                     <!-- Hier werden die neuen Fragen eingefügt -->
-                                                      <div>Kommentar</div>
+                                                      <div *ngFor="let comment of comments">
+                                                        <p>{{comment.content}}</p>
+                                                      </div>
+                                                      
                                                     
                                                     </div>
                                                 </div>

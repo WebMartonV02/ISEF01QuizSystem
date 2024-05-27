@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using ISEF01QuizSystem.Courses;
 using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Users;
 
 namespace ISEF01QuizSystem.Comments;
 
@@ -13,16 +15,19 @@ public class CommentAppService : ISEF01QuizSystemAppService
 {
     private readonly IRepository<CommentEntity> _commentRepository;
     private readonly IGenericRepository<CourseEntity> _genericCourseRepository;
+    private readonly ICurrentUser _currentUser; 
 
     public CommentAppService(
         IRepository<CommentEntity> commentRepository, 
-        IGenericRepository<CourseEntity> genericCourseRepository)
+        IGenericRepository<CourseEntity> genericCourseRepository, 
+        ICurrentUser currentUser)
     {
         _commentRepository = commentRepository;
         _genericCourseRepository = genericCourseRepository;
+        _currentUser = currentUser;
     }
 
-    public async Task<List<CommentResultDto>> GetCommentsOrderedForQuiz(int courseId)
+    public async Task<List<CommentResultDto>> GetCommentsOrderedForCourse(int courseId)
     {
         var commentsByCourse =
             (await _genericCourseRepository.GetByPredicateWithNestedElements(x => x.Id == courseId)).Comments;
@@ -39,10 +44,17 @@ public class CommentAppService : ISEF01QuizSystemAppService
 
         var actualComments = await _commentRepository.GetListAsync(x => x.CourseId == requestDto.CourseId);
 
-        var searchLastCommentsOrder = actualComments.MaxBy(x => x.Order).Order;
+        var searchLastCommentsOrder = 1;//actualComments.MaxBy(x => x.Order).Order;
 
-        var entityToBeInserted = ObjectMapper.Map<CommentRequestDto, CommentEntity>(requestDto);
-
+        var entityToBeInserted = new CommentEntity(){
+            CourseId = (int)requestDto.CourseId,
+            //Id = requestDto.Id, 
+            Content = requestDto.Content, 
+            UserId = (Guid)_currentUser.Id
+        };
+        
+        //ObjectMapper.Map<CommentRequestDto, CommentEntity>(requestDto);
+        
         entityToBeInserted.IncrementAndSetOrder(searchLastCommentsOrder);
 
         await _commentRepository.InsertAsync(entityToBeInserted);
@@ -54,7 +66,7 @@ public class CommentAppService : ISEF01QuizSystemAppService
 
         if (commentInDb == default) throw new UserFriendlyException("Comment does not exists!");
         
-        commentInDb.Update(requestDto.Text);
+        commentInDb.Update(requestDto.Content);
 
         await _commentRepository.UpdateAsync(commentInDb);
     }

@@ -2,7 +2,7 @@ import { AuthService } from '@abp/ng.core';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Comments } from '@proxy';
-import { CommentService } from '@proxy/comments';
+import { CommentResultDto, CommentService } from '@proxy/comments';
 import { CourseResponseDto, CourseService } from '@proxy/courses';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -14,7 +14,9 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class QuizhubComponent {
   public entities:  Array<CourseResponseDto>;
+  public comments: Array<CommentResultDto>;
   selectedValue: string;
+  currentCourseId: number;
 
   questionTitle: string;
   questionComment: string;
@@ -47,12 +49,48 @@ export class QuizhubComponent {
       })
   }
 
+  public LoadComments(): void 
+  {
+    this._commentsService.getCommentsOrderedForCourseByCourseId(this.currentCourseId)
+    .pipe(takeUntil(this._componentDestroyed$))
+    .subscribe((data: Array<CommentResultDto>) =>
+    {
+      console.log(data);
+      this.comments = data;
+    })
+  }
+
   public RouteToQuiz(courseId: number) :  void
   {
     let _ = this._router.navigate(['/quizes', courseId]);
   }
 
   public publish() {
-    
+    var result = this._commentsService.createCommentForCourseByRequestDto({
+      id: this.comments.length+1, courseId: this.currentCourseId, content: this.questionComment
+    }).
+    pipe(takeUntil(this._componentDestroyed$))
+    .subscribe((response) =>
+    {
+      this.LoadComments();
+      this.questionComment = '';
+      console.log(response)
+    })
   }
+
+  public courseChanged(value: string) {
+    this.currentCourseId = this.getIdFromCourse(value);
+    this.LoadComments();
+  }
+
+  private getIdFromCourse(name: string) : number{
+    for(var i = 0; i< this.entities.length; i++) {
+      if(this.entities[i].title === this.selectedValue){
+        return this.entities[i].id;
+      }
+    }
+    return 0;
+  }
+
+
 }

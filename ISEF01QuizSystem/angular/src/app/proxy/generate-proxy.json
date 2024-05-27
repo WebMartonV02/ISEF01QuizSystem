@@ -2488,11 +2488,11 @@
           "type": "ISEF01QuizSystem.Comments.CommentAppService",
           "interfaces": [],
           "actions": {
-            "GetCommentsOrderedForQuizByCourseId": {
-              "uniqueName": "GetCommentsOrderedForQuizByCourseId",
-              "name": "GetCommentsOrderedForQuiz",
+            "GetCommentsOrderedForCourseByCourseId": {
+              "uniqueName": "GetCommentsOrderedForCourseByCourseId",
+              "name": "GetCommentsOrderedForCourse",
               "httpMethod": "GET",
-              "url": "api/app/comment/comments-ordered-for-quiz/{courseId}",
+              "url": "api/app/comment/comments-ordered-for-course/{courseId}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -10506,7 +10506,7 @@
           "regex": null
         },
         {
-          "name": "Text",
+          "name": "Content",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -10539,7 +10539,7 @@
           "regex": null
         },
         {
-          "name": "Text",
+          "name": "Content",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
