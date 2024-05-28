@@ -31,19 +31,17 @@
                                                 </div>
                                             </div>
 
-                                            <div class="container" >
+                                            <div class="container" *ngIf="comments != null" >
                                                 <!-- Formular zum Hinzufügen neuer Fragen -->
                                                 <div class="input-group">
-                                                  <input [(ngModel)]="questionTitle" type="text" class="form-control" id="new-question-title" placeholder="Stelle eine Frage oder füge hier einen Kommentar hinzu">
                                                   <textarea [(ngModel)]="questionComment" id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
-                                                  
                                                 </div>
                                                 <button (click)="publish()" class="btn btn-primary" >Veröffentlichen</button>
                                                     <div id="question-container">
                                                     <!-- Hier werden die neuen Fragen eingefügt -->
                                                       <div *ngFor="let comment of comments">
                                                         <div>
-                                                          <p>{{comment.content}} <button mat-button (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
+                                                          <p class="fs-4">{{comment.content}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
                                                           
                                                         </div>
                                                         
