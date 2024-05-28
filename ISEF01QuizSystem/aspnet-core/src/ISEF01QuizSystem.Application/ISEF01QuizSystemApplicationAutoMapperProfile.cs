@@ -53,9 +53,13 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
     {
         CreateMap<CommentEntity, CommentResultDto>()
             .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content));
+            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dst => dst.UserId, opt => opt.MapFrom(src => src.UserId));
 
-        //CreateMap<CommentRequestDto, CommentEntity()
+        CreateMap<CommentRequestDto, CommentEntity>()
+            //.ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dst => dst.UserId, opt => opt.MapFrom(src => src.UserId));
             
     }
     

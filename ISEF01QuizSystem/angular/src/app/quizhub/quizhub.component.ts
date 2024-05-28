@@ -5,6 +5,7 @@ import { Comments } from '@proxy';
 import { CommentResultDto, CommentService } from '@proxy/comments';
 import { CourseResponseDto, CourseService } from '@proxy/courses';
 import { Subject, takeUntil } from 'rxjs';
+import { ConfigStateService } from '@abp/ng.core';
 
 
 @Component({
@@ -20,17 +21,20 @@ export class QuizhubComponent {
 
   questionTitle: string;
   questionComment: string;
+  currentUserId: any;
 
   private _componentDestroyed$: Subject<void> = new Subject();
 
   constructor(
     private readonly _courseService: CourseService,
     private readonly _commentsService: CommentService, 
-    private readonly _router: Router) {}
+    private readonly _router: Router, 
+    private config: ConfigStateService) {}
 
   public ngOnInit(): void
   {
     this.LoadCourses();
+    this.currentUserId = this.config.getOne("currentUser").id;
   }
 
   public ngOnDestroy(): void
@@ -66,8 +70,10 @@ export class QuizhubComponent {
   }
 
   public publish() {
+    const currentUserId = this.config.getOne("currentUser").id;
+    
     var result = this._commentsService.createCommentForCourseByRequestDto({
-      id: this.comments.length+1, courseId: this.currentCourseId, content: this.questionComment
+      id: this.comments.length+2, courseId: this.currentCourseId, content: this.questionComment, userId: currentUserId
     }).
     pipe(takeUntil(this._componentDestroyed$))
     .subscribe((response) =>
@@ -91,6 +97,19 @@ export class QuizhubComponent {
     }
     return 0;
   }
+
+  public deleteComment(commentId: number) {
+    var result = this._commentsService.deleteCommentByCommentId(commentId).
+    pipe(takeUntil(this._componentDestroyed$))
+    .subscribe((response) =>
+    {
+      this.LoadComments();
+      this.questionComment = '';
+      console.log(response)
+    })
+  }
+
+  
 
 
 }

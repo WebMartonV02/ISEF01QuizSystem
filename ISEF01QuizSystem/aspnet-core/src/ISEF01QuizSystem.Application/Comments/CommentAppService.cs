@@ -46,11 +46,11 @@ public class CommentAppService : ISEF01QuizSystemAppService
 
         var searchLastCommentsOrder = 1;//actualComments.MaxBy(x => x.Order).Order;
 
-        var entityToBeInserted = new CommentEntity(){
+        var entityToBeInserted = new CommentEntity() {
+            //Id = requestDto.Id,
             CourseId = (int)requestDto.CourseId,
-            //Id = requestDto.Id, 
-            Content = requestDto.Content, 
-            UserId = (Guid)_currentUser.Id
+            Content = requestDto.Content,
+            UserId = requestDto.UserId
         };
         
         //ObjectMapper.Map<CommentRequestDto, CommentEntity>(requestDto);

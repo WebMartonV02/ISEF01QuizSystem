@@ -39,14 +39,14 @@
                                                   
                                                 </div>
                                                 <button (click)="publish()" class="btn btn-primary" >Veröffentlichen</button>
-                                                  
-                                               
-                                             
-
                                                     <div id="question-container">
                                                     <!-- Hier werden die neuen Fragen eingefügt -->
                                                       <div *ngFor="let comment of comments">
-                                                        <p>{{comment.content}}</p>
+                                                        <div>
+                                                          <p>{{comment.content}} <button mat-button (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
+                                                          
+                                                        </div>
+                                                        
                                                       </div>
                                                       
                                                     
