@@ -5,6 +5,7 @@ import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { SearchFilterComponent } from './filtering/search-filter.component';
 import { MatButtonModule } from '@angular/material/button';
+import { ThemeBasicModule } from '@abp/ng.theme.basic';
 
 @NgModule({
   declarations: [SearchFilterComponent],

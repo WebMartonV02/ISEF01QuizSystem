@@ -107,14 +107,14 @@
     "@abp/ng.theme.shared" "~8.0.6"
     tslib "^2.0.0"
 
-"@abp/ng.theme.lepton-x@~3.0.4":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@abp/ng.theme.lepton-x/-/ng.theme.lepton-x-3.0.6.tgz#947a5dd2eac746ee7d164419405708d300cb3823"
-  integrity sha512-948JFaQe3QkDWzlLYcOz6myRVA7jBwpkKQl0+4/SUJO9MM5Z28UpNssff1HTNC3abXXpPvD4LOr72HR6aSV6gA==
+"@abp/ng.theme.basic@~8.0.5":
+  version "8.0.6"
+  resolved "https://registry.yarnpkg.com/@abp/ng.theme.basic/-/ng.theme.basic-8.0.6.tgz#e0a5b9e7f0fe5b09e59c1c00b4ecd186bf6ab1ea"
+  integrity sha512-0JtiuF/wAxTFD/XVv8Dc7ZYLyiVBZqyq9p2XdxrV77bgzYL2TN/jg15UkkHJLbUBRMa1UhaFbaFfkf+MSwo5Xg==
   dependencies:
-    "@volo/abp.ng.lepton-x.core" "3.0.6"
-    "@volo/ngx-lepton-x.lite" "3.0.6"
-    tslib "^2.3.0"
+    "@abp/ng.account.core" "~8.0.6"
+    "@abp/ng.theme.shared" "~8.0.6"
+    tslib "^2.0.0"
 
 "@abp/ng.theme.shared@~8.0.5", "@abp/ng.theme.shared@~8.0.6":
   version "8.0.6"
@@ -3463,33 +3463,6 @@
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-basic-ssl/-/plugin-basic-ssl-1.0.1.tgz#48c46eab21e0730921986ce742563ae83fe7fe34"
   integrity sha512-pcub+YbFtFhaGRTo1832FQHQSHvMrlb43974e2eS8EKleR3p1cDdkJFPci1UhwkEf1J9Bz+wKBSzqpKp7nNj2A==
 
-"@volo/abp.ng.lepton-x.core@3.0.6":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@volo/abp.ng.lepton-x.core/-/abp.ng.lepton-x.core-3.0.6.tgz#13d24caaa0f6896128743485c2bd314fcf7bb8a5"
-  integrity sha512-KC9kDkdNFLXu9pLuiiZXwJBV2P4NnYntUX40Npe+A+r2G0rFiwB45NotWcbvm9A4L99BGr34sQezmShT+y1jGQ==
-  dependencies:
-    "@volo/ngx-lepton-x.core" "3.0.6"
-    tslib "^2.3.0"
-
-"@volo/ngx-lepton-x.core@3.0.6":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@volo/ngx-lepton-x.core/-/ngx-lepton-x.core-3.0.6.tgz#db8b0520d457179fcf6d78fc6b5a1b71d3f49a4c"
-  integrity sha512-duuSzFHGwPUyrzK8YLdsACPXQjY5QTLcsTG414cMco4usdmpsgIEQhsygW0FzVc0v7EgC3uPopOLTAKYPKghYQ==
-  dependencies:
-    perfect-scrollbar "^1.5.5"
-    ts-toolbelt "^6.15.4"
-    tslib "^2.3.0"
-
-"@volo/ngx-lepton-x.lite@3.0.6":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@volo/ngx-lepton-x.lite/-/ngx-lepton-x.lite-3.0.6.tgz#23acdb7699576e93a800a061c4e68f943dc83f66"
-  integrity sha512-CrcVVGd25HKQd+iRYNVmGCzRtBl7nO+bVAUV1bJG2gST4Bt9W4CG3YpIcbTlspeZ+B1nShsa6CT60EqEEcFFCA==
-  dependencies:
-    "@ng-bootstrap/ng-bootstrap" "~16.0.0"
-    "@volo/ngx-lepton-x.core" "3.0.6"
-    bootstrap-icons "~1.7.2"
-    tslib "^2.3.0"
-
 "@webassemblyjs/ast@1.12.1", "@webassemblyjs/ast@^1.11.5":
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.12.1.tgz#bb16a0e8b1914f979f45864c23819cc3e3f0d4bb"
@@ -4042,11 +4015,6 @@ boolbase@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
-
-bootstrap-icons@~1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/bootstrap-icons/-/bootstrap-icons-1.7.2.tgz#4024e081e2c850602552e1fed6451e682d09322a"
-  integrity sha512-NiR2PqC73AQOPdVSu6GJfnk+hN2z6powcistXk1JgPnKuoV2FSdSl26w931Oz9HYbKCcKUSB6ncZTYJAYJl3QQ==
 
 bootstrap-icons@~1.8.0:
   version "1.8.3"
@@ -7855,11 +7823,6 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-perfect-scrollbar@^1.5.5:
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/perfect-scrollbar/-/perfect-scrollbar-1.5.5.tgz#41a211a2fb52a7191eff301432134ea47052b27f"
-  integrity sha512-dzalfutyP3e/FOpdlhVryN4AJ5XDVauVWxybSkLZmakFE2sS3y3pc4JnSprw8tGmHvkaG5Edr5T7LBTZ+WWU2g==
-
 picocolors@^1.0.0, picocolors@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.1.tgz#a8ad579b571952f0e5d25892de5445bcfe25aaa1"
@@ -9121,11 +9084,6 @@ ts-toolbelt@6.15.4:
   version "6.15.4"
   resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.15.4.tgz#f7fad584e197d0f495f77b5e3ee75a8f4c4dd3da"
   integrity sha512-Ifp2yNo4I8q5UwNARUBMnBiFpv5DEtTbCtS8RCjjLOz+PNcThbjUsPJCK3hRnz0dTygM1Fi3Mgvnt/DoKUTU2g==
-
-ts-toolbelt@^6.15.4:
-  version "6.15.5"
-  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.15.5.tgz#cb3b43ed725cb63644782c64fbcad7d8f28c0a83"
-  integrity sha512-FZIXf1ksVyLcfr7M317jbB67XFJhOO1YqdTcuGaq9q5jLUoTikukZ+98TPjKiP2jC5CgmYdWWYs0s2nLSU0/1A==
 
 tsconfig-paths@^4.1.2:
   version "4.2.0"
