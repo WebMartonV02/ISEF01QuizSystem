@@ -9,10 +9,10 @@ export class CommentService {
   apiName = 'Default';
   
 
-  createCommentForQuestionByRequestDto = (requestDto: CommentRequestDto, config?: Partial<Rest.Config>) =>
+  createCommentForCourseByRequestDto = (requestDto: CommentRequestDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, void>({
       method: 'POST',
-      url: '/api/app/comment/comment-for-question',
+      url: '/api/app/comment/comment-for-course',
       body: requestDto,
     },
     { apiName: this.apiName,...config });
@@ -35,10 +35,10 @@ export class CommentService {
     { apiName: this.apiName,...config });
   
 
-  getCommentsOrderedForQuizByQuizId = (quizId: number, config?: Partial<Rest.Config>) =>
+  getCommentsOrderedForCourseByCourseId = (courseId: number, config?: Partial<Rest.Config>) =>
     this.restService.request<any, CommentResultDto[]>({
       method: 'GET',
-      url: `/api/app/comment/comments-ordered-for-quiz/${quizId}`,
+      url: `/api/app/comment/comments-ordered-for-course/${courseId}`,
     },
     { apiName: this.apiName,...config });
 

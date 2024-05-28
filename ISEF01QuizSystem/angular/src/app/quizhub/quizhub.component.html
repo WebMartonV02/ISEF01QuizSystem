@@ -16,36 +16,37 @@
                                                     <div class="search_quizmuniy">
                                                         <h3>Nutze die Suchfunktion, um gezielt nach Quizzen zu suchen:</h3>
                                                     </div>
-
-                                                    <!-- Suchfeld hinzufügen -->
-                                                    <div class="search-bar" style="position: relative; display: flex; align-items: center; width: 100%;">
-                                                        <span style="position: absolute; padding: 10px; pointer-events: none;">
-                                                            <i class="bi bi-search"></i>
-                                                        </span>
-                                                        <input type="text" id="quiz-search-input" style="padding-left: 35px;" placeholder="Quizname eingeben">
-                                                        <div id="autocomplete-results" style="position: absolute; top: 100%; left: 0; right: 0; background: white; box-shadow: 0px 4px 6px rgba(0,0,0,0.1); z-index: 1000;"></div>
-                                                    </div>
+                                                    
+                                                    <mat-form-field style="width: 80%;">
+                                                        <mat-label>Kursname</mat-label>
+                                                        <mat-select [(ngModel)]="selectedValue" name="food" (selectionChange)="courseChanged($event.value)">
+                                                          @for (entity of entities; track entity) {
+                                                            <mat-option [value]="entity.title">{{entity.title}}</mat-option>
+                                                          }
+                                                        </mat-select>
+                                                      </mat-form-field>
                                                     
                                                     
-                                                    
-                                                    <div id="selected-quiz-name"></div>
-
-
-
+                                                    <div id="selected-quiz-name">{{selectedValue}}</div>
                                                 </div>
                                             </div>
 
-                                            <div class="container my-5">
+                                            <div class="container" *ngIf="comments != null" >
                                                 <!-- Formular zum Hinzufügen neuer Fragen -->
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="new-question-title" placeholder="Stelle eine Frage oder füge hier einen Kommentar hinzu">
-                                                    <textarea id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
-                                                    <button class="btn btn-primary quizmunity-button" onclick="addNewQuestion()">Veröffentlichen</button>
+                                                  <textarea [(ngModel)]="questionComment" id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
                                                 </div>
-
-                                                <div id="question-container">
+                                                <button (click)="publish()" class="btn btn-primary" >Veröffentlichen</button>
+                                                    <div id="question-container">
                                                     <!-- Hier werden die neuen Fragen eingefügt -->
-                                                
+                                                      <div *ngFor="let comment of comments">
+                                                        <div>
+                                                          <p class="fs-4">{{comment.content}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
+                                                          
+                                                        </div>
+                                                        
+                                                      </div>
+                                                      
                                                     
                                                     </div>
                                                 </div>

@@ -1,11 +1,13 @@
 
 export interface CommentRequestDto {
   id: number;
-  text?: string;
-  quizId?: number;
+  content?: string;
+  courseId?: number;
+  userId?: string;
 }
 
 export interface CommentResultDto {
   id: number;
-  text?: string;
+  content?: string;
+  userId?: string;
 }
