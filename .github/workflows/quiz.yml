@@ -82,9 +82,9 @@ jobs:
         with:
           dotnet-version: '8.0.202' # or any version needed
       
-      #- name: Restore NuGet packages
-      #  run: dotnet restore
-      #  working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
+      - name: Restore NuGet packages
+        run: dotnet restore --no-cache --force
+        working-directory: ./ISEF01QuizSystem/aspnet-core/src/ISEF01QuizSystem.HttpApi.Host
      
       - name: Build and test ASP.NET Core app
         run: dotnet publish -o /home/ubuntu/app
