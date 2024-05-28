@@ -52,6 +52,14 @@ export class QuizService {
     { apiName: this.apiName,...config });
   
 
+  getListWithOutOrdering = (config?: Partial<Rest.Config>) =>
+    this.restService.request<any, QuizResponseDto[]>({
+      method: 'GET',
+      url: '/api/app/quiz/with-out-ordering',
+    },
+    { apiName: this.apiName,...config });
+  
+
   update = (requestDto: QuizRequestDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, QuizResponseDto>({
       method: 'PUT',
