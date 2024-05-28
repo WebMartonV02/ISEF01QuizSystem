@@ -6,9 +6,10 @@ export interface QuestionCatalogRequestDto extends FilteredResultRequestDto {
 }
 
 export interface QuestionRequestDto {
-  id: number;
+  questionId: number;
+  quizId: number;
   content?: string;
-  answers: OptionRequestDto[];
+  options: OptionRequestDto[];
 }
 
 export interface QuestionResponseDto {

@@ -11,6 +11,7 @@ import { ContextMenuActionFactory } from '../shared/factories/context-menu-actio
 import { Router } from '@angular/router';
 import { CreateUpdateQuestionProviderService } from './services/create-update-question-provider.service';
 import { QuestionCreateOrUpdateViewModel } from './view-models/question-create-update-view.model';
+import { QuizResponseDto, QuizService } from '@proxy/quizes';
 
 type ResultDtoModel = QuestionResponseDto;
 
@@ -25,6 +26,8 @@ export class FragemanagerComponent implements OnInit
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public shiftSearchFilterFormGroup: UntypedFormGroup;
+  public quizes: Array<QuizResponseDto> = new Array<QuizResponseDto>();
+  public selectedQuiz: QuizResponseDto = {} as QuizResponseDto;
   public columns: Array<string> = new Array<string>(
     "content",
     "order");
@@ -36,6 +39,7 @@ export class FragemanagerComponent implements OnInit
   private _requestDto: QuestionCatalogRequestDto = {} as QuestionCatalogRequestDto;
 
   constructor(public readonly list: ListService<ResultDtoModel>,
+              private readonly _quizService: QuizService,
               private readonly _questionService: QuestionService,
               private readonly _router: Router,
               private readonly _createUpdateQuestionProviderService: CreateUpdateQuestionProviderService) {}
@@ -45,6 +49,7 @@ export class FragemanagerComponent implements OnInit
     this.HookGlobalScoreboardDataToList();
 
     this.InitiateContextMenu();
+    this.LoadQuizesForDropdown();
   }
 
   public OnPageChange(pageEvent: PageEvent): void
@@ -64,9 +69,11 @@ export class FragemanagerComponent implements OnInit
     this.paginator.firstPage();
   }
 
-  public OnSearchPredicateChanged(searchPredicateValue: string): void
+  public OnSearchPredicateChanged(): void
   {
-    this._requestDto.searchPredicate = searchPredicateValue;
+    console.log(this.selectedQuiz)
+
+    this._requestDto.quizId = this.selectedQuiz.id;
     this.list.getWithoutPageReset();
 
     this.paginator.firstPage();
@@ -76,14 +83,13 @@ export class FragemanagerComponent implements OnInit
   {
     const streamCreator = (query) => this._questionService.getListByQuiz({ ...query, ...this._requestDto});
 
-    console.log(streamCreator)
-
     this.list.hookToQuery(streamCreator)
       .pipe(takeUntil(this._componentDestroyed$))
       .subscribe((response) =>
       {
         this.entities = response;
         console.log(this.entities)
+        console.log(this._requestDto)
       });
   }
 
@@ -95,6 +101,17 @@ export class FragemanagerComponent implements OnInit
     this._createUpdateQuestionProviderService.SetData(questionCreateOrUpdateViewModel);
 
     this._router.navigate(["/fragenedit"]); // dataprovider service to deliver data, if its update
+  }
+
+  private LoadQuizesForDropdown(): void
+  {
+    this._quizService.getListWithOutOrdering()
+      .subscribe((data) =>
+      {
+        this.quizes = data;
+
+        this.selectedQuiz = data[0];
+      })
   }
 
   private InitiateContextMenu(): void

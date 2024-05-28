@@ -1692,6 +1692,21 @@
           "type": "ISEF01QuizSystem.Quizes.QuizAppService",
           "interfaces": [],
           "actions": {
+            "GetListWithOutOrdering": {
+              "uniqueName": "GetListWithOutOrdering",
+              "name": "GetListWithOutOrdering",
+              "httpMethod": "GET",
+              "url": "api/app/quiz/with-out-ordering",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<ISEF01QuizSystem.Quizes.QuizResponseDto>",
+                "typeSimple": "[ISEF01QuizSystem.Quizes.QuizResponseDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "ISEF01QuizSystem.Quizes.QuizAppService"
+            },
             "GetListAsyncByRequestDto": {
               "uniqueName": "GetListAsyncByRequestDto",
               "name": "GetListAsync",
@@ -10416,7 +10431,19 @@
       "genericArguments": null,
       "properties": [
         {
-          "name": "Id",
+          "name": "QuestionId",
+          "jsonName": null,
+          "type": "System.Int32",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "QuizId",
           "jsonName": null,
           "type": "System.Int32",
           "typeSimple": "number",
@@ -10440,7 +10467,7 @@
           "regex": null
         },
         {
-          "name": "Answers",
+          "name": "Options",
           "jsonName": null,
           "type": "[ISEF01QuizSystem.Options.OptionRequestDto]",
           "typeSimple": "[ISEF01QuizSystem.Options.OptionRequestDto]",

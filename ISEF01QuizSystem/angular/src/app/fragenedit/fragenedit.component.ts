@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CreateUpdateQuestionProviderService } from '../fragemanager/services/create-update-question-provider.service';
 import { QuestionRequestDto, QuestionResponseDto, QuestionService } from '@proxy/questions';
 
@@ -12,8 +12,6 @@ export class FrageneditComponent implements OnInit
 {
   public editableQuestionEntity: QuestionResponseDto = { } as QuestionResponseDto;
   public createOrUpdateRequestDto: QuestionRequestDto = {} as QuestionRequestDto;
-
-  private _parentalQuizId: number;
 
   constructor(private readonly _createUpdateQuestionProviderService: CreateUpdateQuestionProviderService,
               private readonly _questionService: QuestionService,
@@ -58,13 +56,14 @@ export class FrageneditComponent implements OnInit
         this.editableQuestionEntity = data;
 
         this.createOrUpdateRequestDto = {
-          id: data.id,
+          quizId: this._createUpdateQuestionProviderService.Data.QuizId,
+          questionId: data.id,
           content: data.content,
-          answers: data.options
+          options: data.options
         }
 
         console.log('jaj')
-        console.log(this.createOrUpdateRequestDto.answers[0])
+        console.log(this.createOrUpdateRequestDto.options[0])
       });
   }
 }

@@ -31,7 +31,7 @@ public class QuestionAppService : ISEF01QuizSystemAppService
 
         if (requestDto.QuizId != null)
         {
-            var filterByQuizId = queryable.Where(x => x.QuizId == requestDto.QuizId);
+            queryable = queryable.Where(x => x.QuizId == requestDto.QuizId);
         }
 
         var defaultSorting = new SortingModel<QuestionEntity>(x => x.Order);
@@ -94,30 +94,11 @@ public class QuestionAppService : ISEF01QuizSystemAppService
 
         if (questionEntityInDb != default)
         {
-            questionEntityInDb.Update(requestDto.Content);
-
-            await _questionEntityRepository.UpdateAsync(questionEntityInDb);
-
-            var mappedOptions = ObjectMapper.Map<List<OptionRequestDto>, List<OptionEntity>>(requestDto.Options);
-
-            await _optionRepository.UpdateManyAsync(mappedOptions); // update the existing
+            await UpdateWorkflowForQuestionAndOption(questionEntityInDb, requestDto);
         }
         else
         {
-            var lastQuestionOrder = (await _questionEntityRepository.GetListAsync(x => x.QuizId == requestDto.QuizId)).OrderByDescending(x=> x.Order).First().Order;
-
-            var entity = new QuestionEntity(requestDto.QuizId, requestDto.Content, ++lastQuestionOrder);
-            
-            var insertedQuestion = await _questionEntityRepository.InsertAsync(entity, autoSave: true);
-            
-            var mappedOptions = ObjectMapper.Map<List<OptionRequestDto>, List<OptionEntity>>(requestDto.Options);
-
-            foreach (var option in mappedOptions)
-            {
-                option.QuestionId = insertedQuestion.Id;
-            }
-            
-            await _optionRepository.InsertManyAsync(mappedOptions);
+            await CreateWorkflowForQuestionAndOption(requestDto);
         }
     }
     
@@ -139,5 +120,39 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         var entityByQuizId = await _questionEntityRepository.FirstOrDefaultAsync(x => x.QuizId == quizId && x.Order == nextQuestionOrder);
 
         return entityByQuizId == default ? true : false;
+    }
+
+    private async Task CreateWorkflowForQuestionAndOption(QuestionRequestDto requestDto)
+    {
+        var lastQuestionOrder = (await _questionEntityRepository.GetListAsync(x => x.QuizId == requestDto.QuizId)).OrderByDescending(x=> x.Order).First().Order;
+
+        var entity = new QuestionEntity(requestDto.QuizId, requestDto.Content, ++lastQuestionOrder);
+            
+        var insertedQuestion = await _questionEntityRepository.InsertAsync(entity, autoSave: true);
+            
+        var mappedOptions = ObjectMapper.Map<List<OptionRequestDto>, List<OptionEntity>>(requestDto.Options);
+
+        foreach (var option in mappedOptions)
+        {
+            option.QuestionId = insertedQuestion.Id;
+        }
+            
+        await _optionRepository.InsertManyAsync(mappedOptions);
+    }
+    
+    private async Task UpdateWorkflowForQuestionAndOption(QuestionEntity questionEntityInDb, QuestionRequestDto requestDto)
+    {
+        questionEntityInDb.Update(requestDto.Content);
+
+        await _questionEntityRepository.UpdateAsync(questionEntityInDb);
+
+        foreach (var option in requestDto.Options)
+        {
+            var optionEntity = await _optionRepository.GetAsync(x => x.Id == option.Id);
+                
+            optionEntity.Update(option.Text, option.IsCorrect);
+
+            await _optionRepository.UpdateAsync(optionEntity, autoSave: true);
+        }
     }
 }
