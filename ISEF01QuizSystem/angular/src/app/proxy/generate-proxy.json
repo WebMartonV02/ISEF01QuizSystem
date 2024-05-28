@@ -2551,15 +2551,15 @@
           "type": "ISEF01QuizSystem.Comments.CommentAppService",
           "interfaces": [],
           "actions": {
-            "GetCommentsOrderedForQuizByQuizId": {
-              "uniqueName": "GetCommentsOrderedForQuizByQuizId",
-              "name": "GetCommentsOrderedForQuiz",
+            "GetCommentsOrderedForCourseByCourseId": {
+              "uniqueName": "GetCommentsOrderedForCourseByCourseId",
+              "name": "GetCommentsOrderedForCourse",
               "httpMethod": "GET",
-              "url": "api/app/comment/comments-ordered-for-quiz/{quizId}",
+              "url": "api/app/comment/comments-ordered-for-course/{courseId}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
-                  "name": "quizId",
+                  "name": "courseId",
                   "typeAsString": "System.Int32, System.Private.CoreLib",
                   "type": "System.Int32",
                   "typeSimple": "number",
@@ -2569,8 +2569,8 @@
               ],
               "parameters": [
                 {
-                  "nameOnMethod": "quizId",
-                  "name": "quizId",
+                  "nameOnMethod": "courseId",
+                  "name": "courseId",
                   "jsonName": null,
                   "type": "System.Int32",
                   "typeSimple": "number",
@@ -2588,11 +2588,11 @@
               "allowAnonymous": null,
               "implementFrom": "ISEF01QuizSystem.Comments.CommentAppService"
             },
-            "CreateCommentForQuestionByRequestDto": {
-              "uniqueName": "CreateCommentForQuestionByRequestDto",
-              "name": "CreateCommentForQuestion",
+            "CreateCommentForCourseByRequestDto": {
+              "uniqueName": "CreateCommentForCourseByRequestDto",
+              "name": "CreateCommentForCourse",
               "httpMethod": "POST",
-              "url": "api/app/comment/comment-for-question",
+              "url": "api/app/comment/comment-for-course",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -10635,9 +10635,21 @@
           "regex": null
         },
         {
-          "name": "Text",
+          "name": "Content",
           "jsonName": null,
           "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "UserId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
@@ -10668,7 +10680,7 @@
           "regex": null
         },
         {
-          "name": "Text",
+          "name": "Content",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -10680,10 +10692,22 @@
           "regex": null
         },
         {
-          "name": "QuizId",
+          "name": "CourseId",
           "jsonName": null,
           "type": "System.Int32?",
           "typeSimple": "number?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "UserId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
