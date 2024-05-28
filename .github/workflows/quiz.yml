@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
       - 'develop'
-      - '4003-quiz-comments'
+      # feature branches
     tags:
         - v0.**
     
