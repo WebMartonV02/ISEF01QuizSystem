@@ -44,13 +44,6 @@ function configureRoutes(routesService: RoutesService) {
         layout: eLayoutType.application,
       },
       {
-        path: '/fragenedit',
-        name: '::fragenedit',
-        iconClass: 'fas fa-home',
-        order: 1,
-        layout: eLayoutType.application,
-      },
-      {
         path: '/quizhub',
         name: '::quizuhub',
         iconClass: 'fas fa-home',

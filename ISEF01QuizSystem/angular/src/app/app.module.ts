@@ -16,8 +16,10 @@ import { FeatureManagementModule } from '@abp/ng.feature-management';
 import { AbpOAuthModule } from '@abp/ng.oauth';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateUpdateQuestionProviderService } from './fragemanager/services/create-update-question-provider.service';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeBasicModule } from '@abp/ng.theme.basic';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -39,7 +41,7 @@ import { ThemeBasicModule } from '@abp/ng.theme.basic';
     NgbDropdownModule
   ],
   declarations: [AppComponent],
-  providers: [APP_ROUTE_PROVIDER, provideAnimationsAsync()],
+  providers: [APP_ROUTE_PROVIDER, provideAnimationsAsync(), CreateUpdateQuestionProviderService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

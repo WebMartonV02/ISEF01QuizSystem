@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ISEF01QuizSystem.Common;
+using ISEF01QuizSystem.Questions;
 using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
@@ -20,6 +21,15 @@ public class QuizAppService : ISEF01QuizSystemAppService
     {
         _quizEntityRepository = quizEntityRepository;
         _genericRepository = genericRepository;
+    }
+    
+    public async Task<List<QuizResponseDto>> GetListWithOutOrdering()
+    {
+        var entities = await _quizEntityRepository.GetListAsync();
+
+        var result = ObjectMapper.Map<List<QuizEntity>, List<QuizResponseDto>>(entities);
+        
+        return result;
     }
 
     public async Task<List<QuizResponseDto>> GetListAsync(FilteredResultRequestDto requestDto)
