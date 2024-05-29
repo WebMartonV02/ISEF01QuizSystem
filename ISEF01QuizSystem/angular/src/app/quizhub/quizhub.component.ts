@@ -71,6 +71,8 @@ export class QuizhubComponent {
 
   public publish() {
     const currentUserId = this.config.getOne("currentUser").id;
+
+    console.log(this.config.getOne("currentUser"));
     
     var result = this._commentsService.createCommentForCourseByRequestDto({
       id: this.comments.length+2, courseId: this.currentCourseId, content: this.questionComment, userId: currentUserId

@@ -41,7 +41,7 @@
                                                     <!-- Hier werden die neuen Fragen eingefügt -->
                                                       <div *ngFor="let comment of comments">
                                                         <div>
-                                                          <p class="fs-4">{{comment.content}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
+                                                          <p class="fs-4">{{comment.content}} {{comment.userName}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
                                                           
                                                         </div>
                                                         
