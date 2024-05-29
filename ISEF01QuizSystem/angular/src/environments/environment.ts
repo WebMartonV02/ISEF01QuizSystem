@@ -7,7 +7,7 @@ export const environment = {
   application: {
     baseUrl,
     name: 'ISEF01QuizSystem',
-    logoUrl: '',
+    logoUrl: 'assets/images/Logo_positiv.png',
   },
   oAuthConfig: {
     issuer: 'https://localhost:44345/',

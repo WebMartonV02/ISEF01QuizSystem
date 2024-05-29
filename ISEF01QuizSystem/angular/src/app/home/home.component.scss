@@ -1,3 +1,19 @@
 .card {
     background-color: #ffffff !important;
 }
+
+::ng-deep .login--div
+{
+  font-size: 1.4rem;
+  color: #FFFFFF !important;
+}
+
+h1, p
+{
+  color: #FFFFFF !important;
+}
+
+p
+{
+  font-size: 1.4rem !important;
+}

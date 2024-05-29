@@ -4,9 +4,10 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { CoursesComponent } from '../courses/courses.component';
+import { QuizuebersichtComponent } from '../quizuebersicht/quizuebersicht.component';
 
 @NgModule({
-  declarations: [HomeComponent, CoursesComponent],
+  declarations: [HomeComponent, CoursesComponent, QuizuebersichtComponent],
   imports: [SharedModule, HomeRoutingModule, MatBadgeModule],
 })
 export class HomeModule {}
