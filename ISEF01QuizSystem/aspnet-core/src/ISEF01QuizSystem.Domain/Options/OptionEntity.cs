@@ -9,4 +9,11 @@ public class OptionEntity : Entity<int>
     public QuestionEntity Question { get; set; }
     public string Text { get; set; }
     public bool IsCorrect { get; set; }
+
+    public void Update(string text,
+        bool isCorrect)
+    {
+        Text = text;
+        IsCorrect = isCorrect;
+    }
 }

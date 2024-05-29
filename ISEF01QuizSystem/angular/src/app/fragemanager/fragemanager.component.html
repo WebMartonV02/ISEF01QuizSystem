@@ -2,158 +2,62 @@
 
 <div class="maincontainer">
 
-         
-         
-              
-    <div class="flex-container">
-        <!-- Sidebar mit Schließ-Button -->
-        <div class="sidebar">
-            <!-- Schließ-Button -->
-            <button class="btn-close-custom" aria-label="Close" onclick="toggleSidebar()">
-                <i class="bi bi-x"></i>
-            </button>
-            <div class="Master-Logo">
-                <!-- Logo -->
-                <a class="navbar-brand text-center" href="#">
-                    <img src="/assets/images/QuizMaster_Logo.png" alt="Logo" width="120">
-                </a>
-            </div>
-            <!-- Navigationselemente -->
-            <ul class="nav nav-pills flex-column mb-auto w-100">
-                <li class="nav-item">
-                    <a href="#" class="nav-link-sidebar">
-                        <i class="bi bi-gear-fill"></i> Grundeinstellungen
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link-sidebar active">
-                        <i class="bi bi-question-square-fill"></i> Fragen-Manager
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="btn-activate-quiz">
-                        <i class="bi bi-x-circle-fill"></i> Quiz deaktivieren
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- Hauptinhalt -->
-        <div class="content">
-            <!-- Hamburger-Icon für die mobile Ansicht -->
-            <div>
-                <div class="menu-icon-sidebar" onclick="toggleSidebar()">
-                    <i class="bi bi-chevron-double-right"></i>
-                </div>
-            </div>
-            
-            
-                <div class="Inhalt">
-                    <!-- Hauptinhalt hier einfügen!!!! -->
-                                <!-- Form Heading -->
-                                <div>
-    <h2>Fragen-Manager</h2>
+  <mat-form-field>
+    <mat-label>Wähle Quiz aus</mat-label>
+    <mat-select [(ngModel)]="selectedQuiz" (selectionChange)="OnSearchPredicateChanged()">
+      @for (quiz of quizes; track quiz) {
+        <mat-option [value]="quiz">{{quiz.titel}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 
-    <!--hier steht immer der Quiztitel-->
-    <h3>SQL und Abfragen</h3>
+  <section class="generic-table-container">
+    <div class="generic-table-inner-container">
+      <table mat-table
+             [dataSource]="entities.items"
+             class="generic-table"
+             matSort
+             (matSortChange)="OnSortChange($event)">
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row
+            *matRowDef="let rowData; columns: columns"
+            [cdkContextMenuTriggerFor]="context_menu"
+            [cdkContextMenuTriggerData]="{rowData}"></tr>
 
+        <ng-container matColumnDef="content">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ '::Content' | abpLocalization }} </th>
+          <td mat-cell *matCellDef="let element"> {{ element.content }} </td>
+        </ng-container>
 
-    <!-- Question card 1 -->
-    <div class="question-card">
-        <h3 class="question-header">Frage 1 </h3>
-            <div class="dropdown">
-                <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-three-dots"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Editieren</a></li>
-                    <li><a class="dropdown-item" href="#">Löschen</a></li>
-                </ul>
-            </div>
-       
-        <p>Welche der folgenden Optionen beschreibt den Zweck des Garbage Collectors in Java?</p>
-    
+        <ng-container matColumnDef="order">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ '::Order Number' | abpLocalization }} </th>
+          <td mat-cell *matCellDef="let element"> {{ element.order }} </td>
+        </ng-container>
 
-        <ul class="options-list">
-            <li class="option-abled"><input type="radio" class="form-check-input" name="question1">Der Garbage Collector reserviert Speicherplatz für neue Objekte.</li>
-            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector verbessert die Netzwerkperformance.</li>
-            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector befreit Speicherplatz, indem er Objekte entfernt, die nicht mehr verwendet werden.</li>
-            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector kompiliert Java-Programme in Bytecode.</li>
-        </ul>
-      
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell">No data available</td>
+        </tr>
 
+      </table>
     </div>
+    <mat-paginator [length]="entities.totalCount"
+                   [pageSizeOptions]="pageSizeOptions"
+                   showFirstLastButtons
+                   (page)="OnPageChange($event)"></mat-paginator>
+  </section>
 
-    <!-- Question card 2 -->
-    <div class="question-card">
-        <h3 class="question-header">Frage 2 </h3>
-            <div class="dropdown">
-                <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-three-dots"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Editieren</a></li>
-                    <li><a class="dropdown-item" href="#">Löschen</a></li>
-                </ul>
-            </div>
-       
-        <p>Welche der folgenden Optionen beschreibt den Zweck des Garbage Collectors in Java?</p>
-    
+  <ng-template #context_menu let-rowData="rowData">
+    <div class="list-context-menu" cdkMenu>
+      <div class="list-context-menu-header">{{ rowData.fullName }}</div>
 
-        <ul class="options-list">
-            <li ><input type="radio" class="form-check-input" name="question1">Der Garbage Collector reserviert Speicherplatz für neue Objekte.</li>
-            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector verbessert die Netzwerkperformance.</li>
-            <li class="option-abled"><input type="radio" class="form-check-input" name="question1">Der Garbage Collector befreit Speicherplatz, indem er Objekte entfernt, die nicht mehr verwendet werden.</li>
-            <li><input type="radio" class="form-check-input" name="question1">Der Garbage Collector kompiliert Java-Programme in Bytecode.</li>
-        </ul>
-      
-
+      <button *ngFor="let availableContextAction of availableContextActions"
+              class="list-context-menu-item"
+              (click)="availableContextAction.callbackMethod(rowData)"
+              cdkMenuItem>
+        <i class="fa-solid fa-{{ availableContextAction.IconName }}"></i>
+        {{ availableContextAction.caption }}
+      </button>
     </div>
-
-   
-    <button type="button" class="add-question-btn quizmunity-button">Frage hinzufügen</button>
-
-
-                </div>
-              
-            </div>
-        </div>
-    </div>
-
-
-
-
-
+  </ng-template>
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Funktion, um auf Klick-Event für jede Antwort zu reagieren
-    function answerClicked(event) {
-        // Füge die ausgewählte Klasse zum geklickten Element hinzu oder entferne sie, wenn sie bereits ausgewählt war
-        event.currentTarget.classList.toggle('answer-selected');
-    }
-
-    // Event-Listener für alle Antwort-Elemente
-    document.querySelectorAll('.answer').forEach(function(answer) {
-        answer.addEventListener('click', answerClicked);
-    });
-</script>
-
-
-
-<style scoped>
-  .col-lg-2.border-start:nth-of-type(6n + 1) {
-    border-left: 0 !important;
-  }
-
-  .col-lg-4.border-start:nth-of-type(3n + 1) {
-    border-left: 0 !important;
-  }
-
-  @media (max-width: 991px) {
-    .border-start {
-      border-left: 0 !important;
-    }
-  }
-</style>
