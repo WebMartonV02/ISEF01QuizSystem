@@ -11,6 +11,8 @@ public class ISEF01QuizSystemPermissionDefinitionProvider : PermissionDefinition
         var myGroup = context.AddGroup(ISEF01QuizSystemPermissions.GroupName);
         //Define your own permissions here. Example:
         //myGroup.AddPermission(ISEF01QuizSystemPermissions.MyPermission1, L("Permission:MyPermission1"));
+        myGroup.AddPermission(ISEF01QuizSystemPermissions.QuizSystem.QuizMaster, L("Permission:QuizMaster"));
+        myGroup.AddPermission(ISEF01QuizSystemPermissions.QuizSystem.Student, L("Permission:Student"));
     }
 
     private static LocalizableString L(string name)

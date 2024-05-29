@@ -14,41 +14,47 @@ function configureRoutes(routesService: RoutesService) {
         iconClass: 'fas fa-home',
         order: 1,
         layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.QuizMaster || QuizSystem.Student'
       },
       {
         path: '/login',
         name: '::Login',
-        iconClass: 'fas fa-home',
-        order: 4,
+        iconClass: 'fas fa-sign-in-alt',
+        order: 6,
         layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.QuizMaster'
       },
       {
         path: '/scoreboard',
         name: '::Rankliste',
-        iconClass: 'fas fa-home',
-        order: 5,
+        iconClass: 'fa fa-clipboard',
+        order: 3,
         layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.Student'
       },
       {
         path: '/konfiguration',
-        name: '::konfiguration',
-        iconClass: 'fas fa-home',
-        order: 1,
+        name: '::Konfiguration',
+        iconClass: 'fas fa-wrench',
+        order: 5,
         layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.QuizMaster'
       },
       {
-        path: '/fragemanager',
-        name: '::fragemanager',
-        iconClass: 'fas fa-home',
-        order: 1,
+        path: '/Fragemanager',
+        name: '::Fragemanager',
+        iconClass: 'fas fa-tasks',
+        order: 2,
         layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.QuizMaster'
       },
       {
         path: '/quizhub',
-        name: '::quizuhub',
-        iconClass: 'fas fa-home',
-        order: 1,
+        name: '::Quizhub',
+        iconClass: 'fas fa-comment',
+        order: 4,
         layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.Student'
       }
     ]);
   };
