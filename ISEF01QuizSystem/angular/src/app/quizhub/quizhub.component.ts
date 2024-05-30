@@ -6,8 +6,6 @@ import { CommentResultDto, CommentService } from '@proxy/comments';
 import { CourseResponseDto, CourseService } from '@proxy/courses';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfigStateService } from '@abp/ng.core';
-import {MatCardModule} from '@angular/material/card';
-
 
 @Component({
   selector: 'app-quizhub',
@@ -72,10 +70,8 @@ export class QuizhubComponent {
 
   public publish() {
     const currentUserId = this.config.getOne("currentUser").id;
-
-    console.log(this.config.getOne("currentUser"));
     
-    var result = this._commentsService.createCommentForCourseByRequestDto({
+    this._commentsService.createCommentForCourseByRequestDto({
       id: this.comments.length+2, courseId: this.currentCourseId, content: this.questionComment, userId: currentUserId
     }).
     pipe(takeUntil(this._componentDestroyed$))
