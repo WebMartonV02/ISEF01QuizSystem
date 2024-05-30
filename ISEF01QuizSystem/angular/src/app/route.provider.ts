@@ -56,6 +56,13 @@ function configureRoutes(routesService: RoutesService) {
         iconClass: 'fas fa-home',
         order: 1,
         layout: eLayoutType.application,
+      },
+      {
+        path: '/quizmaster',
+        name: '::quizmaster',
+        iconClass: 'fas fa-home',
+        order: 1,
+        layout: eLayoutType.application,
       }
     ]);
   };
