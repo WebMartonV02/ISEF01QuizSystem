@@ -20,28 +20,20 @@ function configureRoutes(routesService: RoutesService) {
         path: '/login',
         name: '::Login',
         iconClass: 'fas fa-sign-in-alt',
-        order: 6,
+        order: 5,
         layout: eLayoutType.application,
         requiredPolicy: 'QuizSystem.QuizMaster'
       },
       {
         path: '/scoreboard',
-        name: '::Rankliste',
+        name: '::Scoreboard',
         iconClass: 'fa fa-clipboard',
         order: 3,
         layout: eLayoutType.application,
         requiredPolicy: 'QuizSystem.Student'
       },
       {
-        path: '/konfiguration',
-        name: '::Konfiguration',
-        iconClass: 'fas fa-wrench',
-        order: 5,
-        layout: eLayoutType.application,
-        requiredPolicy: 'QuizSystem.QuizMaster'
-      },
-      {
-        path: '/Fragemanager',
+        path: '/fragemanager',
         name: '::Fragemanager',
         iconClass: 'fas fa-tasks',
         order: 2,
