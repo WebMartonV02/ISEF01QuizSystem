@@ -7,6 +7,7 @@ import { SearchFilterComponent } from './filtering/search-filter.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CdkContextMenuTrigger, CdkMenu, CdkMenuItem } from '@angular/cdk/menu';
 import { ThemeBasicModule } from '@abp/ng.theme.basic';
+import { MatIcon } from '@angular/material/icon';
 
 @NgModule({
   declarations: [SearchFilterComponent],
@@ -18,6 +19,7 @@ import { ThemeBasicModule } from '@abp/ng.theme.basic';
     CdkContextMenuTrigger,
     CdkMenu,
     CdkMenuItem,
+    MatIcon
   ],
   exports: [
     CoreModule,
