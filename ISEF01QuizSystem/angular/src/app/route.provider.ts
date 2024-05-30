@@ -26,7 +26,7 @@ function configureRoutes(routesService: RoutesService) {
       },
       {
         path: '/scoreboard',
-        name: '::Rankliste',
+        name: '::Scoreboard',
         iconClass: 'fa fa-clipboard',
         order: 3,
         layout: eLayoutType.application,
