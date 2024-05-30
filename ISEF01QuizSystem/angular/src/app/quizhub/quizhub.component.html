@@ -14,7 +14,7 @@
                                                             Der QuizHub, ein Ort zum Lernen, Teilen und  Herausfordern. Ob du Tipps für knifflige Fragen suchst, Feedback zu  deinen Quizerfahrungen teilen möchtest oder einfach nur neue Quizfreunde  kennenlernen willst, der QuizHub bietet dir die perfekte Plattform.</p>
                                                     </div>
                                                     <div class="search_quizmuniy">
-                                                        <h3>Nutze die Suchfunktion, um gezielt nach Quizzen zu suchen:</h3>
+                                                        <h3>Nutze die Suchfunktion, um gezielt nach Kursen zu suchen:</h3>
                                                     </div>
                                                     
                                                     <mat-form-field style="width: 80%;">
@@ -34,14 +34,34 @@
                                             <div class="container" *ngIf="comments != null" >
                                                 <!-- Formular zum Hinzufügen neuer Fragen -->
                                                 <div class="input-group">
-                                                  <textarea [(ngModel)]="questionComment" id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
+                                                  <mat-form-field class="m-2" style="width: 100%;">
+                                                    <mat-label>Kommentar hinzufügen</mat-label>
+                                                    <textarea matInput [(ngModel)]="questionComment" ></textarea>
+                                                  </mat-form-field>
                                                 </div>
-                                                <button (click)="publish()" class="btn btn-primary" >Veröffentlichen</button>
+                                                <button (click)="publish()" class="m-2"  mat-raised-button >Veröffentlichen</button>
                                                     <div id="question-container">
                                                     <!-- Hier werden die neuen Fragen eingefügt -->
                                                       <div *ngFor="let comment of comments">
-                                                        <div>
-                                                          <p class="fs-4">{{comment.content}} {{comment.userName}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
+
+
+                                                        <div class="m-2">
+
+                                                          <mat-card>
+                                                            <mat-card-content>
+                                                              <div class="fs-6">{{comment.userName}}</div> 
+                                                              <div class="fs-5">{{comment.content}}</div>
+                                                              
+                                                              <button *ngIf="comment.userId == currentUserId" [matMenuTriggerFor]="menu" class="position-absolute top-0 end-0" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                                                <mat-icon>more_vert</mat-icon>
+                                                              </button>
+                                                              <mat-menu #menu="matMenu">
+                                                                <button mat-menu-item  (click)="deleteComment(comment.id)">Löschen</button>
+                                                              </mat-menu>
+                                                            </mat-card-content>
+                                                          </mat-card>
+                                                          
+                                                          
                                                           
                                                         </div>
                                                         

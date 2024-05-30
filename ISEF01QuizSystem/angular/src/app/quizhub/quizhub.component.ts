@@ -6,6 +6,7 @@ import { CommentResultDto, CommentService } from '@proxy/comments';
 import { CourseResponseDto, CourseService } from '@proxy/courses';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfigStateService } from '@abp/ng.core';
+import {MatCardModule} from '@angular/material/card';
 
 
 @Component({
