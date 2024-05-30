@@ -17,6 +17,21 @@ public class QuestionEntity : Entity<int>
     public ICollection<AnswerEntity> Answers { get; set; }
     public ICollection<OptionEntity> Options { get; set; }
 
+    public QuestionEntity(
+        int quizId,
+        string content,
+        int order)
+    {
+        QuizId = quizId;
+        Content = content;
+        Order = order;
+    }
+    
+    public void Update(string content)
+    {
+        Content = content;
+    }
+    
     public void Update(string content, int order)
     {
         Content = content;

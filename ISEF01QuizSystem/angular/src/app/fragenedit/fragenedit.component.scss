@@ -4,16 +4,15 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #34A7C5;
-   
+
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
 .flex-container {
-    width: inherit; 
-    display: flex;
-    height: auto; 
+    width: inherit;
+    height: auto;
     padding-top: 0; /* Anpassen, falls Header vorhanden */
 }
 
@@ -26,28 +25,28 @@ html, body {
 }
 
 .Master-Logo {
-    width: 100%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    padding: 1rem; 
-    position: relative; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
 }
 
 .Master-Logo::after {
-    content: ''; 
-    display: block; 
-    height: 2px; 
-    width: 100%; 
-    background-color: white; 
-    position: absolute; 
-    bottom: 0; 
+    content: '';
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
 }
 
 /* Styles für größere Bildschirme */
 @media (min-width: 992px) {
     .menu-icon-sidebar {
-        display:none !important; 
+        display:none !important;
         justify-content: flex-start; /* Icon links ausrichten */
         top: 0;
         left: 0; /* Icon links positionieren */
@@ -133,7 +132,7 @@ html, body {
     }
 
     .bi, .bi-list {
-        display: inline-block !important; 
+        display: inline-block !important;
     }
 
     .sidebar {
@@ -190,7 +189,7 @@ html, body {
 
 }
 
-/* Styles für Navigationselmente */ 
+/* Styles für Navigationselmente */
 
 .nav-item {
     padding: 0.5rem 1rem;
@@ -276,7 +275,7 @@ html, body {
 }
 
 .Inhaltsbereich  {
-  
+
     margin: 0rem;  /* Gibt dem Container Abstand von der oberen Kante */
 }
 

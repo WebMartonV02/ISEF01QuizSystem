@@ -291,3 +291,15 @@ body {
     }
   }
 }
+
+abp-logo
+{
+  width: 10%;
+}
+
+.bg-light
+{
+  background-image: url("/assets/images/logo/logo-background.jpeg") !important;
+  background-size: cover;
+  height: 100vh;
+}

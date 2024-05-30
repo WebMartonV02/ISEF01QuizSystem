@@ -42,11 +42,9 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
             .ForMember(dst => dst.Options, opt => opt.MapFrom(src => src.Options));
 
         CreateMap<QuestionEntity, QuestionEntity>();
-        
+
         CreateMap<QuestionRequestDto, QuestionEntity>()
-            .ForMember(dst => dst.QuizId, opt => opt.MapFrom(src => src.QuizId))
-            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content))
-            .ForMember(dst => dst.Order, opt => opt.MapFrom(src => src.Order));
+            .ForMember(dst => dst.Content, opt => opt.MapFrom(src => src.Content));
     }
     
     public void CreateCommentMapping()
@@ -81,6 +79,7 @@ public class ISEF01QuizSystemApplicationAutoMapperProfile : Profile
     public void CreateOptionsMapping()
     {
         CreateMap<OptionEntity, OptionResponseDto>();
+        CreateMap<OptionRequestDto, OptionEntity>();
     }
     
     public void CreateAnswersMapping()

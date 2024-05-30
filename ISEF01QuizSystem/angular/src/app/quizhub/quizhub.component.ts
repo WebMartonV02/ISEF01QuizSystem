@@ -7,7 +7,6 @@ import { CourseResponseDto, CourseService } from '@proxy/courses';
 import { Subject, takeUntil } from 'rxjs';
 import { ConfigStateService } from '@abp/ng.core';
 
-
 @Component({
   selector: 'app-quizhub',
   templateUrl: './quizhub.component.html',
@@ -72,7 +71,7 @@ export class QuizhubComponent {
   public publish() {
     const currentUserId = this.config.getOne("currentUser").id;
     
-    var result = this._commentsService.createCommentForCourseByRequestDto({
+    this._commentsService.createCommentForCourseByRequestDto({
       id: this.comments.length+2, courseId: this.currentCourseId, content: this.questionComment, userId: currentUserId
     }).
     pipe(takeUntil(this._componentDestroyed$))
