@@ -7,6 +7,7 @@ using ISEF01QuizSystem.Courses;
 using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Identity;
 using Volo.Abp.Users;
 
 namespace ISEF01QuizSystem.Comments;
@@ -17,14 +18,18 @@ public class CommentAppService : ISEF01QuizSystemAppService
     private readonly IGenericRepository<CourseEntity> _genericCourseRepository;
     private readonly ICurrentUser _currentUser; 
 
+    private readonly IRepository<IdentityUser, Guid> _identityUserRepository;
+
     public CommentAppService(
         IRepository<CommentEntity> commentRepository, 
         IGenericRepository<CourseEntity> genericCourseRepository, 
+        IRepository<IdentityUser, Guid> identityUserRepository, 
         ICurrentUser currentUser)
     {
         _commentRepository = commentRepository;
         _genericCourseRepository = genericCourseRepository;
         _currentUser = currentUser;
+        _identityUserRepository = identityUserRepository;
     }
 
     public async Task<List<CommentResultDto>> GetCommentsOrderedForCourse(int courseId)
@@ -35,6 +40,10 @@ public class CommentAppService : ISEF01QuizSystemAppService
         var orderedComments =commentsByCourse.OrderBy(x => x.Order).ToList();
         var result = ObjectMapper.Map<List<CommentEntity>, List<CommentResultDto>>(orderedComments);
 
+        foreach(var r in result){
+            r.UserName = (await _identityUserRepository.GetAsync(x => x.Id == r.UserId)).UserName;
+        }
+        
         return result;
     }
     
