@@ -76,6 +76,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./quizmaster/quizmaster.module').then(m => m. QuizmasterModule),
   },
+  {
+    path: 'benutzerhandbuch',
+    loadChildren: () =>
+      import('./benutzerhandbuch/benutzerhandbuch.module').then(m => m.BenutzerhandbuchModule),
+  },
 ];
 
 @NgModule({

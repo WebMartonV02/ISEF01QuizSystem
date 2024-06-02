@@ -1,101 +1,51 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
 <div class="maincontainer">
- 
-         
-                                    <div class="container-fluid"> 
-                                        <div class="white-container"> 
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <div class="welcome_quizmunity">
-                                                        <h1>Werde Quizmaster bei Quizmunity</h1>
-                                                        <p>Du hast Spaß am Erstellen von Quizfragen und möchtest aktiv an der Gestaltung unserer Quizplattform mitwirken? Hier ist deine Chance, ein Quizmaster zu werden und deine Leidenschaft mit der Community zu teilen! </p>
-                                                    </div>
-                                                    <div class="search_quizmuniy">
-                                                        <h3>Wie werde ich Quizmaster?</h3>
-                                                        <p>Fülle das untenstehende Formular aus, um dich als Quizmaster zu bewerben. Deine Angaben helfen uns, mehr über deine Interessen und deine Eignung für diese Rolle zu erfahren. Nachdem du dein Formular eingereicht hast, wird es von unserem Administrator geprüft. Wir achten darauf, dass alle zukünftigen Quizmaster die Qualität unserer Inhalte fördern können. </p>
-                                                    </div>
 
-                                                    
-                                                    <div class="d-flex justify-content-center"><textarea class="form-control w-75 d-flex justify-content-center mb-4" id="exampleFormControlTextarea1" rows="3"></textarea> </div>
-                                                    <button type="submit" class="btn btn-primary quizmunity-button">Nachricht Absenden</button>
-
-                                                    
-                                                    
-                                                    
-                                                </div>
-                                            </div>
-
-                                            <div class="container" *ngIf="comments != null" >
-                                                <!-- Formular zum Hinzufügen neuer Fragen -->
-                                                <div class="input-group">
-                                                  <textarea [(ngModel)]="questionComment" id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
-                                                </div>
-                                                <button (click)="publish()" class="btn btn-primary" >Veröffentlichen</button>
-                                                    <div id="question-container">
-                                                    <!-- Hier werden die neuen Fragen eingefügt -->
-                                                      <div *ngFor="let comment of comments">
-                                                        <div>
-                                                          <p class="fs-4">{{comment.content}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
-                                                          
-                                                        </div>
-                                                        
-                                                      </div>
-                                                      
-                                                    
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+    <div class="container-fluid">
+        <div class="white-container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="welcome_quizmunity">
+                        <h1>Werde Quizmaster bei Quizmunity</h1>
+                        <p>Du hast Spaß am Erstellen von Quizfragen und möchtest aktiv an der Gestaltung unserer Quizplattform mitwirken? Hier ist deine Chance, ein Quizmaster zu werden und deine Leidenschaft mit der Community zu teilen! </p>
+                    </div>
+                    <div class="search_quizmuniy">
+                        <h3>Wie werde ich Quizmaster?</h3>
+                        <p>Fülle das untenstehende Formular aus, um dich als Quizmaster zu bewerben. Deine Angaben helfen uns, mehr über deine Interessen und deine Eignung für diese Rolle zu erfahren. Nachdem du dein Formular eingereicht hast, wird es von unserem Administrator geprüft. Wir achten darauf, dass alle zukünftigen Quizmaster die Qualität unserer Inhalte fördern können. </p>
+                    </div>
 
 
-
-                                        <div class="container-fluid mt-5"> 
-                                          <div class="white-container"> 
-                                              <div class="row">
-                                                  <div class="col-md-12 text-center">
-                                                      <div class="welcome_quizmunity">
-                                                          <h1>Willkommen in der Onlinehilfe von Quizmunity!</h1>
-                                                          <p>Wir möchten dir eine umfassende Unterstützung bieten, damit du unsere Plattform effektiv nutzen und dein Lernerlebnis optimieren kannst. Im Benutzerhandbuch findest du Anleitungen, um das Beste aus der Quizplattform herauszuholen. </p>
-                                                      </div>
-                                                      <div class="search_quizmuniy">
-                                                          <h3>Lade unser detailliertes Benutzerhandbuch herunter! </h3>
-                                                          <p>Unser Benutzerhandbuch bietet dir Schritt-für-Schritt-Anleitungen und wertvolle Tipps zur Nutzung der Quizmunity-Plattform. Von der ersten Anmeldung über die Durchführung von Quizzes bis hin zur Erstellung eigener Fragen – alles, was du wissen musst, ist kompakt für dich zusammengefasst.</p>
-                                                      </div>
-  
-                                                      <button type="submit" class="btn btn-primary quizmunity-button">Benutzerhandbuch Herunterladen</button>
-                                                      
-                                                  </div>
-                                              </div>
-  
-                                              <div class="container" *ngIf="comments != null" >
-                                                  <!-- Formular zum Hinzufügen neuer Fragen -->
-                                                  <div class="input-group">
-                                                    <textarea [(ngModel)]="questionComment" id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
-                                                  </div>
-                                                  <button (click)="publish()" class="btn btn-primary" >Veröffentlichen</button>
-                                                      <div id="question-container">
-                                                      <!-- Hier werden die neuen Fragen eingefügt -->
-                                                        <div *ngFor="let comment of comments">
-                                                          <div>
-                                                            <p class="fs-4">{{comment.content}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
-                                                            
-                                                          </div>
-                                                          
-                                                        </div>
-                                                        
-                                                      
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                    
+                    <div class="d-flex justify-content-center"><textarea class="form-control w-75 d-flex justify-content-center mb-4" id="exampleFormControlTextarea1" rows="3"></textarea> </div>
+                    <button type="submit" class="btn btn-primary quizmunity-button">Nachricht Absenden</button>
 
 
 
 
+                </div>
+            </div>
+
+            <div class="container" *ngIf="comments != null" >
+                <!-- Formular zum Hinzufügen neuer Fragen -->
+                <div class="input-group">
+                  <textarea [(ngModel)]="questionComment" id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
+                </div>
+                <button (click)="publish()" class="btn btn-primary" >Veröffentlichen</button>
+                    <div id="question-container">
+                    <!-- Hier werden die neuen Fragen eingefügt -->
+                      <div *ngFor="let comment of comments">
+                        <div>
+                          <p class="fs-4">{{comment.content}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
+
+                        </div>
+
+                      </div>
 
 
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,165 @@
+
+.flex-container {
+  display: flex;
+  height: auto;
+  padding-top: 0; /* Anpassen, falls Header vorhanden */
+}
+
+.white-container {
+
+  background-color: white;
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: auto; /* Anpassen für kleinere Bildschirme */
+}
+
+/* Styles für größere Bildschirme */
+@media (min-width: 992px) {
+  .white-container {
+    display: flex; /* Flex-Layout für Desktop */
+    flex-direction: column; /* Karten untereinander anordnen */
+    padding: 2rem;
+  }
+  h1, h2, p {
+    margin-bottom: 2rem; /* Abstand unten */
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+}
+
+h1, h2, p {
+  margin-bottom: 2rem; /* Abstand unten */
+}
+
+.welcome_quizmunity {
+  margin-bottom: 3rem;
+}
+
+
+
+/* Styles für Suchleiste */
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc; /* Dünne graue Linie als Rand */
+  border-radius: 22px; /* Runde Ecken */
+  padding: 5px 15px; /* Innenabstand */
+  width: 90%; /* Breite der Suchleiste */
+  margin: 20px auto; /* Zentrieren und Abstand oben/unten */
+}
+
+.search-bar input[type="text"] {
+  border: none; /* Kein Rand */
+  outline: none; /* Kein Umriss bei Fokussierung */
+  width: 100%; /* Breite anpassen */
+  margin-left: 10px; /* Abstand zum Suchicon */
+}
+
+.search-bar i {
+  font-size: 20px; /* Größe des Icons */
+  color: #aaa; /* Farbe des Icons */
+}
+
+#autocomplete-results div {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+#autocomplete-results div:hover {
+  background-color: #f8f8f8;
+}
+
+#selected-quiz-name {
+  font-weight: bold;
+  color: #34A7C5;
+  font-size: 2rem;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+
+
+
+.forum-container {
+  background-color: #f8f9fa; /* Hintergrundfarbe für das Forum */
+  border: 1px solid #dee2e6; /* Rahmen um das Forum */
+  padding: 20px; /* Innenabstand */
+  margin-top: 2rem; /* Oberer Abstand vom vorherigen Inhalt */
+}
+
+.thread, .response {
+
+
+  border-radius: 8px;
+  margin-top: 20px;
+  border-left: 3px solid #34A7C5; /* türkiser linker Rand als optische Trennung */
+}
+
+.responses {
+  margin-top: 1rem; /* Abstand zwischen der Thread und den Antworten */
+}
+
+
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  margin-right: 10px;
+  background-color: blue;
+}
+
+.rotate { /* Rotation für das Icon beim Aktivieren */
+  transition: transform 0.3s;
+}
+
+.rotate.down { /* Rotieren des Icons, wenn Antworten sichtbar sind */
+  transform: rotate(180deg);
+}
+
+.user-topic {
+  margin-top: 5rem;
+}
+
+textarea, input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input, .input-group textarea {
+  margin-bottom: 10px;
+}
+.d-flex {
+  display: flex;
+
+  margin-bottom: 0.5rem; /* Reduzierter Abstand zum nächsten Block */
+}
+
+.thread, .response {
+  padding: 15px;
+  margin-top: 10px; /* Reduzierter Abstand zwischen den Threads/Responses */
+  border-left: 3px solid #34A7C5; /* Visuelle Trennlinie */
+}
+
+.response > .d-flex > a {
+  color: inherit; /* Überschreibt Linkfarben */
+  text-decoration: none; /* Entfernt Unterstreichung */
+}
+
+.response > .d-flex > p {
+  margin: 0; /* Entfernt zusätzlichen Abstand um <p> */
+}

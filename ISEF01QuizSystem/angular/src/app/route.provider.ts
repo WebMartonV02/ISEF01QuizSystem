@@ -17,28 +17,12 @@ function configureRoutes(routesService: RoutesService) {
         requiredPolicy: 'QuizSystem.QuizMaster || QuizSystem.Student'
       },
       {
-        path: '/login',
-        name: '::Login',
-        iconClass: 'fas fa-sign-in-alt',
-        order: 6,
-        layout: eLayoutType.application,
-        requiredPolicy: 'QuizSystem.QuizMaster'
-      },
-      {
         path: '/scoreboard',
         name: '::Scoreboard',
         iconClass: 'fa fa-clipboard',
         order: 3,
         layout: eLayoutType.application,
         requiredPolicy: 'QuizSystem.Student'
-      },
-      {
-        path: '/konfiguration',
-        name: '::Konfiguration',
-        iconClass: 'fas fa-wrench',
-        order: 5,
-        layout: eLayoutType.application,
-        requiredPolicy: 'QuizSystem.QuizMaster'
       },
       {
         path: '/fragemanager',
@@ -58,8 +42,16 @@ function configureRoutes(routesService: RoutesService) {
       },
       {
         path: '/quizmaster',
-        name: '::Quizmaster',
+        name: '::Quizmaster werden',
         iconClass: 'fas fa-unlock',
+        order: 6,
+        layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.Student'
+      },
+      {
+        path: '/benutzerhandbuch',
+        name: '::Benutzerhandbuch',
+        iconClass: 'fas fa-book',
         order: 6,
         layout: eLayoutType.application,
         requiredPolicy: 'QuizSystem.Student'
