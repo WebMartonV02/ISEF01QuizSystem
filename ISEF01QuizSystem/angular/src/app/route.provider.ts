@@ -20,7 +20,7 @@ function configureRoutes(routesService: RoutesService) {
         path: '/login',
         name: '::Login',
         iconClass: 'fas fa-sign-in-alt',
-        order: 5,
+        order: 6,
         layout: eLayoutType.application,
         requiredPolicy: 'QuizSystem.QuizMaster'
       },
@@ -31,6 +31,14 @@ function configureRoutes(routesService: RoutesService) {
         order: 3,
         layout: eLayoutType.application,
         requiredPolicy: 'QuizSystem.Student'
+      },
+      {
+        path: '/konfiguration',
+        name: '::Konfiguration',
+        iconClass: 'fas fa-wrench',
+        order: 5,
+        layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.QuizMaster'
       },
       {
         path: '/fragemanager',
@@ -45,6 +53,14 @@ function configureRoutes(routesService: RoutesService) {
         name: '::Quizhub',
         iconClass: 'fas fa-comment',
         order: 4,
+        layout: eLayoutType.application,
+        requiredPolicy: 'QuizSystem.Student'
+      },
+      {
+        path: '/quizmaster',
+        name: '::quizmaster',
+        iconClass: 'fas fa-home',
+        order: 6,
         layout: eLayoutType.application,
         requiredPolicy: 'QuizSystem.Student'
       }
