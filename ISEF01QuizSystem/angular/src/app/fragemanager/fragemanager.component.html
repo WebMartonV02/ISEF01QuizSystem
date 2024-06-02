@@ -25,12 +25,12 @@
             [cdkContextMenuTriggerData]="{rowData}"></tr>
 
         <ng-container matColumnDef="content">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ '::Content' | abpLocalization }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ '::Inhalt' | abpLocalization }} </th>
           <td mat-cell *matCellDef="let element"> {{ element.content }} </td>
         </ng-container>
 
         <ng-container matColumnDef="order">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ '::Order Number' | abpLocalization }} </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ '::Ordnungszahl' | abpLocalization }} </th>
           <td mat-cell *matCellDef="let element"> {{ element.order }} </td>
         </ng-container>
 
