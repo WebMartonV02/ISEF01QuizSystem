@@ -58,8 +58,8 @@ function configureRoutes(routesService: RoutesService) {
       },
       {
         path: '/quizmaster',
-        name: '::quizmaster',
-        iconClass: 'fas fa-home',
+        name: '::Quizmaster',
+        iconClass: 'fas fa-unlock',
         order: 6,
         layout: eLayoutType.application,
         requiredPolicy: 'QuizSystem.Student'
