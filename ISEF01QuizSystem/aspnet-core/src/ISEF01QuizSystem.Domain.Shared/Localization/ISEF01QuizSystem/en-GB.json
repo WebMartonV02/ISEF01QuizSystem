@@ -2,7 +2,7 @@
   "culture": "en-GB",
   "texts": {
     "Menu:Home": "Home",
-    "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "Welcome": "Willkommen bei Quizmunity – \nDeine Plattform für interaktives Lernen!",
+    "LongWelcomeMessage": "Erweitere dein Wissen in einer Vielzahl von Kursen, die verschiedene  Kategorien wie Wirtschaftsinformatik, Architektur, Medizin und vieles  mehr abdecken. Jeder Kurs führt dich zu speziell zugeschnittenen  Quizzes, die darauf ausgerichtet sind, dein Verständnis auf  unterhaltsame und effektive Weise zu fördern.\n\nWähle deinen Kursbereich und entdecke dein Quiz."
   }
 }
