@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="p-5 text-center login--div" *ngIf="!hasLoggedIn">
-    <h1>{{ '::Welcome' | abpLocalization }}</h1>
+  <div class="p-5 text-center login--div " *ngIf="!hasLoggedIn">
+    <h1 class="q-color-dark">{{ '::Welcome' | abpLocalization }}</h1>
 
-    <p class="lead px-lg-5 mx-lg-5">{{ '::LongWelcomeMessage' | abpLocalization }}</p>
+    <p class=" q-color-dark lead px-lg-5 mx-lg-5">{{ '::LongWelcomeMessage' | abpLocalization }}</p>
 
-    <a *ngIf="!hasLoggedIn" (click)="login()" class="px-4 btn btn-primary ms-1" role="button">
+    <a *ngIf="!hasLoggedIn" (click)="login()" class="px-4 btn btn-primary ms-1 quizmunity-button" role="button" >
       <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'AbpAccount::Login' | abpLocalization }}
     </a>
   </div>
