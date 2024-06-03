@@ -17,11 +17,11 @@
                       'element--false': (clickedOptionEvaluated$ | async) == false && option.text === choosenOption.text}">{{ option.text }}</button>
             </ul>
             <div class="button-container">
-                <button class="btn btn-primary left-button">Letzte Frage</button> <!-- Nicht sicher dass es zeitlich passt -->
-                <button class="btn btn-primary right-button" *ngIf="!this.actualQuestion.isLastQuestion" (click)="LoadNextQuestion()">Nächste Frage</button>
+                <button class="btn btn-primary left-button quizmunity-button">Letzte Frage</button> <!-- Nicht sicher dass es zeitlich passt -->
+                <button class="btn btn-primary right-button quizmunity-button" *ngIf="!this.actualQuestion.isLastQuestion" (click)="LoadNextQuestion()">Nächste Frage</button>
             </div>
             <div class="end-quiz-button-container">
-                <button class="btn btn-primary end-quiz-button" *ngIf="this.actualQuestion.isLastQuestion" (click)="RouteToOverViewPage()">Quiz beenden</button>
+                <button class="btn btn-primary end-quiz-button quizmunity-button" *ngIf="this.actualQuestion.isLastQuestion" (click)="RouteToOverViewPage()">Quiz beenden</button>
             </div>
         </div>
       </div>
