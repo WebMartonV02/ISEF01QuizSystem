@@ -10,12 +10,15 @@ DELETE FROM public."AppQuizEntity";
 -- Courses
 INSERT INTO public."AppCourseEntity"("Id", "Title", "Description") VALUES (1, 'IT-Recht', 'IT-Recht');
 INSERT INTO public."AppCourseEntity"("Id", "Title", "Description") VALUES (2, 'IT-Projektmanagement', 'IT-Projektmanagement');
+INSERT INTO public."AppCourseEntity"("Id", "Title", "Description") VALUES (3, 'Buchführung', 'Buchführung');
 
 -- Quizes
 INSERT INTO public."AppQuizEntity"("Id", "Title", "Description", "CourseId") VALUES (1, 'IT-Recht Lektion 1', 'IT-Recht Lektion 1', 1);
 INSERT INTO public."AppQuizEntity"("Id", "Title", "Description", "CourseId") VALUES (2, 'IT-Recht Lektion 2', 'IT-Recht Lektion 2', 1);
 INSERT INTO public."AppQuizEntity"("Id", "Title", "Description", "CourseId") VALUES (3, 'IT-Projektmanagement Lektion 1', 'IT-Projektmanagement Lektion 1', 2);
 INSERT INTO public."AppQuizEntity"("Id", "Title", "Description", "CourseId") VALUES (4, 'IT-Projektmanagement Lektion 2', 'IT-Projektmanagement Lektion 2', 2);
+INSERT INTO public."AppQuizEntity"("Id", "Title", "Description", "CourseId") VALUES (5, 'Buchführung Lektion 1', 'Buchführung Lektion 1', 3);
+INSERT INTO public."AppQuizEntity"("Id", "Title", "Description", "CourseId") VALUES (6, 'Buchführung Lektion 2', 'Buchführung Lektion 2', 3);
 
 -- Questions
 INSERT INTO public."AppQuestionEntity"("Id", "QuizId", "Content", "Order") VALUES (1, 1, 'Was versteht man unter Urheberrecht im Kontext von Software?', 1);
@@ -28,6 +31,12 @@ INSERT INTO public."AppQuestionEntity"("Id", "QuizId", "Content", "Order") VALUE
 INSERT INTO public."AppQuestionEntity"("Id", "QuizId", "Content", "Order") VALUES (7, 3, 'Was ist das primäre Ziel des Projektmanagements?', 1);
 INSERT INTO public."AppQuestionEntity"("Id", "QuizId", "Content", "Order") VALUES (8, 4, 'Welches Tool wird häufig für Agile Projektmanagement verwendet?', 1);
 
+
+INSERT INTO public."AppQuestionEntity"("Id", "QuizId", "Content", "Order") VALUES (9, 5, 'Was versteht man unter dem Begriff SWOT-Analyse?', 1);
+INSERT INTO public."AppQuestionEntity"("Id", "QuizId", "Content", "Order") VALUES (10, 5, 'Was ist eine Bilanz?', 2);
+
+INSERT INTO public."AppQuestionEntity"("Id", "QuizId", "Content", "Order") VALUES (11, 6, 'Was ist der Zweck eines Budgets in einem Unternehmen?', 1);
+INSERT INTO public."AppQuestionEntity"("Id", "QuizId", "Content", "Order") VALUES (12, 6, 'Was beschreibt den Begriff Amortisation?', 2);
 
 -- Options
 INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (1, 1, 'A) Das Recht, Software zu benutzen', false);
@@ -69,3 +78,24 @@ INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VA
 INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (30, 8, 'B) SAP', false);
 INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (31, 8, 'C) Oracle', false);
 INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (32, 8, 'D) Microsoft Excel', false);
+
+
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (33, 9, 'A) Ein Finanzierungsinstrument', false);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (34, 9, 'B) Eine Methode zur Analyse von Stärken, Schwächen, Chancen und Risiken', true);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (35, 9, 'C) Ein Buchhaltungsstandard', false);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (36, 9, 'D) Ein Marketingstrategietool', false);
+
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (37, 10, 'A) Ein Vertriebsbericht', false);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (38, 10, 'B) Eine Mitarbeiterbewertung', false);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (39, 10, 'C) Eine Gegenüberstellung von Vermögen und Schulden eines Unternehmens', true);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (40, 10, 'D) Eine Marktanalyse', false);
+
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (41, 11, 'A) Die Bewertung von Mitarbeitern', false);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (42, 11, 'B) Die Planung von Firmenevents', false);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (43, 11, 'C) Die Planung und Kontrolle der Finanzen', true);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (44, 11, 'D) Die Kommunikation mit Investoren', false);
+
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (45, 12, 'A) Die Rückzahlung oder Tilgung einer Schuld', true);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (46, 12, 'B) Eine Methode der Mitarbeiterrekrutierung', false);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (47, 12, 'C) Ein Prozess im Marketing', false);
+INSERT INTO public."AppOptionEntity"("Id", "QuestionId", "Text", "IsCorrect") VALUES (48, 12, 'D) Eine Investitionsbewertungstechnik', false);
