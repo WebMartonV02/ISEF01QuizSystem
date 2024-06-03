@@ -59,6 +59,11 @@ $ISEF01QuizSystem-theme: mat.define-light-theme((
 }
 
 
+
+
+
+
+
 /* Typography */
 
 h1 {
@@ -76,6 +81,10 @@ font-size: 18px !important;
 color:  var(--quizmunity-darkgrey)!important;
 }
 
+h4{
+  font-size: 18px !important;
+  }
+
 p{
 font-size: 14px !important;
 color:  var(--quizmunity-darkgrey)!important;
@@ -87,7 +96,7 @@ color:  var(--quizmunity-darkgrey)!important;
 /* Buttons */
 
 
-.quizmunity-button{
+.quizmunity-button, .ergebnis-button {
 border-radius: 10px !important;
 padding: 10px 15px !important;
 border: solid 3px var(--quizmunity-blue2) !important;
@@ -97,7 +106,7 @@ font-weight: 400 !important;
 font-size: 14px !important;
 }
 
-.quizmunity-button:hover{
+.quizmunity-button:hover, .ergebnis-button:hover{
   border-radius: 10px !important;
   padding: 10px 15px !important;
   border: solid 3px var(--quizmunity-blue2) !important;
@@ -135,14 +144,87 @@ font-size: 14px !important;
   background-color: var(--quizmunity-white) !important;
 }
 
+.nav-link{
+  color: var(--quizmunity-darkgrey) !important;
+}
 
+.navbar-toggler, .navbar-toggler-icon{
+  background-color: var(--quizmunity-blue1) !important;
+}
 
+/* Menu */
 
-
+#main-navbar{
+  background-color: white !important;
+}
 
 
 /* Further Stylings */
 
+
+
+#question-container{
+  margin-top: 60px !important;
+}
+
+#question-container .mat-mdc-card {
+
+    border: 2px var(--quizmunity-blue2) solid;
+    box-shadow: none;
+    border-radius: 10px;
+}
+
+
+.kommentar-hinzufügen .mdc-line-ripple{
+  display: none !important;
+}
+
+.kommentar-hinzufügen{
+  margin-bottom: 0px !important;
+}
+
+.kommentar-hinzufügen .mat-mdc-text-field-wrapper{
+ border-radius: 10px !important;
+}
+
+
+.quizhub-search .mdc-line-ripple{
+  display: none !important;
+}
+
+
+.quizhub-search .mat-mdc-text-field-wrapper{
+ border-radius: 10px !important;
+}
+
+
+.scoreboard-filter .form-row{
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  margin-left: 0px !important;
+}
+
+.kommentar-hinzuügen-input{
+  border-bottom: 0px !important;
+  border-radius: 10px !important;
+}
+
+.scoreboard-filter .form-control, .scoreboard-filter .input-group-prepend, .scoreboard-filter .input-group-text{
+  margin-right: 5px !important;
+  border-radius: 10px !important;
+}
+
+.filter-form{
+margin: 0px !important;
+}
+
+.scoreboard-filter .input-group-append{
+  display: none !important;
+}
+
+.progress-bar{
+  background-color: var(--quizmunity-blue2) !important;
+}
 
 
 .donut {
@@ -170,7 +252,6 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-
   background-blend-mode: overlay,overlay,overlay,normal;
 }
 
@@ -187,7 +268,31 @@ body {
   background-color: #ffffff; /*Obligatory fallback color, if the browser doesn't support rgba*/
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
+  border: 0px !important;
 }
+
+.modul-kachel{
+  background-image: none !important;
+  background-color: var(--quizmunity-blue2) !important;
+}
+
+.modul-kachel a {
+  font-size: 18px !important;
+}
+
+
+.login--div{
+  background-color: var(--quizmunity-white) !important;
+  border-radius: 10px !important;
+}
+
+
+
+.login--div .q-color-dark{
+  color:  var(--quizmunity-darkgrey)!important;
+}
+
+
 
 .generic-table
 {
