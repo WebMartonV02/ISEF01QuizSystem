@@ -17,6 +17,7 @@
                       'element--false': (clickedOptionEvaluated$ | async) == false && option.text === choosenOption.text}">{{ option.text }}</button>
             </ul>
             <div class="button-container">
+              <button class="btn btn-primary left-button quizmunity-button invisible">Letzte Frage</button>
                 <button class="btn btn-primary right-button quizmunity-button" *ngIf="!this.actualQuestion.isLastQuestion" (click)="LoadNextQuestion()">Nächste Frage</button>
             </div>
             <div class="end-quiz-button-container">
