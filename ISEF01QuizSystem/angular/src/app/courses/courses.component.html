@@ -12,10 +12,8 @@
           <p>Entdecke und vertiefe dein Wissen in einer Vielzahl von Kursen.
             Wähle aus Kategorien wie Wirtschaftsinformatik, Architektur, Medizin und vieles mehr abdecken.
             Jeder Kurs führt dich zu speziell zugeschnittenen  Quizzes, die darauf ausgerichtet sind, dein Verständnis auf  unterhaltsame und effektive Weise zu fördern.</p>
-          <h3 class="my-4">Wähle deinen Kursbereich und entdecke dein Quiz.</h3>
-          <div class="input-icon">
-            <input class="input-field" type="text" placeholder="Filter die Kursen">
-          </div>
+          <h3 class="my-4">Wähle deinen Kursbereich und entdecke dein Quiz:</h3>
+         
           <hr>
         </div>
       </div>
@@ -24,7 +22,7 @@
       <div class="row ">
         <div *ngFor="let entity of entities" class="col-md-4 d-flex justify-content-center">
           <div class="modul-kachel d-flex align-items-center justify-content-center my-3">
-            <a (click)="RouteToQuiz(entity.id)"><h4 class="modul-kachel-text align-self-center">{{entity.title}}</h4></a>
+            <a style="cursor: pointer;" (click)="RouteToQuiz(entity.id)"><h4 class="modul-kachel-text align-self-center">{{entity.title}}</h4></a>
           </div>
         </div>
         </div>
