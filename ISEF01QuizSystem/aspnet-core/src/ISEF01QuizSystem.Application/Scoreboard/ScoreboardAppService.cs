@@ -51,7 +51,14 @@ public class ScoreboardAppService : ISEF01QuizSystemAppService
             {
                 var scorePointFromLastAttemptByUser = quiz.Attempts.Where(x => x.UserId == userId).MaxBy(x => x.Count).Score;
                 
+                // TODO: sum up score points
+                if(usersAndScores.ContainsKey(userId)){
+                    usersAndScores.Remove(userId);
+                } 
                 usersAndScores.Add(userId, scorePointFromLastAttemptByUser);
+                
+                
+                
             }
         }
 
