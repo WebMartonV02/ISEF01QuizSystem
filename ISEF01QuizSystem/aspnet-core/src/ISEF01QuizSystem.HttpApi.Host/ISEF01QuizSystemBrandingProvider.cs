@@ -6,5 +6,5 @@ namespace ISEF01QuizSystem;
 [Dependency(ReplaceServices = true)]
 public class ISEF01QuizSystemBrandingProvider : DefaultBrandingProvider
 {
-    public override string AppName => "ISEF01QuizSystem";
+    public override string AppName => "Quizmunity";
 }

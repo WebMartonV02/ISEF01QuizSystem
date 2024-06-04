@@ -6,8 +6,8 @@ export const environment = {
   production: true,
   application: {
     baseUrl,
-    name: 'ISEF01QuizSystem',
-    logoUrl: '',
+    name: 'Quizmunity',
+    logoUrl: 'assets/images/Logo_positiv.png',
   },
   oAuthConfig: {
     issuer: 'https://quizmunity.com/',

@@ -6,7 +6,7 @@
                                     <div class="container-fluid"> 
                                         <div class="white-container"> 
                                             <div class="row">
-                                                <div class="col-md-12 text-center">
+                                                <div class="col-md-12 text-center quizhub-search">
                                                     <div class="welcome_quizmunity">
                                                         <h1>Quizhub</h1>
                                                         <p>QuizHub ist dein interaktiver Treffpunkt innerhalb der Quizmunity, wo Wissen  und Spaß aufeinandertreffen. Hier kannst du dich mit anderen  Quiz-Enthusiasten vernetzen, Diskussionen zu den neuesten Fragen führen und Einblicke in spannende Themenbereiche erhalten. 
@@ -33,13 +33,13 @@
 
                                             <div class="container" *ngIf="comments != null" >
                                                 <!-- Formular zum Hinzufügen neuer Fragen -->
-                                                <div class="input-group">
-                                                  <mat-form-field class="m-2" style="width: 100%;">
+                                                <div class="input-group kommentar-hinzufügen">
+                                                  <mat-form-field class="" style="width: 100%;">
                                                     <mat-label>Kommentar hinzufügen</mat-label>
-                                                    <textarea matInput [(ngModel)]="questionComment" ></textarea>
+                                                    <textarea matInput [(ngModel)]="questionComment" class="kommentar-hinzuügen-input"></textarea>
                                                   </mat-form-field>
                                                 </div>
-                                                <button (click)="publish()" class="m-2"  mat-raised-button >Veröffentlichen</button>
+                                                <button (click)="publish()" class="m-2 quizmunity-button"   >Veröffentlichen</button>
                                                     <div id="question-container">
                                                     <!-- Hier werden die neuen Fragen eingefügt -->
                                                       <div *ngFor="let comment of comments">
