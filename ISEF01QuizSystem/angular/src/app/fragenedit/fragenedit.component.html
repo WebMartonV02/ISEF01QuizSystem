@@ -11,12 +11,11 @@
     <div class="antworten-section">
       <h3>Antworten</h3>
       <p>Nachdem du mögliche Antworten angegeben hast, wähle die richtige aus.</p>
-
       <div id="answer-container-area" *ngFor="let option of createOrUpdateRequestDto.options; let index = i;">
 
       <!-- Antwort Container -->
         <div class="antwort-container">
-            <input type="checkbox" class="checkbox-button" [(ngModel)]="option.isCorrect" name="correct-answer">
+            <input type="checkbox" class="checkbox-button" [(ngModel)]="option.isCorrect" name="correct-answer" (click)="doChange(option)">
             <div class="answer-text richtext-editor">
                 <!-- Hier könnte Ihr Rich-Text-Editor eingebunden werden -->
                 <textarea class="form-control antwort-eingabe" [(ngModel)]="option.text" placeholder="Hier eine Antwortmöglichkeit eingeben"></textarea>
@@ -26,6 +25,7 @@
 
       </div>
     </div>
+   
 
     <!-- Buttons für Speicheraktionen -->
     <div class="save-action-buttons">

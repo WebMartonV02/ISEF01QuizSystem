@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CreateUpdateQuestionProviderService } from '../fragemanager/services/create-update-question-provider.service';
 import { QuestionRequestDto, QuestionResponseDto, QuestionService } from '@proxy/questions';
+import { OptionRequestDto } from '@proxy/options/models';
 
 @Component({
   selector: 'app-fragenedit',
@@ -65,5 +66,15 @@ export class FrageneditComponent implements OnInit
         console.log('jaj')
         console.log(this.createOrUpdateRequestDto.options[0])
       });
+  }
+
+  public doChange(option: OptionRequestDto) {
+    
+    for(var i=0; i < this.createOrUpdateRequestDto.options.length; i++){
+      if(this.createOrUpdateRequestDto.options[i].id !== option.id){
+        this.createOrUpdateRequestDto.options[i].isCorrect = false;
+      }
+    }
+    console.log(option)
   }
 }
