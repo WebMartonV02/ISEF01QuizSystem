@@ -2,15 +2,15 @@
 
 <div class="maincontainer">
 
-  <div class="flex-container">
+  <div class="flex-container fragenedit-container">
 
-    <h2>Fragenmanager</h2>
+    <h2 class="white-text ">Fragenmanager</h2>
     <textarea class="form-control my-3" rows="3" [(ngModel)]="createOrUpdateRequestDto.content" placeholder="Hier die Frage eingeben"></textarea>
 
     <!-- Antwortbereich -->
     <div class="antworten-section">
-      <h3>Antworten</h3>
-      <p>Nachdem du mögliche Antworten angegeben hast, wähle die richtige aus.</p>
+      <h3 class="white-text">Antworten</h3>
+      <p class="white-text">Nachdem du mögliche Antworten angegeben hast, wähle die richtige aus.</p>
 
       <div id="answer-container-area" *ngFor="let option of createOrUpdateRequestDto.options; let index = i;">
 
@@ -29,9 +29,9 @@
 
     <!-- Buttons für Speicheraktionen -->
     <div class="save-action-buttons">
-      <button class="btn btn-success quizmunity-button-inverted" (click)="SaveQuestionAndAnswerChanges()">Speichern</button>
+      <button class="btn btn-success quizmunity-button-inverted-2" (click)="SaveQuestionAndAnswerChanges()">Speichern</button>
 
-      <button class="btn btn-outline-primary quizmunity-button-inverted" (click)="RouteBackToQuestions()">Zurück</button>
+      <button class="btn btn-outline-primary quizmunity-button-inverted-2" (click)="RouteBackToQuestions()">Zurück</button>
     </div>
 
   </div>
