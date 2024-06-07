@@ -27,6 +27,14 @@ export class QuizService {
     { apiName: this.apiName,...config });
   
 
+  deleteOptionById = (id: number, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'DELETE',
+      url: `/api/app/quiz/${id}/option`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   get = (id: number, config?: Partial<Rest.Config>) =>
     this.restService.request<any, QuizResponseDto>({
       method: 'GET',

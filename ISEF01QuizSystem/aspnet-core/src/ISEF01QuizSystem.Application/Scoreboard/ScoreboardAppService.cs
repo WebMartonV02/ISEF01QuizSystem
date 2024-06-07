@@ -42,16 +42,21 @@ public class ScoreboardAppService : ISEF01QuizSystemAppService
         // var asd = await _genericQuizEntity.GetByPredicateWithNestedElements(x => x.Id == 1);
         
         var usersAndScores = new Dictionary<Guid, int>();
-
+        var totalScore = 0;
         foreach (var quiz in courseWithNesteds.Quizes)
         {
             var userIdsInAttempts = quiz.Attempts.Select(x => x.UserId).Distinct().ToList();
             
             foreach (var userId in userIdsInAttempts)
             {
-                var scorePointFromLastAttemptByUser = quiz.Attempts.Where(x => x.UserId == userId).MaxBy(x => x.Count).Score;
+                var scorePointFromLastAttemptByUser = quiz.Attempts.Where(x => x.UserId == userId);
+
+                foreach (var currentAttempt in scorePointFromLastAttemptByUser) {
+                    totalScore+=currentAttempt.Score;
+                }
                 
-                usersAndScores.Add(userId, scorePointFromLastAttemptByUser);
+                usersAndScores.Remove(userId);
+                usersAndScores.Add(userId, totalScore);
             }
         }
 

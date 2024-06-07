@@ -75,7 +75,7 @@ export class ErgebnisComponent implements OnInit, OnDestroy
     console.log(this.scoreViewModel.NumberOfCorrectAnswers)
     console.log(this.scoreViewModel.NumberOfQuestions)
 
-    let result = this.scoreViewModel.NumberOfCorrectAnswers/this.scoreViewModel.NumberOfQuestions*100;
+    let result = Math.round(this.scoreViewModel.NumberOfCorrectAnswers/this.scoreViewModel.NumberOfQuestions*100);
 
     return result;
   }

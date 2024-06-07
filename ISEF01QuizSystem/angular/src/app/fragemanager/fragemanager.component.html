@@ -22,7 +22,8 @@
         <tr mat-row
             *matRowDef="let rowData; columns: columns"
             [cdkContextMenuTriggerFor]="context_menu"
-            [cdkContextMenuTriggerData]="{rowData}"></tr>
+            [cdkContextMenuTriggerData]="{rowData}"   
+            (click)="goToEditPage(rowData)"></tr>
 
         <ng-container matColumnDef="content">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ '::Inhalt' | abpLocalization }} </th>
@@ -45,19 +46,4 @@
                    showFirstLastButtons
                    (page)="OnPageChange($event)"></mat-paginator>
   </section>
-
-  <ng-template #context_menu let-rowData="rowData">
-    <div class="list-context-menu" cdkMenu>
-      <div class="list-context-menu-header">{{ rowData.fullName }}</div>
-
-      <button *ngFor="let availableContextAction of availableContextActions"
-              class="list-context-menu-item"
-              (click)="availableContextAction.callbackMethod(rowData)"
-              cdkMenuItem>
-        <i class="fa-solid fa-{{ availableContextAction.IconName }}"></i>
-        {{ availableContextAction.caption }}
-      </button>
-    </div>
-  </ng-template>
-
 </div>

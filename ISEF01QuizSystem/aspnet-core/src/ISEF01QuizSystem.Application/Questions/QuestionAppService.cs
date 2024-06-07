@@ -114,6 +114,17 @@ public class QuestionAppService : ISEF01QuizSystemAppService
         throw new UserFriendlyException($"Quiz cannot be deleted, because it doesn't exist!");
     }
 
+    public async Task DeleteOption(int id)
+    {
+        var entity = await _optionRepository.FirstOrDefaultAsync(x => x.Id == id);
+
+        if(entity != default)
+        {
+            await _optionRepository.DeleteAsync(entity);
+        }
+
+    }
+
     private async Task<bool> CheckIfNextQuestionExistsByOrder(int actualOrderNumber, int quizId)
     {
         var nextQuestionOrder = ++actualOrderNumber;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CreateUpdateQuestionProviderService } from '../fragemanager/services/create-update-question-provider.service';
 import { QuestionRequestDto, QuestionResponseDto, QuestionService } from '@proxy/questions';
+import { OptionRequestDto } from '@proxy/options/models';
 
 @Component({
   selector: 'app-fragenedit',
@@ -12,6 +13,7 @@ export class FrageneditComponent implements OnInit
 {
   public editableQuestionEntity: QuestionResponseDto = { } as QuestionResponseDto;
   public createOrUpdateRequestDto: QuestionRequestDto = {} as QuestionRequestDto;
+
 
   constructor(private readonly _createUpdateQuestionProviderService: CreateUpdateQuestionProviderService,
               private readonly _questionService: QuestionService,
@@ -40,6 +42,7 @@ export class FrageneditComponent implements OnInit
       .subscribe(() =>
       {
         this.RouteBackToQuestions();
+        
       })
   }
 
@@ -65,5 +68,32 @@ export class FrageneditComponent implements OnInit
         console.log('jaj')
         console.log(this.createOrUpdateRequestDto.options[0])
       });
+  }
+
+  public doChange(option: OptionRequestDto) {
+    
+    for(var i=0; i < this.createOrUpdateRequestDto.options.length; i++){
+      if(this.createOrUpdateRequestDto.options[i].id !== option.id){
+        this.createOrUpdateRequestDto.options[i].isCorrect = false;
+      }
+    }
+    console.log(option)
+  }
+
+  public deleteOption(option: OptionRequestDto){
+    var optionsArray = this.createOrUpdateRequestDto.options;
+    for(var i=0; i<optionsArray.length; i++){
+      if(optionsArray[i].id == option.id){
+        this._questionService.deleteOptionById(option.id).subscribe((data) => {
+          console.log(data);
+        });
+        optionsArray.splice(i, 1);
+        this.createOrUpdateRequestDto.options = optionsArray;
+        return;
+      }
+    }
+    
+
+    
   }
 }

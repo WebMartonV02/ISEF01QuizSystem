@@ -16,16 +16,17 @@
 
       <!-- Antwort Container -->
         <div class="antwort-container">
-            <input type="checkbox" class="checkbox-button" [(ngModel)]="option.isCorrect" name="correct-answer">
+            <input type="checkbox" class="checkbox-button" [(ngModel)]="option.isCorrect" name="correct-answer" (click)="doChange(option)">
             <div class="answer-text richtext-editor">
                 <!-- Hier könnte Ihr Rich-Text-Editor eingebunden werden -->
                 <textarea class="form-control antwort-eingabe" [(ngModel)]="option.text" placeholder="Hier eine Antwortmöglichkeit eingeben"></textarea>
             </div>
-            <i class="bi bi-trash"></i>
+            <i class="fa fa-trash" style="cursor: pointer;" (click)="deleteOption(option)"></i>
         </div>
 
       </div>
     </div>
+   
 
     <!-- Buttons für Speicheraktionen -->
     <div class="save-action-buttons">

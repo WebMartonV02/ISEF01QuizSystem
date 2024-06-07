@@ -23,7 +23,7 @@
       <div class="row ">
         <div *ngFor="let entity of entities" class="col-md-4 d-flex justify-content-center">
           <div class="modul-kachel d-flex align-items-center justify-content-center my-3">
-            <a (click)="RouteToQuiz(entity.id)"><h4 class="modul-kachel-text align-self-center">{{entity.title}}</h4></a>
+            <a style="cursor: pointer;" (click)="RouteToQuiz(entity.id)"><h4 class="modul-kachel-text align-self-center">{{entity.title}}</h4></a>
           </div>
         </div>
         </div>

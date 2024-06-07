@@ -120,4 +120,9 @@ export class FragemanagerComponent implements OnInit
       ContextMenuActionFactory.CreateAvailableContextActions('Edit', ((element: ResultDtoModel) => this.RouteToCreateOrUpdatePage(element)), "pen"),
     );
   }
+
+  public goToEditPage(element: ResultDtoModel): void 
+  {
+    this.RouteToCreateOrUpdatePage(element);
+  }
 }
