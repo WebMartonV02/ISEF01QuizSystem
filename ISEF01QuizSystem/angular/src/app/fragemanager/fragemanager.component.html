@@ -2,11 +2,11 @@
 
 <div class="maincontainer">
 
-  <mat-form-field>
-    <mat-label>Wähle Quiz aus</mat-label>
-    <mat-select [(ngModel)]="selectedQuiz" (selectionChange)="OnSearchPredicateChanged()">
+  <mat-form-field class="quizauswahl">
+    <mat-label>Quizauswählen</mat-label>
+    <mat-select [(ngModel)]="selectedQuiz" (selectionChange)="OnSearchPredicateChanged()" >
       @for (quiz of quizes; track quiz) {
-        <mat-option [value]="quiz">{{quiz.titel}}</mat-option>
+        <mat-option [value]="quiz" >{{quiz.titel}}</mat-option>
       }
     </mat-select>
   </mat-form-field>
