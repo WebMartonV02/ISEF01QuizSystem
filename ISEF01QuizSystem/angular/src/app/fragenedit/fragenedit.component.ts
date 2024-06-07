@@ -14,6 +14,7 @@ export class FrageneditComponent implements OnInit
   public editableQuestionEntity: QuestionResponseDto = { } as QuestionResponseDto;
   public createOrUpdateRequestDto: QuestionRequestDto = {} as QuestionRequestDto;
 
+
   constructor(private readonly _createUpdateQuestionProviderService: CreateUpdateQuestionProviderService,
               private readonly _questionService: QuestionService,
               private readonly _router: Router) {}
@@ -41,6 +42,7 @@ export class FrageneditComponent implements OnInit
       .subscribe(() =>
       {
         this.RouteBackToQuestions();
+        
       })
   }
 
@@ -76,5 +78,22 @@ export class FrageneditComponent implements OnInit
       }
     }
     console.log(option)
+  }
+
+  public deleteOption(option: OptionRequestDto){
+    var optionsArray = this.createOrUpdateRequestDto.options;
+    for(var i=0; i<optionsArray.length; i++){
+      if(optionsArray[i].id == option.id){
+        this._questionService.deleteOptionById(option.id).subscribe((data) => {
+          console.log(data);
+        });
+        optionsArray.splice(i, 1);
+        this.createOrUpdateRequestDto.options = optionsArray;
+        return;
+      }
+    }
+    
+
+    
   }
 }

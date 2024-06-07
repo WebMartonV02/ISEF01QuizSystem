@@ -27,6 +27,14 @@ export class QuestionService {
     { apiName: this.apiName,...config });
   
 
+  deleteOptionById = (id: number, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'DELETE',
+      url: `/api/app/question/${id}/option`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   getById = (id: number, config?: Partial<Rest.Config>) =>
     this.restService.request<any, QuestionResponseDto>({
       method: 'GET',

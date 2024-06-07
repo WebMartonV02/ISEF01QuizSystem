@@ -1964,6 +1964,43 @@
               },
               "allowAnonymous": null,
               "implementFrom": "ISEF01QuizSystem.Quizes.QuizAppService"
+            },
+            "DeleteOptionById": {
+              "uniqueName": "DeleteOptionById",
+              "name": "DeleteOption",
+              "httpMethod": "DELETE",
+              "url": "api/app/quiz/{id}/option",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "ISEF01QuizSystem.Quizes.QuizAppService"
             }
           }
         },
@@ -2371,6 +2408,43 @@
               "name": "DeleteAsync",
               "httpMethod": "DELETE",
               "url": "api/app/question/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Int32, System.Private.CoreLib",
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "ISEF01QuizSystem.Questions.QuestionAppService"
+            },
+            "DeleteOptionById": {
+              "uniqueName": "DeleteOptionById",
+              "name": "DeleteOption",
+              "httpMethod": "DELETE",
+              "url": "api/app/question/{id}/option",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {

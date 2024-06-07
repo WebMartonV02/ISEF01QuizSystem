@@ -20,7 +20,7 @@
                 <!-- Hier könnte Ihr Rich-Text-Editor eingebunden werden -->
                 <textarea class="form-control antwort-eingabe" [(ngModel)]="option.text" placeholder="Hier eine Antwortmöglichkeit eingeben"></textarea>
             </div>
-            <i class="bi bi-trash"></i>
+            <i class="fa fa-trash" style="cursor: pointer;" (click)="deleteOption(option)"></i>
         </div>
 
       </div>

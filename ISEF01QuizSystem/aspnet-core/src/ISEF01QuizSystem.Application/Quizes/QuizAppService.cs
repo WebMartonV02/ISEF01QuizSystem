@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ISEF01QuizSystem.Common;
+using ISEF01QuizSystem.Options;
 using ISEF01QuizSystem.Questions;
 using ISEF01QuizSystem.Quiz;
 using Volo.Abp;
@@ -14,13 +15,16 @@ public class QuizAppService : ISEF01QuizSystemAppService
 {
     private readonly IRepository<QuizEntity> _quizEntityRepository;
     private readonly IGenericRepository<QuizEntity> _genericRepository; 
+    private readonly IRepository<OptionEntity> _optionRepository;
 
     public QuizAppService(
         IRepository<QuizEntity> quizEntityRepository,
-        IGenericRepository<QuizEntity> genericRepository)
+        IGenericRepository<QuizEntity> genericRepository, 
+        IRepository<OptionEntity> optionRepository)
     {
         _quizEntityRepository = quizEntityRepository;
         _genericRepository = genericRepository;
+        _optionRepository = optionRepository;
     }
     
     public async Task<List<QuizResponseDto>> GetListWithOutOrdering()
@@ -111,5 +115,16 @@ public class QuizAppService : ISEF01QuizSystemAppService
         }
 
         throw new UserFriendlyException($"Quiz cannot be deleted, because it doesn't exist!");
+    }
+
+    public async Task DeleteOption(int id)
+    {
+        var entity = await _optionRepository.FirstOrDefaultAsync(x => x.Id == id);
+
+        if(entity != default)
+        {
+            await _optionRepository.DeleteAsync(entity);
+        }
+
     }
 }
