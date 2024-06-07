@@ -91,7 +91,9 @@ color:  var(--quizmunity-darkgrey)!important;
 }
 
 
-
+.white-text{
+  color: var(--quizmunity-white) !important;
+}
 
 /* Buttons */
 
@@ -136,6 +138,28 @@ font-size: 14px !important;
   font-size: 14px !important;
 }
 
+.quizmunity-button-inverted-2{
+  border-radius: 10px !important;
+  padding: 10px 15px !important;
+  border: solid 3px var(--quizmunity-white) !important;
+  background-color: var(--quizmunity-white) !important;
+  color:var(--quizmunity-blue2) !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+.quizmunity-button-inverted-2:hover{
+  border-radius: 10px !important;
+  padding: 10px 15px !important;
+  border: solid 3px var(--quizmunity-blue2) !important;
+  background-color: var(--quizmunity-blue2) !important;
+  color:var(--quizmunity-white) !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+
+
+
 
 
 /* Layout */
@@ -144,13 +168,28 @@ font-size: 14px !important;
   background-color: var(--quizmunity-white) !important;
 }
 
-.nav-link{
+#main-navbar .nav-link{
   color: var(--quizmunity-darkgrey) !important;
 }
 
 .navbar-toggler, .navbar-toggler-icon{
   background-color: var(--quizmunity-blue1) !important;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+ 
+  background-color: var(--quizmunity-blue2) !important;
+}
+
+.nav-pills .nav-link {
+  color: var(--quizmunity-blue2) ;
+}
+
+.abp-md-form .btn{
+  background-color: var(--quizmunity-blue2) !important;
+  border-color: var(--quizmunity-blue2) !important;
+}
+
 
 /* Menu */
 
@@ -407,3 +446,30 @@ abp-logo
   background-color: #249ABA !important;
   height: 100vh;
 }
+
+
+.quizauswahl .mat-mdc-text-field-wrapper {
+  border-radius: 10px !important;
+  margin: 10px !important;
+}
+
+.quizauswahl .mdc-line-ripple::before {
+  border-bottom-color: rgb(0 0 0 / 0%) !important;
+}
+
+.fragenedit-container{
+  padding-bottom: 50px !important;
+}
+
+
+.fragenedit-container .checkbox-button{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.fragenedit-container .checkbox-button:checked::after{
+  top: unset!important;
+  left: unset !important;
+}
+
