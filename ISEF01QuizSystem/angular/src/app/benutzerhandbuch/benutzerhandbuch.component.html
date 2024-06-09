@@ -14,48 +14,13 @@
             <p>Unser Benutzerhandbuch bietet dir Schritt-für-Schritt-Anleitungen und wertvolle Tipps zur Nutzung der Quizmunity-Plattform. Von der ersten Anmeldung über die Durchführung von Quizzes bis hin zur Erstellung eigener Fragen – alles, was du wissen musst, ist kompakt für dich zusammengefasst.</p>
           </div>
 
-          <button type="submit" class="btn btn-primary quizmunity-button">Benutzerhandbuch Herunterladen</button>
-
-        </div>
-      </div>
-
-      <div class="container" *ngIf="comments != null" >
-        <!-- Formular zum Hinzufügen neuer Fragen -->
-        <div class="input-group">
-          <textarea [(ngModel)]="questionComment" id="new-question-content" placeholder="Kommentar hinzufügen"></textarea>
-        </div>
-        <button (click)="publish()" class="btn btn-primary" >Veröffentlichen</button>
-        <div id="question-container">
-          <!-- Hier werden die neuen Fragen eingefügt -->
-          <div *ngFor="let comment of comments">
-            <div>
-              <p class="fs-4">{{comment.content}} <button mat-raised-button color="warn" (click)="deleteComment(comment.id)" *ngIf="comment.userId == currentUserId">DELETE</button></p>
-
-            </div>
-
-          </div>
-
+          <a href="https://iubhfs.sharepoint.com/sites/SW-Projekt/_layouts/15/embed.aspx?UniqueId=99250a53-7f79-43b3-a572-71a19c7f5193" type="submit" class="btn btn-primary quizmunity-button">Benutzerhandbuch Herunterladen</a>
 
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Funktion, um auf Klick-Event für jede Antwort zu reagieren
-  function answerClicked(event) {
-    // Füge die ausgewählte Klasse zum geklickten Element hinzu oder entferne sie, wenn sie bereits ausgewählt war
-    event.currentTarget.classList.toggle('answer-selected');
-  }
-
-  // Event-Listener für alle Antwort-Elemente
-  document.querySelectorAll('.answer').forEach(function(answer) {
-    answer.addEventListener('click', answerClicked);
-  });
-</script>
 
 <style scoped>
   .col-lg-2.border-start:nth-of-type(6n + 1) {
